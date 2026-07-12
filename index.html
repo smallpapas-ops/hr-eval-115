@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>115年度 手術室護理人員年終考核系統</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fff;--bg2:#f8f7f5;--bg3:#f0ede8;
+  --bd:rgba(0,0,0,.09);--bd2:rgba(0,0,0,.16);
+  --tx:#1a1a1a;--tx2:#555;--tx3:#999;
+  --blue-bg:#E6F1FB;--blue:#0C447C;
+  --green-bg:#EAF3DE;--green:#27500A;
+  --amber-bg:#FAEEDA;--amber:#633806;
+  --red-bg:#FCEBEB;--red:#791F1F;
+  --purple-bg:#EEEDFE;--purple:#3C3489;
+  --r:8px;--rl:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;font-size:15px;background:var(--bg2);color:var(--tx);min-height:100vh}
+nav{background:var(--bg);border-bottom:.5px solid var(--bd);position:sticky;top:0;z-index:40;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.ni{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:14px;height:56px}
+.nlogo{width:34px;height:34px;border-radius:var(--r);background:var(--blue-bg);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:17px;flex-shrink:0}
+.ptabs{background:var(--bg);border-bottom:.5px solid var(--bd)}
+.ptabs-i{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto}
+.ptab{padding:11px 18px;font-size:14px;color:var(--tx2);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-.5px;display:flex;align-items:center;gap:7px;white-space:nowrap;transition:color .15s;flex-shrink:0}
+.ptab.on{color:var(--tx);border-bottom-color:var(--blue);font-weight:600}
+.ptab:hover:not(.on){color:var(--tx)}
+.page{max-width:1200px;margin:0 auto;padding:16px 24px 60px}
+.psec{display:none}.psec.on{display:block}
+.fb{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.fb input,.fb select{font-size:14px;padding:8px 12px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none}
+.fb input{flex:1;min-width:160px}
+.qbar{background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:14px 18px;margin-bottom:14px}
+.qbar-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.qbar-title{font-size:13px;font-weight:600;color:var(--tx2);display:flex;align-items:center;gap:7px}
+.qgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.qcard{border-radius:var(--r);padding:10px;text-align:center;border:1.5px solid transparent}
+.qcard-g{font-size:12px;font-weight:600;margin-bottom:4px}
+.qcard-n{font-size:11px;color:var(--tx2);line-height:1.6;margin-bottom:5px}
+.qcard-bw{height:5px;border-radius:3px;background:var(--bg3);overflow:hidden;margin-bottom:4px}
+.qcard-bf{height:100%;border-radius:3px;transition:width .3s}
+.qcard-st{font-size:11px;font-weight:600}
+@keyframes pulse{from{box-shadow:0 0 0 0 rgba(239,68,68,.4)}to{box-shadow:0 0 0 6px rgba(239,68,68,0)}}
+.qcard.over{animation:pulse .9s infinite alternate}
+.tw{background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+thead{border-bottom:.5px solid var(--bd2)}
+th{padding:11px 13px;font-size:13px;font-weight:500;color:var(--tx2);text-align:left;white-space:nowrap;background:var(--bg)}
+td{padding:11px 13px;font-size:14px;border-bottom:.5px solid var(--bd);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr{cursor:pointer;transition:background .1s}
+tbody tr:hover td{background:var(--bg2)}
+tbody tr.sel td{background:var(--blue-bg)}
+.badge{display:inline-block;font-size:12px;padding:3px 10px;border-radius:99px;font-weight:600;white-space:nowrap}
+.bS{background:#f0e9ff;color:#5b21b6}.bA{background:var(--green-bg);color:var(--green)}
+.bB{background:var(--blue-bg);color:var(--blue)}.bC{background:var(--amber-bg);color:var(--amber)}
+.bD{background:#fef3c7;color:#92400e}.bE{background:var(--red-bg);color:var(--red)}
+.bN{background:var(--bg3);color:var(--tx3)}
+.itag{display:inline-flex;align-items:center;font-size:11px;padding:2px 8px;border-radius:99px;margin:1px;gap:3px}
+.itp{background:var(--green-bg);color:var(--green)}.itm{background:var(--red-bg);color:var(--red)}
+.pb{display:flex;align-items:center;gap:8px}
+.pb-bg{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;min-width:40px}
+.pb-fill{height:100%;border-radius:3px;background:var(--blue-bg)}
+.bd-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.32);z-index:100;overflow-y:auto;padding:20px}
+.bd-ov.on{display:flex;align-items:flex-start;justify-content:center}
+.modal{background:var(--bg);border-radius:var(--rl);border:.5px solid var(--bd2);width:100%;max-width:680px;padding:1.75rem;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.mhdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
+.mclose{padding:7px 11px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:15px;color:var(--tx2)}
+.mclose:hover{background:var(--bg2)}
+.mpills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.pill{font-size:12px;padding:4px 11px;border-radius:99px;background:var(--bg2);color:var(--tx2);border:.5px solid var(--bd)}
+.pill.g{background:var(--green-bg);color:var(--green);border:none}
+.pill.w{background:var(--amber-bg);color:var(--amber);border:none}
+.pill.r{background:var(--red-bg);color:var(--red);border:none}
+.mtabs{display:flex;border-bottom:.5px solid var(--bd);margin-bottom:1.25rem}
+.mtab{padding:9px 16px;font-size:13px;color:var(--tx2);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-.5px;white-space:nowrap}
+.mtab.on{color:var(--tx);border-bottom-color:var(--tx);font-weight:600}
+.msec{display:none}.msec.on{display:block}
+.eval-hdr{background:var(--bg2);border-radius:var(--r);padding:.7rem 1rem;margin-bottom:1rem;font-size:13px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sug-bar{background:var(--purple-bg);border:.5px solid #AFA9EC;border-radius:var(--r);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:12px}
+.sug-title{font-size:13px;font-weight:500;color:var(--purple);display:flex;align-items:center;gap:6px}
+.apply-all{font-size:13px;padding:6px 14px;border-radius:var(--r);border:none;background:var(--purple);color:#fff;cursor:pointer;font-weight:600;white-space:nowrap}
+.apply-all:hover{opacity:.85}
+.crit{border:.5px solid var(--bd);border-radius:var(--rl);padding:.9rem 1.1rem;margin-bottom:10px}
+.crit-t{font-size:14px;font-weight:600;margin-bottom:9px;line-height:1.5;display:flex;align-items:flex-start;gap:8px}
+.crit-w{font-size:12px;color:var(--tx3);font-weight:400;white-space:nowrap;padding-top:2px;flex-shrink:0}
+.opts{display:flex;flex-direction:column;gap:4px;margin-bottom:9px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:8px 11px;border-radius:var(--r);cursor:pointer;border:1.5px solid transparent}
+.opt:hover{background:var(--bg2)}
+.opt.sug{background:#F0EFFE;border-color:#7F77DD}
+.opt.sug.adopted{background:var(--green-bg);border-color:#97C459}
+.opt input[type=radio]{width:15px;height:15px;accent-color:var(--blue);flex-shrink:0;margin-top:2px;cursor:pointer}
+.opt-body{flex:1;min-width:0}
+.opt-lbl{font-size:14px;color:var(--tx2);line-height:1.45}
+.opt-ev{margin-top:4px;line-height:1.8}
+.opt-pts{font-size:13px;color:var(--tx3);white-space:nowrap;flex-shrink:0;padding-top:2px}
+.sug-chip{display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:1px 7px;border-radius:99px;background:var(--purple);color:#fff;margin-left:7px;vertical-align:middle;font-weight:600}
+.csumm{background:var(--bg2);border-radius:var(--r);padding:7px 12px;font-size:12px;color:var(--tx2);display:flex;gap:16px;flex-wrap:wrap;margin-bottom:9px}
+.csumm span{font-weight:600;color:var(--tx)}
+.inc-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.badd{font-size:12px;padding:4px 10px;border:.5px solid var(--bd2);border-radius:var(--r);cursor:pointer;background:none;color:var(--tx2);display:flex;align-items:center;gap:4px}
+.badd:hover{background:var(--bg2)}
+.inc-row{display:flex;gap:6px;align-items:center;margin-bottom:5px}
+.isel{font-size:12px;padding:5px 6px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);min-width:70px}
+.iinp{flex:1;font-size:12px;padding:5px 9px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx)}
+.ipts{font-size:12px;padding:5px 6px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);width:54px}
+.brem{padding:4px 7px;border:none;background:none;cursor:pointer;color:var(--tx3);font-size:15px;border-radius:var(--r)}
+.brem:hover{background:var(--red-bg);color:var(--red)}
+.cmt-box{margin-top:.9rem}
+.cmt-lb{font-size:12px;color:var(--tx2);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.cmt-ta{width:100%;font-size:13px;padding:8px 10px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);min-height:60px;resize:vertical;font-family:inherit;line-height:1.5}
+.mfoot{background:var(--bg2);border-radius:var(--rl);padding:.9rem 1.1rem;margin-top:1.1rem;display:flex;gap:18px;flex-wrap:wrap;align-items:center;border:.5px solid var(--bd)}
+.mf-it{text-align:center}
+.mf-lb{font-size:11px;color:var(--tx2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.mf-val{font-size:22px;font-weight:600}
+.save-btn{padding:10px 22px;border-radius:var(--r);border:none;background:var(--tx);color:var(--bg);font-size:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:7px}
+.save-btn:hover{opacity:.85}
+.xs-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.1rem;margin-bottom:1rem}
+.xs-title{font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.9rem;display:flex;align-items:center;gap:6px}
+.xs-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:.5px solid var(--bd);font-size:13px}
+.xs-row:last-child{border:none}
+.xs-total{background:var(--bg);border-radius:var(--r);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:15px;border:.5px solid var(--bd2);margin-top:.75rem}
+.hist-sec{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.1rem;margin-bottom:1rem}
+.hchart{display:flex;align-items:flex-end;gap:10px;height:75px;margin-bottom:.75rem}
+.hb-w{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.hb{width:100%;border-radius:3px 3px 0 0;min-height:3px}
+.hrows{display:flex;flex-direction:column;gap:6px}
+.hrow{display:flex;align-items:flex-start;gap:9px;padding:7px 10px;background:var(--bg);border-radius:var(--r);border:.5px solid var(--bd)}
+.ratio-table{width:100%;border-collapse:collapse;background:var(--bg);border-radius:var(--rl);overflow:hidden;border:.5px solid var(--bd)}
+.ratio-table th{background:var(--blue-bg);color:var(--blue);padding:11px 14px;font-size:13px;font-weight:600;text-align:center;border-bottom:.5px solid var(--bd2)}
+.ratio-table td{padding:11px 14px;font-size:14px;border-bottom:.5px solid var(--bd);text-align:center}
+.ratio-table tbody tr:last-child td{border-bottom:none}
+.ratio-table tbody tr:hover td{background:var(--bg2)}
+.export-table{width:100%;border-collapse:collapse;font-size:13px}
+.export-table th{background:var(--bg3);padding:9px 12px;font-size:12px;font-weight:600;text-align:left;border-bottom:.5px solid var(--bd2);white-space:nowrap}
+.export-table td{padding:9px 12px;border-bottom:.5px solid var(--bd);vertical-align:middle}
+.xbtn{padding:9px 18px;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg);color:var(--tx);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:7px;font-weight:500}
+.xbtn:hover{background:var(--bg2)}
+.xbtn.pri{background:var(--tx);color:var(--bg);border-color:transparent}
+.xbtn.pri:hover{opacity:.85}
+.sg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.sc{background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1rem;text-align:center}
+.sn{font-size:28px;font-weight:700}.sl{font-size:11px;color:var(--tx2);margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
+.p4-tab{padding:9px 18px;font-size:14px;color:var(--tx2);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-.5px;font-weight:500}
+.p4-tab.on{color:var(--tx);border-bottom-color:var(--blue);font-weight:700}
+.rank-table{width:100%;border-collapse:collapse}
+.rank-table th{padding:10px 14px;font-size:12px;font-weight:600;color:var(--tx2);text-align:left;background:var(--bg2);border-bottom:.5px solid var(--bd2);white-space:nowrap}
+.rank-table td{padding:11px 14px;font-size:14px;border-bottom:.5px solid var(--bd);vertical-align:middle}
+.rank-table tbody tr:hover td{background:var(--bg2)}
+.p0-row{display:flex;gap:8px;align-items:center;padding:7px 10px;background:var(--bg2);border-radius:var(--r);border:.5px solid var(--bd)}
+.p0-sel{font-size:13px;padding:6px 8px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);flex:1;min-width:160px}
+.p0-num{font-size:13px;padding:6px 8px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);width:60px;text-align:center}
+.p0-chip{font-size:12px;padding:5px 12px;border-radius:99px;cursor:pointer;border:.5px solid transparent;font-weight:500;transition:all .15s}
+.p0-chip.plus{background:var(--green-bg);color:var(--green);border-color:rgba(39,80,10,.2)}
+.p0-chip.plus:hover,.p0-chip.plus.active{background:var(--green);color:#fff}
+.p0-chip.minus{background:var(--red-bg);color:var(--red);border-color:rgba(121,31,31,.2)}
+.p0-chip.minus:hover,.p0-chip.minus.active{background:var(--red);color:#fff}
+/* Supabase setup modal */
+.sb-setup{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.sb-card{background:#fff;border-radius:12px;padding:1.75rem;width:100%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-hdr{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3);padding:8px 0 6px;margin-top:6px;border-bottom:.5px solid var(--bd);margin-bottom:8px}
+@media(max-width:768px){.qgrid{grid-template-columns:repeat(3,1fr)}.sg{grid-template-columns:repeat(2,1fr)}th:nth-child(3),td:nth-child(3){display:none}.modal{padding:1.1rem}.ptab span{display:none}}
+</style>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<nav>
+  <div class="ni">
+    <div class="nlogo"><i class="ti ti-clipboard-list"></i></div>
+    <div style="flex:1"><span style="font-size:15px;font-weight:600">115年度 手術室護理人員年終考核</span><span style="font-size:12px;color:var(--tx3);margin-left:4px" class="hide-sm">護理部</span></div>
+    <span style="font-size:12px;color:var(--tx3);background:var(--bg2);padding:4px 12px;border-radius:99px;border:.5px solid var(--bd)" class="hide-sm">52 人</span>
+    <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定"
+      style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
+      <i class="ti ti-cloud" style="font-size:15px"></i>
+      <span id="sync-label">設定同步</span>
+    </button>
+  </div>
+</nav>
+<div class="ptabs">
+  <div class="ptabs-i">
+    <button class="ptab" onclick="showPage('p0')"><i class="ti ti-home" style="font-size:15px"></i><span>事蹟登錄</span></button>
+    <button class="ptab on" onclick="showPage('p1')"><i class="ti ti-table" style="font-size:15px"></i><span>評核總表</span></button>
+    <button class="ptab" onclick="showPage('p2')"><i class="ti ti-chart-pie" style="font-size:15px"></i><span>比例表</span></button>
+    <button class="ptab" onclick="showPage('p3')"><i class="ti ti-file-export" style="font-size:15px"></i><span>彙整表</span></button>
+    <button class="ptab" onclick="showPage('p4')"><i class="ti ti-chart-bar" style="font-size:15px"></i><span>歷年佔比</span></button>
+  </div>
+</div>
+<!-- PAGE 0 -->
+<div id="p0" class="psec"><div class="page"><div style="max-width:720px;margin:0 auto">
+  <div style="margin-bottom:1.5rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px">
+      <div style="font-size:20px;font-weight:700">事蹟登錄</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="openAddStaff()" style="font-size:13px;padding:7px 14px;border-radius:var(--r);border:.5px solid rgba(12,68,124,.3);background:var(--blue-bg);color:var(--blue);cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:500">
+          <i class="ti ti-user-plus" style="font-size:14px"></i>新增人員
+        </button>
+        <button onclick="openDelStaff()" style="font-size:13px;padding:7px 14px;border-radius:var(--r);border:.5px solid rgba(121,31,31,.3);background:var(--red-bg);color:var(--red);cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:500">
+          <i class="ti ti-user-minus" style="font-size:14px"></i>刪除人員
+        </button>
+      </div>
+    </div>
+    <div style="font-size:13px;color:var(--tx2)">填寫姓名與事蹟，系統自動帶入評核建議並連動整個考核系統</div>
+  </div>
+  <div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:14px">
+    <div style="font-size:13px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px"><i class="ti ti-user" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>選擇人員</div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <select id="p0-sel" style="flex:1;font-size:15px;padding:10px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);min-width:200px" onchange="p0SelectStaff(this.value)">
+        <option value="">— 選擇員工姓名 —</option>
+      </select>
+      <div id="p0-badge" style="display:none;align-items:center;gap:10px;padding:8px 14px;background:var(--bg2);border-radius:var(--r);border:.5px solid var(--bd)">
+        <div id="p0-avatar" style="width:36px;height:36px;border-radius:50%;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--blue);flex-shrink:0"></div>
+        <div><div id="p0-name" style="font-size:15px;font-weight:600"></div><div id="p0-role" style="font-size:12px;color:var(--tx2);margin-top:1px"></div></div>
+      </div>
+    </div>
+    <div id="p0-info" style="display:none;margin-top:10px;padding:10px 12px;background:var(--bg2);border-radius:var(--r);font-size:13px;display:flex;gap:10px;flex-wrap:wrap"></div>
+  </div>
+  <!-- Bonus -->
+  <div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.04em"><i class="ti ti-plus-circle" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>加分事蹟</div>
+      <button onclick="p0AddRow('plus')" style="font-size:13px;padding:5px 12px;border-radius:var(--r);cursor:pointer;background:var(--green-bg);color:var(--green);border:.5px solid rgba(39,80,10,.2);display:flex;align-items:center;gap:5px;font-weight:500"><i class="ti ti-plus" style="font-size:13px"></i> 新增加分</button>
+    </div>
+    <div style="margin-bottom:12px"><div style="font-size:11px;color:var(--tx3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em">快速選取</div>
+    <div id="p0-bonus-chips" style="display:flex;flex-wrap:wrap;gap:6px"></div></div>
+    <div id="p0-plus-rows"><div style="font-size:13px;color:var(--tx3);padding:8px 0">尚無加分記錄</div></div>
+  </div>
+  <!-- Deduct -->
+  <div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:.04em"><i class="ti ti-minus-circle" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>扣分事蹟</div>
+      <button onclick="p0AddRow('minus')" style="font-size:13px;padding:5px 12px;border-radius:var(--r);cursor:pointer;background:var(--red-bg);color:var(--red);border:.5px solid rgba(121,31,31,.2);display:flex;align-items:center;gap:5px;font-weight:500"><i class="ti ti-plus" style="font-size:13px"></i> 新增扣分</button>
+    </div>
+    <div style="margin-bottom:12px"><div style="font-size:11px;color:var(--tx3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em">快速選取</div>
+    <div id="p0-deduct-chips" style="display:flex;flex-wrap:wrap;gap:6px"></div></div>
+    <div id="p0-minus-rows"><div style="font-size:13px;color:var(--tx3);padding:8px 0">尚無扣分記錄</div></div>
+  </div>
+  <!-- Note -->
+  <div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:1.5rem">
+    <div style="font-size:13px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px"><i class="ti ti-notes" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>備註說明</div>
+    <textarea id="p0-note" placeholder="其他說明、特殊貢獻或主管備忘…" style="width:100%;font-size:13px;padding:8px 10px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);min-height:64px;resize:vertical;font-family:inherit;line-height:1.5"></textarea>
+  </div>
+  <!-- Preview -->
+  <div id="p0-preview" style="display:none;background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.1rem 1.5rem;margin-bottom:1.5rem">
+    <div style="font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px">預覽結果</div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+      <div style="text-align:center"><div style="font-size:11px;color:var(--tx2);margin-bottom:3px">加分小計</div><div id="p0-bt" style="font-size:24px;font-weight:700;color:var(--green)">+0</div></div>
+      <div style="text-align:center"><div style="font-size:11px;color:var(--tx2);margin-bottom:3px">扣分小計</div><div id="p0-dt" style="font-size:24px;font-weight:700;color:var(--red)">-0</div></div>
+      <div style="text-align:center"><div style="font-size:11px;color:var(--tx2);margin-bottom:3px">預估總分</div><div id="p0-es" style="font-size:28px;font-weight:700;color:var(--blue)">80</div></div>
+      <div style="text-align:center"><div style="font-size:11px;color:var(--tx2);margin-bottom:3px">預估等第</div><div id="p0-eg"></div></div>
+      <div style="flex:1;min-width:200px"><div style="font-size:11px;color:var(--tx2);margin-bottom:6px">六項評核建議</div><div id="p0-sp" style="display:flex;flex-direction:column;gap:4px"></div></div>
+    </div>
+  </div>
+  <button onclick="p0Submit()" style="width:100%;padding:14px;border-radius:var(--r);border:none;background:var(--tx);color:var(--bg);font-size:16px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px">
+    <i class="ti ti-arrow-right-circle" style="font-size:18px"></i>匯入考核系統並產生建議評分
+  </button>
+  <div style="text-align:center;font-size:12px;color:var(--tx3);margin-top:10px">送出後自動跳至「評核總表」並開啟該員工的評核視窗</div>
+</div></div></div>
+<!-- PAGE 1 -->
+<div id="p1" class="psec on"><div class="page">
+  <div id="qbar" class="qbar"></div>
+  <div class="fb">
+    <input type="text" id="q" placeholder="搜尋姓名或工號…" oninput="renderT1()">
+    <select id="fg" onchange="renderT1()"><option value="">所有等第</option><option>特優</option><option>優</option><option>特甲</option><option>甲上</option><option>甲下</option><option value="未評">尚未評核</option></select>
+    <select id="fs" onchange="renderT1()"><option value="">所有狀態</option><option value="done">已完成（6項）</option><option value="part">部分完成</option><option value="none">尚未開始</option></select>
+  </div>
+  <div class="tw"><table>
+    <colgroup><col style="width:85px"><col style="width:160px"><col><col style="width:115px"><col style="width:95px"><col style="width:82px"><col style="width:72px"></colgroup>
+    <thead><tr><th>姓名</th><th>職務 / 科別</th><th>加扣分事蹟</th><th>評核進度</th><th style="text-align:right">加扣分總分</th><th style="text-align:right">專業評核分</th><th style="text-align:center">等第</th></tr></thead>
+    <tbody id="tbody1"></tbody>
+  </table></div>
+</div></div>
+<!-- PAGE 2 -->
+<div id="p2" class="psec"><div class="page">
+  <div style="margin-bottom:16px"><div style="font-size:18px;font-weight:600">115年度 考核等第比例表</div>
+  <div style="font-size:13px;color:var(--tx2);margin-top:3px">總考核人數 48 人（RN 47 + NA 1），不含護理長、副護理長及新進 4 名</div></div>
+  <div class="sg" id="p2sg"></div>
+  <table class="ratio-table"><thead><tr><th>等第</th><th>分數區間</th><th>規定比例</th><th>應佔人數</th><th>目前已評</th><th>剩餘配額</th><th>達成狀態</th><th>佔比進度</th></tr></thead><tbody id="ratio-body"></tbody></table>
+  <div style="margin-top:14px;padding:12px 16px;background:var(--amber-bg);border-radius:var(--r);font-size:13px;color:var(--amber)"><i class="ti ti-info-circle" style="vertical-align:-1px;margin-right:5px"></i>依人事公告：特優5%、優14.5%、特甲32.5%、甲上33%、甲下15%。總人數53人，扣除新進4名、護理長1名、副護理長1名，考核人數48人。</div>
+</div></div>
+<!-- PAGE 3 -->
+<div id="p3" class="psec"><div class="page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+    <div><div style="font-size:18px;font-weight:600">人員年終考核彙整表</div><div style="font-size:13px;color:var(--tx2);margin-top:3px">115年度完整考核記錄</div></div>
+    <div style="display:flex;gap:8px">
+      <button class="xbtn" onclick="exportXLSX()"><i class="ti ti-file-spreadsheet" style="font-size:15px"></i>匯出 Excel</button>
+      <button class="xbtn pri" onclick="window.print()"><i class="ti ti-printer" style="font-size:15px"></i>列印</button>
+    </div>
+  </div>
+  <div class="tw" style="overflow-x:auto"><table class="export-table"><thead><tr><th>#</th><th>工號</th><th>姓名</th><th>職務</th><th>科別</th><th>加分</th><th>扣分</th><th>加扣分總分</th><th>專業評核分</th><th>等第</th><th>年終考核建議</th><th>自評</th><th>主管意見</th></tr></thead><tbody id="exp-body"></tbody></table></div>
+</div></div>
+<!-- PAGE 4 -->
+<div id="p4" class="psec"><div class="page">
+  <div style="font-size:18px;font-weight:600;margin-bottom:4px">歷年考核人員佔比分析</div>
+  <div style="font-size:13px;color:var(--tx2);margin-bottom:16px">111–115年度等第分布與人員排名趨勢</div>
+  <div style="display:flex;gap:0;border-bottom:.5px solid var(--bd);margin-bottom:1.25rem">
+    <button class="p4-tab on" onclick="switchP4('dist')"><i class="ti ti-chart-bar" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>歷年各等第分布</button>
+    <button class="p4-tab" onclick="switchP4('top')"><i class="ti ti-medal" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>前 60% 人員</button>
+    <button class="p4-tab" onclick="switchP4('bot')"><i class="ti ti-list-details" style="font-size:14px;vertical-align:-1px;margin-right:5px"></i>後 40% 人員</button>
+  </div>
+  <div id="p4-dist"></div>
+  <div id="p4-top" style="display:none"></div>
+  <div id="p4-bot" style="display:none"></div>
+</div></div>
+<!-- MODAL -->
+<div class="bd-ov" id="overlay" onclick="maybeClose(event)">
+  <div class="modal" onclick="event.stopPropagation()"><div id="modal-body"></div></div>
+</div>
+<script>
+
+const STAFF=[{"id": "11192", "name": "蕭帆妤", "teacher": "臨床教師", "func": "", "sci": "", "other": "", "note": "", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80}, {"id": "10273", "name": "王婷婷", "teacher": "臨床教師", "func": "", "sci": "", "other": "", "note": "", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80}, {"id": "10361", "name": "李靜怡", "teacher": "臨床教師", "func": "品管組2-", "sci": "GS", "other": "", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}, {"label": "臨床教師", "pts": 1.0}, {"label": "ISO 9001/45001", "pts": 1.0}], "deduct": [], "bonus_sum": 3.0, "deduct_sum": 0, "total": 83.0}, {"id": "10367", "name": "張瑋恩", "teacher": "臨床教師", "func": "品管組3-", "sci": "GS", "other": "", "note": "晏欣_優良學員評核表之推薦人意見友填寫。｜1/5大腸鏡遺失1/25廠商骨材", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}, {"label": "臨床教師", "pts": 1.0}], "deduct": [], "bonus_sum": 3.0, "deduct_sum": 0, "total": 83.0}, {"id": "10740", "name": "李佳容", "teacher": "臨床教師", "func": "醫材", "sci": "", "other": "", "note": "4/15病理流", "leave": "", "bonus": [{"label": "功能小組 組長", "pts": 1.0}, {"label": "臨床教師", "pts": 1.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "10746", "name": "王玉仙", "teacher": "臨床教師", "func": "儀器-", "sci": "PS-1", "other": "排班", "note": "尚謙、黃珮琪_優良學員評核表之推薦人意見有填寫。", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80}, {"id": "10922", "name": "陳玉茹", "teacher": "", "func": "品管組4-", "sci": "CVS", "other": "", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "11598", "name": "羅秀如", "teacher": "臨床教師", "func": "品管組1-組長", "sci": "NS", "other": "", "note": "專案、宜諮_優良學員競賽", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}, {"label": "功能小組 組長", "pts": 2.0}, {"label": "臨床教師", "pts": 1.0}, {"label": "撰寫進階報告", "pts": 1.0}], "deduct": [], "bonus_sum": 5.0, "deduct_sum": 0, "total": 85.0}, {"id": "12295", "name": "林奕辰", "teacher": "", "func": "醫材-組長", "sci": "", "other": "", "note": "", "leave": "", "bonus": [{"label": "功能小組 組長", "pts": 2.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "12483", "name": "林靜子", "teacher": "", "func": "學術-年度學分統計EBSCO          上課認證條子", "sci": "泌GU-2", "other": "", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "12847", "name": "郭妍伶", "teacher": "", "func": "品管組5-", "sci": "泌GU-1", "other": "", "note": "正念", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}, {"label": "優良護理人員/教師/學員", "pts": 1.0}], "deduct": [], "bonus_sum": 3.0, "deduct_sum": 0, "total": 83.0}, {"id": "13288", "name": "王嘉羚", "teacher": "", "func": "學術-講師資料/每月；年度計畫", "sci": "眼-1", "other": "", "note": "", "leave": "2026-01-15 00:00:00", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 84.0}, {"id": "13565", "name": "程郁淳", "teacher": "臨床教師", "func": "品管組6-              TCPI", "sci": "NS", "other": "", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "14040", "name": "黃怡婷", "teacher": "", "func": "儀器-組長", "sci": "CVS", "other": "", "note": "9房手術備物要備學姊的鉛衣。", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "14055", "name": "洪怡婷", "teacher": "", "func": "環管-組長", "sci": "ENT", "other": "ISO45001、6S", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}, {"label": "功能小組 組長", "pts": 2.0}, {"label": "ISO 9001/45001", "pts": 1.0}], "deduct": [], "bonus_sum": 4.0, "deduct_sum": 0, "total": 84.0}, {"id": "14190", "name": "楊衣甄", "teacher": "", "func": "品管組7-", "sci": "婦", "other": "", "note": "3月醫訊", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "14444", "name": "李宜鵑", "teacher": "臨床教師", "func": "學術-組長", "sci": "", "other": "達-流/刷", "note": "", "leave": "1/27、4/4", "bonus": [{"label": "消防/當機演練", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "14492", "name": "謝佩芳", "teacher": "", "func": "品管組8-", "sci": "口外", "other": "", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "14536", "name": "張佩琪", "teacher": "臨床教師", "func": "學術-每月課程執行表", "sci": "眼-2", "other": "", "note": "2026-03-16 00:00:00", "leave": "3/15、", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "14635", "name": "汪瑄柔", "teacher": "", "func": "品管組9-             康樂", "sci": "CVS", "other": "", "note": "", "leave": "", "bonus": [{"label": "品管App", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "14958", "name": "林昕澄", "teacher": "", "func": "品管組10-", "sci": "口外", "other": "", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "15068", "name": "高靖緹", "teacher": "", "func": "儀器-                   康樂", "sci": "達文西", "other": "", "note": "", "leave": "3/11、", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "15268", "name": "卓湘晴", "teacher": "", "func": "儀器-                   康樂", "sci": "骨", "other": "心-流/刷", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}, {"label": "M365 推廣", "pts": 1.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "15321", "name": "陳柏宇", "teacher": "", "func": "品管組11-", "sci": "達文西", "other": "", "note": "4/25病理｜4/25病理", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "15349", "name": "黃品喆", "teacher": "", "func": "環管-男更衣室、鑰匙、鉛衣", "sci": "", "other": "達-流/刷", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "15423", "name": "周芳怡", "teacher": "", "func": "品管組12-", "sci": "達文西", "other": "心-流", "note": "", "leave": "1/2、3/9、3/11、6/8、6/9", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}, {"label": "正念課程", "pts": 1.0}], "deduct": [], "bonus_sum": 3.0, "deduct_sum": 0, "total": 83.0}, {"id": "15508", "name": "徐禾沐", "teacher": "", "func": "品管組13-", "sci": "骨", "other": "骨保存庫", "note": "", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "15544", "name": "黃淑嬅", "teacher": "", "func": "學術-技能教室/教具", "sci": "骨", "other": "骨保存庫", "note": "5/25醫師A換B未起自費同意書", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "15577", "name": "鄒芮宸", "teacher": "", "func": "環管-", "sci": "", "other": "心-流/刷", "note": "", "leave": "2026-02-27 00:00:00", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "15664", "name": "陳金燕", "teacher": "", "func": "環管-女更衣室、鑰匙", "sci": "", "other": "6S", "note": "", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "15783", "name": "蘇奕臻", "teacher": "", "func": "儀器-一級保養", "sci": "", "other": "", "note": "", "leave": "4/29氮氣線接到氮氣(應該CO2)，\nDr.莊未啟局麻同意書未告知私自啟單", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "15813", "name": "曾雅筠", "teacher": "", "func": "環管-落菌培養", "sci": "", "other": "", "note": "4/15病理刷", "leave": "", "bonus": [{"label": "消防/當機演練", "pts": 1.0}], "deduct": [{"label": "異常事件（病理/器械等）", "pts": 1.0}], "bonus_sum": 1.0, "deduct_sum": 1.0, "total": 80.0}, {"id": "16016", "name": "林峙廷", "teacher": "", "func": "學術-上傳認證積分", "sci": "", "other": "", "note": "上傳認證積分常出錯｜4/15病理流", "leave": "2026-03-02 00:00:00", "bonus": [{"label": "其他加分", "pts": 1.0}], "deduct": [{"label": "異常事件（病理/器械等）", "pts": 1.0}], "bonus_sum": 1.0, "deduct_sum": 1.0, "total": 80.0}, {"id": "16304", "name": "王婷玉", "teacher": "", "func": "儀器-輻射佩章", "sci": "醫材-CVS", "other": "心-刷", "note": "", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "16343", "name": "黃玉秀", "teacher": "", "func": "學術-Elearning設定/公告在職教育", "sci": "NS-3", "other": "達-流/刷", "note": "1/22被鉗少2支、2/6邱建才提出遮蔽手術房窗口未報告。｜1/22被鉗*2遺失", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 1.0}, {"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [{"label": "異常事件（病理/器械等）", "pts": 1.0}], "bonus_sum": 2.0, "deduct_sum": 1.0, "total": 81.0}, {"id": "16360", "name": "辜嬿潔", "teacher": "", "func": "環管-", "sci": "醫材-PS", "other": "心-刷；達-流/刷", "note": "ACLS", "leave": "", "bonus": [{"label": "科組長（主/1科）", "pts": 2.0}, {"label": "ACLS 訓練", "pts": 1.0}, {"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [], "bonus_sum": 4.0, "deduct_sum": 0, "total": 84.0}, {"id": "16565", "name": "黃予婕", "teacher": "", "func": "品管組15-", "sci": "達文西", "other": "達-刷", "note": "", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "16587", "name": "黃沂晨", "teacher": "", "func": "", "sci": "醫材-泌3", "other": "", "note": "4/25病理｜4/25病理", "leave": "6/11、", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "16601", "name": "吳婉菁", "teacher": "", "func": "學術-", "sci": "NS-4", "other": "達-刷", "note": "", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "16650", "name": "劉祐呈", "teacher": "", "func": "品管組14-", "sci": "", "other": "", "note": "", "leave": "", "bonus": [{"label": "其他加分", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "16704", "name": "江嘉琪", "teacher": "", "func": "醫材", "sci": "醫材-婦", "other": "", "note": "N1進階、BP<180未回報，早上上班開電腦", "leave": "", "bonus": [{"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 80}, {"id": "16900", "name": "李宜諮", "teacher": "", "func": "人資資料建檔", "sci": "", "other": "", "note": "參與優良學員競賽、N1進階", "leave": "", "bonus": [{"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "16926", "name": "何尚謙", "teacher": "", "func": "環管-男更衣室、鑰匙", "sci": "", "other": "", "note": "參與優良學員競賽、N1進階", "leave": "", "bonus": [{"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "16946", "name": "陳明瑄", "teacher": "", "func": "", "sci": "醫材-骨", "other": "", "note": "參與優良學員競賽、N1進階", "leave": "1/12、1/28喪、2/26、4/13、6/1生理假", "bonus": [{"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "16947", "name": "簡晏欣", "teacher": "", "func": "", "sci": "GS-醫材", "other": "", "note": "參與優良學員競賽", "leave": "1/8阿姨忌日、2/23、2/24", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "16948", "name": "黃佩琪", "teacher": "", "func": "", "sci": "", "other": "", "note": "參與優良學員競賽、N1進階", "leave": "3/1忘記上班", "bonus": [{"label": "完成進階 N1/N2/N3", "pts": 1.0}], "deduct": [], "bonus_sum": 1.0, "deduct_sum": 0, "total": 81.0}, {"id": "16949", "name": "陳筠心", "teacher": "", "func": "", "sci": "醫材-口外", "other": "", "note": "參與優良學員競賽", "leave": "", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "17073", "name": "張芸甄", "teacher": "", "func": "學術-上傳認證積分", "sci": "", "other": "", "note": "", "leave": "4/20生理", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "17149", "name": "余宗芸", "teacher": "", "func": "", "sci": "", "other": "", "note": "4/15病理刷", "leave": "", "bonus": [], "deduct": [{"label": "異常事件（病理/器械等）", "pts": 1.0}], "bonus_sum": 0, "deduct_sum": 1.0, "total": 79.0}, {"id": "17212", "name": "陳玥汝", "teacher": "", "func": "高壓鍋、證照、每月資料整理、上傳KM", "sci": "", "other": "", "note": "ACLS", "leave": "", "bonus": [{"label": "ACLS 訓練", "pts": 2.0}], "deduct": [], "bonus_sum": 2.0, "deduct_sum": 0, "total": 82.0}, {"id": "17223", "name": "鄒昀珊", "teacher": "", "func": "", "sci": "", "other": "", "note": "", "leave": "3/9、", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}, {"id": "17307", "name": "蕭睬容", "teacher": "", "func": "TCPI、抗生素", "sci": "", "other": "", "note": "", "leave": "3/12、", "bonus": [], "deduct": [], "bonus_sum": 0, "deduct_sum": 0, "total": 80.0}];
+const HIST={"10273": {"name": "王婷婷", "years": {"111": {"score": 98.2, "grade": "特優", "note": "1.擔任手術室組長職，負責骨科業務2.參與ISO驗證、主導骨保存庫驗證表現佳，參與品管改善PDCA活動榮獲佳作、參與護理部護理作業標準種子人員-監測、標準文件。3.參與規劃COVID動線演練教育課程。4.擔任臨床教師輔導學員PICO並通過。5.能勝任值班護理長任務6.能勝任職代任務7.為對事物系統性及邏輯性思考能更俇更深會更好"}}}, "11598": {"name": "羅秀如", "years": {"111": {"score": 95.3, "grade": "特優", "note": "1.擔任單位組長職，負責神經外科業務。2.獨立應付AMI認證、參與單位ISO驗證及骨保存庫評鑑、護理部護理作業標準種子人員-監測小組。 3.擔任單位護品組組長，規劃年度計畫，評值及改善事宜，修訂單位ISO。4.提出問題及改善方案(PDCA)參與競賽榮獲佳作。5.勝任值班護理長職務"}, "112": {"score": 96.8, "grade": "特優", "note": "對事件處理圓滑、有條理 1.擔任PGY教師，輔導2位學員，112年度參加教師競選榮獲優良資深教師。 2.擔任手術室組長，協助護理部護理專班參訪及單位行政事務，各科年度預算採購申請。 3.擔任神經外科組長，負責科內行政事務並擔任導航、3D C-arm儀器指導人員，協助同仁完成訓練並獨立。 4.品管組-擔任單位品管監測。 5.負責ISO45001內部稽核。 6.參與單位QCC計畫。 7.負責規劃及完成"}, "113": {"score": 94.8, "grade": "優", "note": "1.擔任PGY教師，輔導2位學員。2.擔任手術室組長。3.擔任神經外科組長。4.品管組-擔任單位品管監測。5.參與單位PDCA計畫、EAFONS投稿。6.負責輔導嬿潔PICO讀報撰寫7.參加專案及品管圈撰寫。可完成交代的任務，無意願參與行政事務故主動性較被動，須交付可完成。未有異動及進階的計畫"}, "114": {"score": 95.8, "grade": "特優", "note": "1.擔任PGY教師，輔導2位學員。2.擔任手術室組長。3.擔任神經外科組長。4.品管組-擔任單位品管監測。5.參與單位PDCA計畫、EAFONS投稿。6.負責輔導宜諮讀報撰寫。7.協助醫院評鑑。可完成交代的任務，無意願參與行政事務。未有異動及進階的計畫"}}}, "11192": {"name": "蕭帆妤", "years": {"111": {"score": 93.8, "grade": "優", "note": "1.擔任單位組長職及整外、教育組長。2.負責111年6-8月人事排班、教育，臨床教師輔導學員案例分析撰寫通過3篇、品管改善榮獲佳作、參與規劃COVID動線演練教育課程。3.製作數位教材競賽「模擬手術室消防演練」獲得-人氣獎4.能勝任值班護理長任務5.職內代理期間負責，處理業務規劃有時效性，唯緊急事件因應可再加強。"}}}, "10361": {"name": "李靜怡", "years": {"111": {"score": 93.6, "grade": "優", "note": "擔任一般外、胸腔、直腸、乳外科組長，有責任感能依交付之業務如期完成，能謹守其職務執行醫院財產保護，確實執行清點器械。擔任PGY教師輔導1位學員教學認真，榮獲111年優良教師。參與單位內品管業務，缺乏個人專業知識提升動機"}, "112": {"score": 94.0, "grade": "優", "note": "擔任一般外科、直外、乳外及胸外組長，協助單位護品監測技術，教導PGY學員，獲得112年優良護理師，112年7月接受天下雜誌採訪，11209月昇任手術室組長"}, "113": {"score": 96.8, "grade": "特優", "note": "1.今年升任單位組長，輪替護理部值班護理長。2.擔任單位一般外科、直外、乳外及胸外組長。3.擔任品管組組長，協助單位護品監測，撰寫單位品管組年度計畫書。4.負責單位班表及排班。5.擔任PGY教師，指導PGY學員嘉琪。6.PDCA海報比賽第3作者。7.輔導單位婉菁撰寫醫訊。8.製作支氣管鏡影片與疾病認證；認真負責，帶領單位同仁正向參與院內活動。"}, "114": {"score": 96.8, "grade": "特優", "note": "1.單任單位組長一職，輪替護理部值班護理長。2.擔任單位一般外科、直外、乳外及胸外組長。3.負責單位班表及排班。4.擔任PGY教師，指導PGY學員嘉琪、困難學員仁謙5.協助醫院評鑑。6.輔導單位嘉琪撰寫讀報。7.當選護理部特優優良教師；認真負責，帶領單位同仁正向參與院內活動。"}}}, "10740": {"name": "李佳容", "years": {"111": {"score": 92.8, "grade": "優", "note": "1.負責單位醫衛材庫管理，能依規定每週確認帳務年度盤盈虧0，2.擔任PGY臨床教師輔導2位學員，(一位榮獲111年特優學員)並獲選特優臨床教師"}, "112": {"score": 95.6, "grade": "特優", "note": "1.負責單位醫衛材庫管理非常盡責整理有序，掌控各科依耗材領用與核對帳務，並能每週確認帳務之正確性，年度盤盈虧皆於合理範圍內。2.擔任PGY臨床教師輔導112年新到職2位學員。3.可指導帶領新進人員訓練跟刀。4.當選112年院內優良護理人員，及新北市護理師護士公會優良護理人員獎"}, "113": {"score": 94.8, "grade": "優", "note": "1.負責113年上半年單位醫衛材庫管理掌控各科依耗材領用與核對帳務，並能每週確認帳務之正確性，年度盤盈虧皆於合理範圍內。2.擔任PGY臨床教師輔導2位學員。3.可指導帶領新進人員訓練跟刀。未有異動及進階的計畫。"}, "114": {"score": 89.0, "grade": "特甲", "note": "1.協助114年醫衛材庫管理、年度盤盈虧皆於合理範圍內。2.擔任PGY臨床教師輔導2位學員。3.可指導帶領新進人員訓練跟刀。未有異動及進階的計畫。"}}}, "13565": {"name": "程郁淳", "years": {"111": {"score": 92.8, "grade": "優", "note": "擔任神外組長，帶領新訓人員學習神外業務教學認真，於專業知識上積極加強學術能力，書寫個報中，擔負臨床教師帶領實習生，負責單位TCPI指標收集，能完成交付之業務並主動分析。"}, "112": {"score": 90.2, "grade": "優", "note": "擔任實習生老師，帶領學生期間內用心指導，依學生狀況規劃學習項目，期間亦帶領新實習老師學習"}, "113": {"score": 84.6, "grade": "甲上", "note": "1.擔任實習生老師2.輔導PGY學員，帶領學生期間內用心指導。3.擔任神經外科小組長4.113年未落實手術室病理檢體收集作業標準，依內部規定考等"}, "114": {"score": 90.2, "grade": "優", "note": "1.輔導實習生 2.正式擔任PGY老師，帶領學生期間內用心指導。2.擔任神經外科小組長，協助該科執行年度預算採買及儀器管理，協助培育神外人才。3.擔任手術室每月單位TCPI收集人，認真、負責。"}}}, "12295": {"name": "林奕辰", "years": {"111": {"score": 90.8, "grade": "優", "note": "負責醫衛材藥品管理，物料安全量管控得宜未使單位庫存管理失效而影響手術，負責每年醫院盤點，主動提出或積極處理相關問題，協助指導助理員及醫材學習訓練同仁學習管理，擔任控台能力強，依臨床經驗，可學習人力管理"}, "112": {"score": 91.6, "grade": "優", "note": "112年學習參與單位排班業務 ，能掌握人力及人員訓練規劃，臨床上指導學弟妹學習流動維護病人安全，協助庫存管理得宜。參與控台任務於溝通調台得宜"}, "113": {"score": 85.95, "grade": "特甲", "note": "1.113年下半年協助庫存管理，2.臨床上指導學弟妹學習流動維護病人安全，得宜。3.於控台任務於溝通調台得宜。"}, "114": {"score": 90.75, "grade": "優", "note": "1.114年協助庫存管理，能適時給予建議，優化UDI醫衛材管理。2.臨床上指導學弟妹學習流動維護病人安全，得宜。3.於控台任務於溝通調台得宜。"}}}, "15544": {"name": "黃淑嬅", "years": {"111": {"score": 90.4, "grade": "優", "note": "111年加入骨科組長任務協助掌管骨科各項臨床教學及醫療團隊溝通業務，參與骨銀行認證資料準備，負責教育訓練課程成效整理，積極完成任務，負有責任心，雖非臨床教師對於同儕學習者細心指導"}, "112": {"score": 94.8, "grade": "優", "note": "擔任骨科組長職，處理業務認真，頗得骨科主任讚美。負責教育業務盡心盡力，於教學態度良好，指導訓練人員非常有耐心，擔任關懷老師於7月接受天下雜誌專訪教學表現良好，缺乏自信心"}, "113": {"score": 90.0, "grade": "優", "note": "1.擔任骨科組長職，處理業務認真。2.負責學術組業務3.教學態度良好，指導訓練人員非常有耐心，4.優良護理人員。未有異動及進階的計畫。114年願意接受PGY教師訓練。"}, "114": {"score": 89.4, "grade": "特甲", "note": "1.擔任骨科組長職，處理業務認真。2.負責學術組教具業務3.教學態度良好，指導訓練人員非常有耐心，未有異動及進階的計畫。"}}}, "10922": {"name": "陳玉茹", "years": {"111": {"score": 89.6, "grade": "特甲", "note": "擔任心外組長，及控台職務具有領導特質之風格，有其專業知識與技術能力，宜發揮在教學上"}, "112": {"score": 93.4, "grade": "優", "note": "於行政事務處理態度與往年比較有改善，目前擔任心外組長，對於人員安排得宜，與醫療配合耐心溝通。負責單位品管協助監測並能適時提出見解。對於控台事務控台得宜使台周轉迅速，減少加班，具有領導特質"}, "113": {"score": 89.0, "grade": "特甲", "note": "1.負責單位品管協助監測2.對於控台事務控台得宜使台周轉迅速，減少加班3.具有領導特質但未有進階意願及晉級的意願 4.擔任心臟外科組長。"}, "114": {"score": 89.0, "grade": "特甲", "note": "1.負責單位品管協助監測2.對於控台事務控台得宜使台周轉迅速，減少加班3.具有領導特質但未有進階意願及晉級的意願 4.擔任心臟外科組長。"}}}, "14536": {"name": "張佩琪", "years": {"111": {"score": 88.4, "grade": "特甲", "note": "擔任婦產科組長、教育組長任務，對於其任務仍學習中，能依交付之業務如期完成，111年積極參與臨床教師培訓，提升個人專業知識"}, "113": {"score": 81.4, "grade": "甲上", "note": "目前擔任臨床教師資格，帶領實習生。113年未落實手術部位標記及辨識作業辦法，依內部規定考等"}, "114": {"score": 85.8, "grade": "特甲", "note": "1.目前負責學術組每月彙整教育訓練執行表。2.擔任臨床教師資格，帶領實習生認真、負責。3.協助眼科訓練刷手人員，認真、負責。期望未來有突破性的工作亮點"}}}, "15068": {"name": "高靖緹", "years": {"111": {"score": 88.4, "grade": "特甲", "note": "111年積極參與進階，工作能力反應力佳，與團隊溝通可再學習，對事物解析能再學習，現值夜班對其職務需克盡職責，需熟悉單位各項任務"}, "112": {"score": 87.8, "grade": "特甲", "note": "擔任控台任務學習能力強，通過N2進階，今年參加達文西訓練及執行達文西各項業務，對於行政事務較生疏，期待能有好的表現"}, "113": {"score": 87.8, "grade": "特甲", "note": "1.擔任夜班控台任務學習能力強2.通過N2進階3.負責達文西手術小組長且積極參加達文西訓練及執行達文西各項業務4.協助單位春酒及退休宴事宜。"}, "114": {"score": 87.8, "grade": "特甲", "note": "1.負責達文西手術小組長且積極參加達文西手術訓練及執行達文西各項業務。2.協助培育訓練達文西手術人才。"}}}, "14040": {"name": "黃怡婷", "years": {"111": {"score": 88.3, "grade": "特甲", "note": "擔任心外組長，期間盡責維護科內協調及多種特材規劃管理，能細心帶領同儕學習流動，在執照部分希望考取護理師，專業能力進階部分期望加油，今年負責帶領單位緊急應變籌畫與演練"}, "112": {"score": 85.95, "grade": "特甲", "note": "擔任心臟外科組長，學習儀器組相關業務，主動性宜再加油"}, "113": {"score": 84.6, "grade": "甲上", "note": "擔任心臟外科組長，學習儀器組相關業務，主動性宜再加油。唯113/04/24無效Time out事件，雖即時發現補救，希望未來對於護理專業之準則能依據作業標準執行，避免錯誤再發生。"}, "114": {"score": 90.8, "grade": "優", "note": "1.擔任心臟外科組長，協助培育心臟外科手術人才。2.執行儀器組組長相關業務，將手術室儀器分類清楚、協助年終盤點 3.協助評鑑。"}}}, "14055": {"name": "洪怡婷", "years": {"111": {"score": 88.2, "grade": "特甲", "note": "擔任耳鼻喉科組長業務，對於其任務仍學習中，能依交付之業務如期完成，能謹守其職務執行醫院財產保護，須提升個人專業知識參與進階"}, "112": {"score": 88.8, "grade": "特甲", "note": "1.今年接任環管組組長，首次順利完成6S評核。2.參與手術室手術臥位標準流程數位影片拍攝。3.完成N2報告期許能順利進階。4.擔任耳鼻喉科小組長業務，除能擔任本職務外能帶領訓練人員學習"}, "113": {"score": 95.0, "grade": "特優", "note": "1.擔任單位環管組組長，負責單位環境管理。2.協助單位完成6S評核。3.今年晉升N2進階。4.擔任耳鼻喉科小組長業務，協助耳鼻喉科3D導航手術發展業務。5.耳鼻喉科年度預算撰寫 6.帶領新進人員訓練 7.113年手術室優良護理人員。8.113年升任白班控台任務。未有異動及進階的計畫"}, "114": {"score": 89.4, "grade": "特甲", "note": "1.擔任單位環管組組長，負責單位環境管理。2.協助單位完成6S評核、評鑑期間環境整理。3.擔任耳鼻喉科小組長業務，協助耳鼻喉科年度預算撰寫 4.帶領新進人員訓練。5.未有進階的計畫。"}}}, "14958": {"name": "林曉萍", "years": {"111": {"score": 88.2, "grade": "特甲", "note": "擔任口外組長，專業能力進階部分有不錯的邁進，希望能順利取得N2，教學部分希望一視同仁，手法可再委婉期望朝教師方向邁進"}, "112": {"score": 84.8, "grade": "甲上", "note": "112年取得臨床教師資格，帶領實習生，現階段仍屬學習期，雖然手法仍生疏，但已有進步。另擔任口外組長，對業務上心度宜再加強，主動。與同儕互動溝通較不理想，宜再加強人際關係，期待113年能有所展現"}, "113": {"score": 87.8, "grade": "特甲", "note": "目前擔任臨床教師資格，帶領實習生，現階段仍努力學習中。另擔任口外組長，協助業務進行。"}, "114": {"score": 79.8, "grade": "甲下", "note": "目前擔任臨床教師資格，帶領實習生，現階段仍努力學習中。另擔任口外組長，協助業務進行。114年發生2件異常事件，已影響病人安全，依內部規定考等。"}}}, "14444": {"name": "李宜鵑", "years": {"111": {"score": 87.7, "grade": "特甲", "note": "擔任學術組組員，個性佳，雖非臨床教師對於同儕學習者細心指導，期望朝教師方向邁進"}, "112": {"score": 89.0, "grade": "特甲", "note": "擔任在職教育組小組長職務 ，雖對業務不熟悉仍盡力學習，使單位教育訓練能順利進行，於教學上對新訓人員耐心指導。112年以規畫朝臨床教師領域發展，在團隊溝通方面宜再加強"}, "113": {"score": 93.4, "grade": "優", "note": "1.擔任在職教育組小組長，可完成交付之單位年度計畫2.113年取得臨床教師資格3.擔任PGY臨床教師輔導1位學員，雖對業務不熟悉仍，於教學上對新訓人員耐心指導4.參與當機演練 5.學習達文西手術，已能執行泌尿科達文西術式。6.完成神經外科3D導航手術流動訓練7.目前備孕，無計畫進階。"}, "114": {"score": 93.4, "grade": "優", "note": "1.擔任在職教育組小組長，可完成交付之單位年度計畫2.擔任PGY臨床教師輔導1位學員，並擔任教學評鑑黃金戰士。3.目前備孕，無計畫進階。"}}}, "10367": {"name": "張瑋恩", "years": {"111": {"score": 87.0, "grade": "特甲", "note": "擔任一般外、胸腔、直腸、乳外科組長，有責任感能依交付之業務如期完成，能謹守其職務執行醫院財產保護，確實執行清點器械。參與單位內品管業務，能完成交付之業務並主動分析，於教學上手法可再委婉"}, "112": {"score": 88.0, "grade": "特甲", "note": "擔任一般外科、乳房外科、直腸外科、胸腔外科組長，參與單位護品稽核，輔導PGY學員及PICO進階，對自身專業發展無動機，目前無簽認久任，情緒自我調控宜再注意"}, "113": {"score": 84.6, "grade": "甲上", "note": "擔任一般外科、乳房外科、直腸外科、胸腔外科組長，參與單位護品稽核，輔導PGY學員及PICO進階。113年未落實手術室病理檢體收集作業標準2次，依內部規定考等"}, "114": {"score": 89.2, "grade": "特甲", "note": "1.擔任一般外科、乳房外科、直腸外科、胸腔外科組長。2.參與單位護品稽核。3.當選114年優良護理人員。4.交付任務可配合。"}}}, "15321": {"name": "陳柏宇", "years": {"111": {"score": 86.6, "grade": "特甲", "note": "較去年進步，訓練流動中"}, "112": {"score": 88.8, "grade": "特甲", "note": "112年參與控台訓練學習能力強，唯細節注意事項需再注意，7月參與達文西團隊訓練，仍於學習訓練階段，對於行政事務較生疏，期待能有好的表現"}, "113": {"score": 85.95, "grade": "特甲", "note": "1.擔任達文西小組長，負責達文西手術之業務2.目前因包夜班對於夜班人員調控、給台及團隊溝通有很大的進步，可完成交付之任務。認真負責，態度積極。"}, "114": {"score": 85.95, "grade": "特甲", "note": "目前包夜班對於夜班人員調控、給台及與同仁互動相處良好。，可完成交付之任務。認真負責，態度積極，期望未來有突破性的工作亮點"}}}, "14492": {"name": "謝佩芳", "years": {"111": {"score": 86.8, "grade": "特甲", "note": "個性開朗，擔任口外組長，與團隊互動佳，負責品管全期訪視業務，對於品管分析細心度有進步，需加強提升個人專業知識參與進階"}, "112": {"score": 86.2, "grade": "特甲", "note": "擔任口外組長，術前訪視作業。配合單位業務及跟同仁互動相處良好。"}, "113": {"score": 86.2, "grade": "特甲", "note": "1.擔任口外組長2.負責術前訪視作業。3.配合單位業務及跟同仁互動相處良好。目前包班大夜班，未有異動及進階的計畫"}, "114": {"score": 84.6, "grade": "甲上", "note": "1.擔任口外組長2.負責術前訪視作業。3.配合單位業務及跟同仁互動相處良好。目前包班大夜班，未有異動及進階的計畫"}}}, "15089": {"name": "黃亭頤", "years": {"111": {"score": 86.8, "grade": "特甲", "note": "現值夜班對其職務需克盡職責，需熟悉單位各項任務"}}}, "14554": {"name": "盛涵", "years": {"111": {"score": 86.1, "grade": "特甲", "note": "111年積極參與進階，擔任儀器組組長，帶領組內事務仍待加油，統合及細心度不夠，現值夜班對其職務需克盡職責，需熟悉單位各項任務"}}}, "15564": {"name": "邱榮玠", "years": {"111": {"score": 85.8, "grade": "特甲", "note": "熱心協助單位各項任務尤其疫情期間人力配班，協助品管業務，認真但成效需加強，細心度稍顯不足，常漏帳，期望日漸良好"}}}, "15927": {"name": "許敏捷", "years": {"111": {"score": 85.2, "grade": "特甲", "note": "學習能力強，已可擔任流動職務，可協助帶領新訓同儕人員，未來培訓人才，對單位各項規定需嚴守"}}}, "15491": {"name": "朱庭宜", "years": {"111": {"score": 84.4, "grade": "甲上", "note": "已擔任流動職務訓練，學習能力強，可協助帶領新訓同儕人員，對久任合約無意願，對個人專業知識提升亦無動機，對未來無規劃"}, "112": {"score": 82.5, "grade": "甲上", "note": "學習能力強，可協助帶領新訓同儕人員，對個人專業知識提升無動機，對未來無規劃，已擔任流動職務計價正確性及漏帳率，宜改善，鼓勵參與培訓"}, "113": {"score": 83.6, "grade": "甲上", "note": "學習能力強，可協助帶領新訓同儕人員，接獲病人於院內信箱讚美。"}}}, "15423": {"name": "周芳怡", "years": {"111": {"score": 84.4, "grade": "甲上", "note": "主動積極性尚可，能協助單位完成任務"}, "112": {"score": 88.3, "grade": "特甲", "note": "112年培訓開心手術組員已能獨立擔任流動表現佳，今年參與達文西團隊，已參與2台手術業務且能擔任流動刷手職，參與參與單位品管運作需了解品管運作精髓，在參與個案報告種子訓練未能有成效，宜再加油"}, "113": {"score": 85.95, "grade": "特甲", "note": "1.開心手術組員可獨立擔任流動2.參與達文西團隊，協助手術業務且能擔任流動刷手職並能臨床上指導同儕學習訓練技能3.擔任品管組組員，認真負責，可完成交付之工作。4.114年預計接受PGY教師訓練及撰寫個案報告。"}, "114": {"score": 85.95, "grade": "特甲", "note": "1.開心手術組員可獨立擔任流動2.參與達文西團隊，協助手術業務且能擔任流動刷手職並能臨床上指導同儕學習訓練技能3.擔任品管組組員，認真負責，可完成交付之工作。4.11年預計接受PGY教師訓練。"}}}, "14274": {"name": "林嘉宥", "years": {"111": {"score": 84.4, "grade": "甲上", "note": "現值夜班對職務能積極主動於夜班學習並獨立表現佳，跨部門溝通能力可再加油，缺乏個人專業知識提升動機"}, "112": {"score": 81.6, "grade": "甲上", "note": "工作上較無突破性的行動，交付之任務時常未能周全，期待113年能對於專業領域及自我要求能有所規劃"}}}, "15813": {"name": "曾雅筠", "years": {"111": {"score": 84.0, "grade": "甲上", "note": "個性佳，學習能力強，對於同儕學習者互動細心指導，榮獲111年特優學員，值得嘉許"}, "112": {"score": 78.0, "grade": "甲下", "note": "112年未落實清點貴重器械導致遺失，依內部規定考等"}, "113": {"score": 80.0, "grade": "甲上", "note": "目前負責業務可完成交付任務，因包夜班於工作上較無突破性的行動。"}, "114": {"score": 84.0, "grade": "甲上", "note": "目前負責業務可完成交付任務，已學會流動職責，但因包夜班於工作上較無突破性，期望未來有突破性的工作亮點。"}}}, "15419": {"name": "劉靜", "years": {"111": {"score": 84.0, "grade": "甲上", "note": "對其職務缺乏自信，目前學習流動業務，協助點班及環境查核表整理"}, "112": {"score": 84.6, "grade": "甲上", "note": "管理單位藥用冰箱、房間清潔用電表、迴風濾網清潔更換等評核業務、參與達文西訓練，期待能有好的表現。"}}}, "15838": {"name": "沈妤珊", "years": {"111": {"score": 83.6, "grade": "甲上", "note": "對其職務缺乏自信，目前對神經外科之訓練需加油"}, "112": {"score": 84.4, "grade": "甲上", "note": "完成N1進階、完成PGY訓練。較去年進步，訓練流動中，缺乏自信，鼓勵簽任久任"}}}, "15719": {"name": "吳曉恬", "years": {"111": {"score": 83.25, "grade": "甲上", "note": "協助品管業務，對自我要求較弱，細心度稍顯不足，造成用品折損及漏帳、時常需提醒HR資料申請"}}}, "14898": {"name": "王貴鳳", "years": {"111": {"score": 83.2, "grade": "甲上", "note": "工作認真，盡責，同儕學習者互動細心指導"}}}, "13288": {"name": "王嘉羚", "years": {"111": {"score": 82.6, "grade": "甲上", "note": "對其職務缺乏自信，目前學習流動業務，反應能力及學習能力仍待加油"}, "112": {"score": 83.6, "grade": "甲上", "note": "112年交付學習眼科組長一職較缺乏主動性，可完成交辦之業務，於工作上較無突破性的行動，期待113年能有所展現。"}, "113": {"score": 84.6, "grade": "甲上", "note": "1.113年擔任眼科組長一職，協助業務進行認真負責，積極學習2.參與消防演練3.擔任學術組組員，可完成交付之任務。"}, "114": {"score": 90.0, "grade": "優", "note": "1.114年擔任眼科組長一職，協助業務進行認真負責，積極學習2.參與衛生局督察消防演練3.擔任學術組組員，可完成交付之任務。4.今年負責統籌數位影片製作及參與競賽。"}}}, "15664": {"name": "陳金燕", "years": {"111": {"score": 82.6, "grade": "甲上", "note": "於組織間進行基本溝通與協調能力，人際關係可再加油"}, "112": {"score": 84.6, "grade": "甲上", "note": "參與6S評核、再度獲病人於院內信箱讚美、對於專業自我要求高於112年依給藥作業提早發現藥物異常問題"}, "113": {"score": 84.6, "grade": "甲上", "note": "參與6S評核、負責業務可完成交付任務。"}, "114": {"score": 84.6, "grade": "甲上", "note": "參與6S評核、負責業務可完成交付任務。"}}}, "14587": {"name": "徐禾沐", "years": {"111": {"score": 82.1, "grade": "甲上", "note": "今年訓練骨科組長，團隊單位人際關係上須積極建立，不嬉鬧，對事件分析部分有建設性，部分可再學習，不可以單向思考，須以大體為考量"}}}, "12483": {"name": "林靜子", "years": {"111": {"score": 81.8, "grade": "甲上", "note": "主動積極性尚可，能協助單位完成任務"}, "112": {"score": 81.6, "grade": "甲上", "note": "目前負責業務可完成交付任務，大夜值勤睡覺，大夜值勤睡覺已有2次不良紀錄，已知改善"}, "113": {"score": 81.6, "grade": "甲上", "note": "目前負責業務可完成交付任務，因包夜班於工作上較無突破性的行動。"}, "114": {"score": 81.6, "grade": "甲上", "note": "目前負責業務可完成交付任務，因包夜班於工作上較無突破性的行動。"}}}, "15349": {"name": "黃品喆", "years": {"111": {"score": 81.8, "grade": "甲上", "note": "任務參與度與積極度尚可，如流動，於組織間進行基本溝通與協調能力尚待加強"}, "112": {"score": 80.0, "grade": "甲上", "note": "能擔任刷手與流動，依訓練年資但仍不構穩定，對於交辦任務須經提醒，計價正確性漏帳率高，參與達文西手術訓練期待能有更好的表現"}, "113": {"score": 80.0, "grade": "甲上", "note": "113年參與控台訓練，對於交辦任務須經提醒，參與達文西手術業務，期待能有更好的表現"}, "114": {"score": 82.5, "grade": "甲上", "note": "達文西手術組員與同儕相處融洽，對於交辦任務可完成，今年夜班已可擔任控台，進行第二天手術的調控及器械的調用有進步，但因長期包夜班於工作上較無突破性的，期望未來有突破性的工作亮點"}}}, "15577": {"name": "鄒芮宸", "years": {"111": {"score": 81.6, "grade": "甲上", "note": "學習能力強，目前學習流動業務，單位人際關係佳"}, "112": {"score": 79.2, "grade": "甲下", "note": "112年參與開心手術訓練，已可獨立，表現良好，唯112/7/14因未依作業標準收集檢體，導致檢體遺失異常發生，於會談時未能認清作業標準是做為臨床作業之依循無認知，目前已是流動資格人員，可能會帶領新進人員，希望未來對於護理專業之準則能依據作業標準執行，避免錯誤再發生。"}, "113": {"score": 80.0, "grade": "甲上", "note": "開心手術組員，已可獨立，表現良好。113年可擔任夜班控台且進步良多，對於交辦任務可完成，因包夜班於工作上較無突破性的行動。"}, "114": {"score": 80.0, "grade": "甲上", "note": "與同儕相處融洽，能確實完成交辦任務。今年夜班已能獨立擔任控台，於次日手術調控及器械調用方面均有進步。惟因包夜班較多，工作上尚缺突破性表現，期望未來能展現更多工作亮點。另計價作業仍不夠確實，常須補計價，宜加強注意。"}}}, "16169": {"name": "楊婷羽", "years": {"111": {"score": 80.8, "grade": "甲上", "note": "學習能力強，目前學習仍訓練刷手業務，單位人際關係可、主動性尚可"}}}, "16015": {"name": "曾怡蓉", "years": {"111": {"score": 80.0, "grade": "甲上", "note": "認真執行任務，有效率地達成工作目標能力尚可"}}}, "11468": {"name": "盧貞君", "years": {"111": {"score": 79.9, "grade": "甲下", "note": "擔任眼科組長，管理得宜，協助單位品管業務、教學認真，惟因病假限制考核"}, "113": {"score": 49.2, "grade": "甲下", "note": "1130102長期病假"}}}, "15268": {"name": "卓湘晴", "years": {"111": {"score": 79.95, "grade": "甲下", "note": "111年學習夜間控台表現良好，需熟悉單位各項任務，於團隊溝通宜增加自信，學習路上增廣見識，現值夜班對其職務需克盡職責，111年因請假問題，導致考核限制影響考核，原核定之考核等第為特甲"}, "112": {"score": 86.2, "grade": "特甲", "note": "協助儀器組規畫評鑑事項，參與open heart訓練，負責之業務缺乏成效回報及積極主動性"}, "113": {"score": 86.2, "grade": "特甲", "note": "1.協助儀器組規畫評鑑事項2.參與open heart訓練，協助教學新成員，完成113年多台開心手術3.今年負責ND、 OR HN影片製作4.協助春酒及退休宴流程各項事宜。可接受所交代的任務，114年預計書寫個案報告，且願意接受PGY教師訓練。"}, "114": {"score": 86.2, "grade": "特甲", "note": "1.協助儀器組規畫評鑑事項2.參與open heart訓練，協助教學新成員，完成114年多台開心手術3.可接受所交代的任務，115年預計書寫個案報告，目前無願意接受PGY教師訓練。4.參加骨科組長的訓練"}}}, "12847": {"name": "郭妍伶", "years": {"111": {"score": 78.4, "grade": "甲下", "note": "擔任泌尿科組長，對科務積極度尚可，擔任環管組長未善盡指導職責，無責任心，無法指導組員完成任務"}, "112": {"score": 84.15, "grade": "甲上", "note": "擔任泌尿科組長職務，對於科內事務能完成，但較屬被動型，今年參與學習QCC專案。112年因帶領環管組長一職未進其職責，轉調品管業務"}, "113": {"score": 84.6, "grade": "甲上", "note": "1.擔任泌尿科組長職務，對於科內事務能完成。2.今年負責統籌數位影片製作及參與競賽。3.於教學上對新訓人員耐心指導，協助單位留任人才。4.超音波探頭泡到OPA異常。未有異動及進階的計畫"}, "114": {"score": 85.6, "grade": "特甲", "note": "1.擔任泌尿科組長職務，對於科內事務能完成。2.於教學上對新訓人員耐心指導，協助單位留任人才。3.擔任品管組組員，協助單位進行稽核。"}}}, "15783": {"name": "蘇奕臻", "years": {"111": {"score": 78.4, "grade": "甲下", "note": "學習能力強，未落實清點器械導致器械遺失，依單位規定考績甲下"}, "112": {"score": 83.6, "grade": "甲上", "note": "學習能力佳，目前學習流動業務，單位人際關係佳，協助數位教案製作，於工作上較無突破性的行動，期待113年能有所成就。"}, "113": {"score": 89.0, "grade": "特甲", "note": "1.完成刷手及流動訓練，目前學習達文西手術，已能執行泌尿科達文西術式3.參與高壓鍋爐訓練。4.擔任儀器管理組監測每月儀器一級保養情形，認真負責。未有異動及進階的計畫"}, "114": {"score": 84.8, "grade": "甲上", "note": "1.配合單位業務及跟同仁互動相處良好。目前夜班較多，未有異動及進階的計畫。3.參與高壓鍋爐訓練。4.擔任儀器管理組監測每月儀器一級保養情形，認真負責。"}}}, "16016": {"name": "林峙廷", "years": {"111": {"score": 73.9, "grade": "甲下", "note": "單位人員互動關係較弱，學習能力佳，目前仍學習刷手業務中，對自我要求較無，111年因有留停故考核有限制"}, "112": {"score": 83.6, "grade": "甲上", "note": "進階N1、參與2場護理部護師體驗營，分享如何成功踏入護理這條路ㄧ名優秀的男護理師、參與護理部招募海報拍攝、參與天下雜誌採訪、功能小組於在職教育組擔任每月課程規劃，考題設計，學習夜班工作職責，做手術全期訪視，擔任PGY新人心靈導師，於專業領域學習上宜再主動學習為學習之項目，目前屬較被動性學習，期待113年能有專業的成就"}, "113": {"score": 82.5, "grade": "甲上", "note": "目前負責業務可完成交付任務，於工作上較無突破性的行動。屬較被動性學習，期待114年能有專業的成就"}, "114": {"score": 78.2, "grade": "甲下", "note": "擔任學術組每月申報及圖書任務業務，認真負責，唯病理異常事件*2、儀器擺放錯誤*1件，期望未來有突破性的工作亮點。"}}}, "15971": {"name": "鄧邦偉", "years": {"111": {"score": 72.75, "grade": "甲下", "note": "對其職務缺乏主動性，學習能力待加油"}, "112": {"score": 72.0, "grade": "甲下", "note": "缺乏主動詢問學習態度，僅能執行交付任務，於工作上較無突破性的行動。"}, "113": {"score": 72.0, "grade": "甲下", "note": "缺乏主動詢問學習態度，僅能執行交付任務，於工作上較無突破性的行動。"}, "114": {"score": 80.0, "grade": "甲上", "note": "能執行交付任務，協助教導學生志工、僑生認識醫衛材及環境整理。"}}}, "10746": {"name": "王玉仙", "years": {"112": {"score": 88.0, "grade": "特甲", "note": "112年卸下副護理長職務，擔任組長職務，缺乏邏輯思考，判斷、規劃動機，回到臨床參與業務，協助婦產科小組長業務，參與規劃儀器設備管理，帶領同仁管理。對於現任職務僅能執行所交付之任務，若旭擔任組長職應需擔負解決問題之能力"}, "113": {"score": 89.0, "grade": "特甲", "note": "1.擔任單位組長職務2.擔任整形外科小組長業務3.擔任儀器設備管理組組長，帶領同仁管理。4.擔任PGY臨床教師輔導3位學員5.協助2位學員獲得優良學員。5.主動度較低，溝通能力再加強。"}, "114": {"score": 89.0, "grade": "特甲", "note": "1.擔任單位組長職務2.擔任整形外科小組長業務。3.擔任PGY臨床教師輔導3位學員並擔任教學評鑑黃金戰士。4.協助學員婉菁獲得特優優良學員。5.主動度較低，溝通能力再加強。6.輔導單位黃佩琪撰寫讀報。"}}}, "14635": {"name": "汪瑄柔", "years": {"112": {"score": 87.8, "grade": "特甲", "note": "1.擔任單位康樂股長，協助舉辦單位活動、各項聚餐。2.參與開心小組手術成員，協助教學新成員。3.協助新進人員及同仁完成護理學會、入會事宜。4.擔任護品組組員，協助組內評核品管項目。"}, "113": {"score": 90.0, "grade": "優", "note": "1.擔任單位康樂股長，協助舉辦單位活動、各項聚餐，認真負責。2.參與開心小組手術成員，也可以擔任開心小組組長，協助教學新成員，完成113年多台開心手術。3.協助新進人員及同仁完成護理學會、入會事宜。4.擔任護品組組員，協助組內評核品管項目。未有異動及進階的計畫"}, "114": {"score": 90.6, "grade": "優", "note": "1.擔任單位康樂股長，協助舉辦單位活動、各項聚餐，認真負責。2.參與開心小組手術成員，也可以擔任開心小組組長，協助教學新成員，完成114年多台開心手術。3.協助新進人員及同仁完成護理學會、入會事宜。4.擔任護品組組員，協助組內評核品管項目。115年有撰寫N2進階報告的計畫。"}}}, "15508": {"name": "徐禾沐", "years": {"112": {"score": 86.8, "grade": "特甲", "note": "擔任骨科骨銀行管理與個案車物品單維護，目前因包夜班對於夜班人員調控、給台及團隊溝通有進步，可完成交付之任務，對於自我要求高，積極展現"}, "113": {"score": 86.8, "grade": "特甲", "note": "擔任骨科骨銀行管理與個案車物品單維護，目前因包夜班對於夜班人員調控、給台及團隊溝通有進步，可完成交付之任務，對於自我要求高，積極展現"}, "114": {"score": 89.4, "grade": "特甲", "note": "擔任骨科骨銀行管理與個案車物品單維護。今年協助骨保存庫認證，目前因包夜班對於夜班人員調控、給台及團隊溝通有進步，可完成交付之任務，對於自我要求高，積極展現。"}}}, "16266": {"name": "姜妤臻", "years": {"112": {"score": 84.4, "grade": "甲上", "note": "學習狀況良好，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉"}}}, "16360": {"name": "辜嬿潔", "years": {"112": {"score": 84.4, "grade": "甲上", "note": "學習狀況良好、穩定，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉"}, "113": {"score": 87.8, "grade": "特甲", "note": "1.完成刷手職責，進入各科流動狀況良好、穩定2.與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉。3.獲選優良學員4.協助支氣管鏡影片製作。未有異動及進階的計畫"}, "114": {"score": 88.8, "grade": "特甲", "note": "1.完成刷手職責，進入各科流動狀況良好、穩定2.與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉。3.學習達文西技能、心臟外科刷手技能。預計明年進行進階的計畫"}}}, "16304": {"name": "王婷玉", "years": {"112": {"score": 79.2, "grade": "甲下", "note": "學習狀況良好，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉，112年對於器械清點不落實，依內部規定考等"}, "113": {"score": 84.6, "grade": "甲上", "note": "學習狀況良好，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉，113年榮獲優良學員。"}, "114": {"score": 85.6, "grade": "特甲", "note": "學習狀況良好，參與達文西、開心手術訓練，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉。"}}}, "16343": {"name": "黃玉秀", "years": {"112": {"score": 78.0, "grade": "甲下", "note": "學習狀況佳，與同儕相處融洽，與訓練期之同儕溝通仍需加強，尚無法擔任教學者，112年6月對於器械清點不落實，依內部規定考等"}, "113": {"score": 94.8, "grade": "優", "note": "1.學習狀況良好，已開始訓練神經外科流動職責 2.與同儕相處融洽，協助4位同儕撰寫PICO  3.113年榮獲教研部特優學員，護理部優良學員。4.參與數位影片製作及晉賽。5.擔任學術組圖書任務。6.協助指導新進人員及實習生，認真負責，積極進取，頗獲神經外科主任稱讚。7.114年預計書寫案例分析報告"}, "114": {"score": 84.6, "grade": "甲上", "note": "1. 擔任學術組E-learning 課程上架、發布任務。2.學習達文西刷手技能，已能執行泌尿科達文西術式。3.參與高壓鍋爐訓練，並考取第一壓、小型鍋執照。4.114年撰寫案例分析報告通過，預計115年參與N2進階。5.儀器擺放錯誤異常事件*1件。"}}}, "14190": {"name": "楊衣甄", "years": {"113": {"score": 85.95, "grade": "特甲", "note": "1.擔任婦產科組長，負責婦產科年度預算撰寫 2.今年完成第一壓力鍋及小型鍋回訓3.負責擔任消防演練種子人員_負責人協助教育。4.113年未落實手術室病理檢體收集作業標準，依內部規定考等。未有異動及進階的計畫。"}, "114": {"score": 90.15, "grade": "優", "note": "1.擔任婦產科組長，負責婦產科年度預算撰寫。 2.負責擔任消防演練種子人員_負責人協助教育。3.擔任控台得宜，預計明年進階計畫。"}}}, "16601": {"name": "吳婉菁", "years": {"113": {"score": 84.6, "grade": "甲上", "note": "1.學習狀況良好、穩定，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉。2.撰寫醫訊2篇 3.協助113年數位影片編輯並參與競賽 4.認真負責，可完成交付之工作。"}, "114": {"score": 84.6, "grade": "甲上", "note": "1.學習狀況良好、穩定，與同儕相處融洽，依學習科目可協助帶領同儕精神可嘉。2.認真負責，可完成交付之工作。"}}}, "16565": {"name": "黃予婕", "years": {"113": {"score": 76.4, "grade": "甲下", "note": "目前穩定學習刷手技能可完成交付任務，於工作上較無突破性的行動。"}, "114": {"score": 80.2, "grade": "甲上", "note": "目前穩定學習刷手技能可完成交付任務，期望未來可進階並可有突破性的工作亮點"}}}, "16587": {"name": "黃沂晨", "years": {"113": {"score": 76.4, "grade": "甲下", "note": "目前穩定學習刷手技能可完成交付任務，於工作上較無突破性的行動。"}, "114": {"score": 79.4, "grade": "甲下", "note": "目前穩定學習刷手技能可完成交付任務，惟骨科燙傷異常事件*1，期望未來有突破性的工作亮點"}}}, "16704": {"name": "江嘉琪", "years": {"113": {"score": 72.0, "grade": "甲下", "note": "目前穩定學習刷手技能，惟因請假較同儕頻次多"}, "114": {"score": 80.4, "grade": "甲上", "note": "目前穩定學習刷手技能，通過讀書報告撰寫1篇，預計115年進階N1。"}}}, "16650": {"name": "劉祐呈", "years": {"113": {"score": 72.0, "grade": "甲下", "note": "僅能執行交付任務，於工作上較無突破性的行動。"}, "114": {"score": 80.4, "grade": "甲上", "note": "可正確無誤執行刷手工作，可執行交付任務並於期限內完成，於工作上較無突破性，期望明年可以完成進階、進入流動工作職責。"}}}, "16949": {"name": "陳筠心", "years": {"114": {"score": 80.2, "grade": "甲上", "note": "目前穩定學習刷手技能，惟病理檢體異常，期望未來有突破性的工作亮點"}}}, "16946": {"name": "陳明瑄", "years": {"114": {"score": 80.0, "grade": "甲上", "note": "可交付任務，且會提繳交，目前穩定學習刷手技能，剩心外、神經外科、口外尚未學習，期望未來有突破性的工作亮點"}}}, "16900": {"name": "李宜諮", "years": {"114": {"score": 80.0, "grade": "甲上", "note": "1.目前穩定學習刷手技能。2.參與消防演練。3.讀書報告撰寫通過1篇，預計明年參與進階N1。4.參與數位影片晉賽。遺憾發生病理檢體異常、骨科病人燙傷事件。"}}}, "16947": {"name": "簡晏欣", "years": {"114": {"score": 80.0, "grade": "甲上", "note": "目前穩定學習刷手技能剩神經外科、口外尚未學習，期望未來有突破性的工作亮點"}}}, "16926": {"name": "何尚謙", "years": {"114": {"score": 75.0, "grade": "甲下", "note": "1.115年撰寫醫訊一篇。2.教學評鑑PGY黃金種子。全院員工教育訓練必修課程積分未達成100%，依內部規定考等"}}}, "16948": {"name": "黃佩琪", "years": {"114": {"score": 74.0, "grade": "甲下", "note": "目前穩定學習刷手技能，惟病理檢體異常、器械遺失"}}}, "17073": {"name": "張芸甄", "years": {"114": {"score": 74.0, "grade": "甲下", "note": "目前穩定學習刷手技能，期望未來有突破性的工作亮點"}}}, "17149": {"name": "余宗芸", "years": {"114": {"score": 73.0, "grade": "甲下", "note": "目前穩定學習刷手技能，惟多次器械，期望未來有突破性的工作亮點"}}}};
+
+// ── 11題評核定義 ───────────────────────────────────────────
+const CR=[
+  // 專業考核 50%（5題各20分）
+  {id:'c1',sec:'專業考核(50%)',title:'對整體業務推展之配合度',w:20,opts:[
+    {l:'經常能提早一週前完成',s:20},{l:'經常能提早三天前完成',s:16},
+    {l:'經常能如期完成',s:12},{l:'經常延期完成',s:8},{l:'經常無法達成',s:4}]},
+  {id:'c2',sec:'專業考核(50%)',title:'對本職業務之主動積極性',w:20,opts:[
+    {l:'經常能主動協助主管及同仁並有效率地完成自身任務',s:20},{l:'經常能主動積極完成任務',s:16},
+    {l:'主動積極性尚可',s:12},{l:'主動積極性不佳',s:8},{l:'缺乏主動積極性',s:4}]},
+  {id:'c3',sec:'專業考核(50%)',title:'工作時效與績效表現',w:20,opts:[
+    {l:'經常能掌握工作時效，認真執行任務，有效率地達成工作目標',s:20},
+    {l:'能掌握工作時效，認真執行任務，有效率地達成工作目標',s:16},
+    {l:'掌握工作時效，達成工作目標能力尚可',s:12},
+    {l:'掌握工作時效，達成工作目標能力尚待加強',s:8},
+    {l:'掌握工作時效，達成工作目標能力不佳',s:4}]},
+  {id:'c4',sec:'專業考核(50%)',title:'本職業務悉心研究並力求改進',w:20,opts:[
+    {l:'經常積極提昇本職知識學養並努力改善工作效率',s:20},
+    {l:'能提昇本職知識學養並努力改善工作效率',s:16},
+    {l:'提昇本職知識學養並改善工作效率能力尚可',s:12},
+    {l:'提昇本職知識學養並改善工作效率能力尚待加強',s:8},
+    {l:'提昇本職知識學養並改善工作效率能力不佳',s:4}]},
+  {id:'c5',sec:'專業考核(50%)',title:'積極提昇個人專業知識',w:20,opts:[
+    {l:'積極學習並與團隊分享，協助提升團隊表現',s:20},
+    {l:'配合業務發展提昇個人專業知識',s:16},
+    {l:'提昇個人專業知識積極度尚可',s:12},
+    {l:'學習專業知識意願尚待加強',s:8},
+    {l:'不願提昇自我專業能力',s:4}]},
+  // 一般考核 30%（6題）
+  {id:'c6',sec:'一般考核(30%)',title:'人際關係',w:10,opts:[
+    {l:'樂於與同仁保持良好人際關係，塑造組織和諧氣氛',s:10},
+    {l:'與同儕進行良好互動',s:8},{l:'與同儕互動尚可',s:6},
+    {l:'人際互動稍顯不足',s:4},{l:'不願與同儕主動進行交流',s:2}]},
+  {id:'c7',sec:'一般考核(30%)',title:'組織溝通與協調能力',w:20,opts:[
+    {l:'進行組織間的資源調整與業務溝通能力優',s:20},
+    {l:'於組織間進行基本溝通與協調能力佳',s:16},
+    {l:'於組織間進行基本溝通與協調能力尚可',s:12},
+    {l:'於組織間進行基本溝通與協調能力尚待加強',s:8},
+    {l:'完成無法於組織間進行溝通與協調',s:4}]},
+  {id:'c8',sec:'一般考核(30%)',title:'團隊合作精神',w:20,opts:[
+    {l:'善於團隊合作，發揮部門優勢',s:20},{l:'與他人合作，完成任務能力佳',s:16},
+    {l:'與他人合作，完成任務能力尚可',s:12},{l:'與他人合作，完成任務能力尚待加強',s:8},
+    {l:'無法與他人合作，影響團隊表現',s:4}]},
+  {id:'c9',sec:'一般考核(30%)',title:'責任感',w:20,opts:[
+    {l:'積極主動，責任心強，能妥善完成任務',s:20},{l:'有責任心，可安心交付工作',s:16},
+    {l:'有責任心，完成工作能力尚可',s:12},{l:'責任心稍顯不足，偶爾無法如期完成任務',s:8},
+    {l:'無責任心，常無法完成任務',s:4}]},
+  {id:'c10',sec:'一般考核(30%)',title:'個人職業操守',w:20,opts:[
+    {l:'品德兼優，以身作則，實為典範',s:20},{l:'行事端正，嚴以律己',s:16},
+    {l:'行為符合法令及院內規範',s:12},{l:'誠信稍顯不足',s:8},
+    {l:'行為不符合法令及院內規範',s:4}]},
+  {id:'c11',sec:'一般考核(30%)',title:'團隊任務參與積極度',w:10,opts:[
+    {l:'積極參與各項團隊任務，貢獻卓著',s:10},{l:'主動參與團隊任務，表現良好',s:8},
+    {l:'配合參與團隊任務，表現尚可',s:6},{l:'參與團隊任務積極度尚待加強',s:4},
+    {l:'消極應付，不積極參與團隊任務',s:2}]},
+];
+const MW=CR.reduce((a,c)=>a+c.w,0); // 200
+
+// ── 加扣分項目定義 ─────────────────────────────────────────
+const BONUS_DEFS=[
+  {label:'科組長（主/1科）',pts:2,tip:'+2'},{label:'科組長（次/2科）',pts:1,tip:'+1'},
+  {label:'功能小組 組長',pts:2,tip:'+2'},{label:'功能小組 組員',pts:1,tip:'+1'},
+  {label:'臨床教師',pts:1,tip:'+1'},{label:'輔導報告',pts:5,tip:'+5'},
+  {label:'活動負責人/影片編輯',pts:2,tip:'+2'},{label:'晉賽得獎',pts:2,tip:'+2'},
+  {label:'晉賽參與（未得獎）',pts:1,tip:'+1'},{label:'M365 推廣',pts:1,tip:'+1'},
+  {label:'正念課程',pts:1,tip:'+1'},{label:'品管App',pts:1,tip:'+1'},
+  {label:'評鑑資料負責人',pts:1,tip:'+1'},{label:'評鑑報告負責人',pts:1,tip:'+1'},
+  {label:'評鑑紀錄負責人',pts:1,tip:'+1'},{label:'消防/當機演練',pts:1,tip:'+1'},
+  {label:'ISO 9001/45001',pts:1,tip:'+1'},{label:'6S 評核',pts:1,tip:'+1'},
+  {label:'ACLS 訓練',pts:1,tip:'+1'},{label:'高壓鍋爐證照',pts:2,tip:'+2'},
+  {label:'達文西訓練',pts:1,tip:'+1'},{label:'開心手術（CVS）訓練',pts:1,tip:'+1'},
+  {label:'撰寫進階報告',pts:1,tip:'+1'},{label:'完成進階 N1/N2/N3',pts:1,tip:'+1'},
+  {label:'優良護理人員/教師/學員',pts:1,tip:'+1'},{label:'其他加分',pts:1,tip:'+1~2'},
+];
+const DEDUCT_DEFS=[
+  {label:'異常事件（病理/器械等）',pts:1,tip:'-1/件'},{label:'掉落器械',pts:1,tip:'-1/件'},
+  {label:'儀器損壞',pts:1,tip:'-1/件'},{label:'重大安全事件',pts:1,tip:'-1/件'},
+  {label:'遲到/早退',pts:1,tip:'-1/次'},{label:'必修課程未完成',pts:1,tip:'-1'},
+  {label:'未落實作業標準',pts:1,tip:'-1/次'},{label:'其他扣分',pts:1,tip:'-1'},
+];
+const BONUS_PRESETS=BONUS_DEFS;
+const DEDUCT_PRESETS=DEDUCT_DEFS;
+
+const TOTAL_EVAL=48;
+const QUOTA={'特優':{pct:.05,target:2,range:'≥95'},'優':{pct:.145,target:7,range:'90-94'},'特甲':{pct:.325,target:15,range:'85-89'},'甲上':{pct:.33,target:17,range:'80-84'},'甲下':{pct:.15,target:7,range:'70-79'},'丙':{pct:0,target:0,range:'<70'}};
+
+// ── Supabase ────────────────────────────────────────────────
+let SB_URL=localStorage.getItem('sb_url')||'';
+let SB_KEY=localStorage.getItem('sb_key')||'';
+let sbEnabled=!!(SB_URL&&SB_KEY);
+
+async function sbSave(sid){
+  if(!sbEnabled)return;
+  const s=STAFF.find(x=>x.id===sid);if(!s)return;
+  const payload={staff_id:sid,name:s.name,scores:ST[sid].scores,inc:ST[sid].inc,applied:ST[sid].applied,self_comment:ST[sid].selfComment,mgr_comment:ST[sid].mgrComment,bonus:s.bonus,deduct:s.deduct,total:s.total,updated_at:new Date().toISOString()};
+  try{
+    await fetch(`${SB_URL}/rest/v1/eval_data?staff_id=eq.${sid}`,{method:'DELETE',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+    await fetch(`${SB_URL}/rest/v1/eval_data`,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(payload)});
+    showToast(s.name+' 已同步','green');
+  }catch(e){showToast('同步失敗','amber');}
+}
+async function sbLoadAll(){
+  if(!sbEnabled)return;
+  try{
+    showToast('載入雲端資料中…','blue');
+    const res=await fetch(`${SB_URL}/rest/v1/eval_data?select=*&limit=200`,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+    const rows=await res.json();
+    if(!Array.isArray(rows))return;
+    rows.forEach(row=>{
+      const sid=row.staff_id;if(!ST[sid])return;
+      if(row.scores)ST[sid].scores=row.scores;
+      if(row.inc)ST[sid].inc=row.inc;
+      if(row.applied)ST[sid].applied=row.applied;
+      if(row.self_comment!==undefined)ST[sid].selfComment=row.self_comment;
+      if(row.mgr_comment!==undefined)ST[sid].mgrComment=row.mgr_comment;
+      const s=STAFF.find(x=>x.id===sid);
+      if(s){if(row.bonus){s.bonus=row.bonus;s.bonus_sum=s.bonus.reduce((a,b)=>a+b.pts,0);}
+        if(row.deduct){s.deduct=row.deduct;s.deduct_sum=s.deduct.reduce((a,d)=>a+d.pts,0);}
+        if(row.total!==undefined)s.total=row.total;}
+    });
+    showToast('載入完成','green');renderT1();
+  }catch(e){showToast('載入失敗','amber');}
+}
+function showToast(msg,color='green'){
+  const bg={green:'#1a1a1a',blue:'#0C447C',amber:'#92400e',red:'#791F1F'}[color]||'#1a1a1a';
+  const ic={green:'ti-check-circle',blue:'ti-cloud-upload',amber:'ti-alert-circle',red:'ti-x-circle'}[color]||'ti-info-circle';
+  const el=document.createElement('div');
+  el.innerHTML='<i class="ti '+ic+'" style="font-size:16px"></i><span>'+msg+'</span>';
+  el.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:'+bg+';color:#fff;padding:10px 22px;border-radius:99px;font-size:14px;font-weight:500;z-index:9999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap';
+  document.body.appendChild(el);
+  setTimeout(()=>el.style.opacity='0',2500);
+  setTimeout(()=>el.remove(),3000);
+}
+function openSbSetup(){
+  const d=document.createElement('div');d.className='sb-setup';
+  d.innerHTML=`<div class="sb-card">
+    <div style="font-size:18px;font-weight:700;margin-bottom:4px">☁ 雲端同步設定</div>
+    <div style="font-size:13px;color:#555;margin-bottom:1.25rem">輸入 Supabase 資訊後，手機與電腦資料自動同步</div>
+    <div style="margin-bottom:10px"><div style="font-size:12px;font-weight:600;color:#555;margin-bottom:5px">Project URL</div>
+    <input id="sb-url-i" type="text" value="${SB_URL}" placeholder="https://xxxxxxxx.supabase.co" style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid rgba(0,0,0,.16);border-radius:8px;outline:none"></div>
+    <div style="margin-bottom:1.25rem"><div style="font-size:12px;font-weight:600;color:#555;margin-bottom:5px">Anon Public Key</div>
+    <input id="sb-key-i" type="text" value="${SB_KEY}" placeholder="eyJhbGci..." style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid rgba(0,0,0,.16);border-radius:8px;outline:none"></div>
+    <div style="background:#E6F1FB;border-radius:8px;padding:10px 14px;margin-bottom:1.25rem;font-size:12px;color:#0C447C;line-height:1.7">
+      1. <a href="https://supabase.com" target="_blank" style="color:#0C447C;font-weight:600">supabase.com</a> 免費註冊建立專案<br>
+      2. Project Settings → API 複製 URL 和 anon key<br>
+      3. SQL Editor 執行建表後貼入
+      <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">▶ 建表 SQL</summary>
+      <pre style="background:#fff;border-radius:6px;padding:8px;margin-top:4px;font-size:11px;overflow-x:auto">CREATE TABLE eval_data (
+  id bigint generated always as identity primary key,
+  staff_id text unique not null, name text, scores jsonb, inc jsonb,
+  applied jsonb, self_comment text, mgr_comment text,
+  bonus jsonb, deduct jsonb, total numeric,
+  updated_at timestamptz default now()
+);
+ALTER TABLE eval_data ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "allow_all" ON eval_data FOR ALL USING (true) WITH CHECK (true);</pre></details>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button onclick="this.closest('.sb-setup').remove()" style="flex:1;padding:10px;border:.5px solid rgba(0,0,0,.16);border-radius:8px;background:none;cursor:pointer;font-size:14px">取消</button>
+      <button onclick="saveSbCfg()" style="flex:2;padding:10px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;cursor:pointer;font-size:14px;font-weight:600">儲存並連線</button>
+    </div>
+  </div>`;
+  document.body.appendChild(d);
+}
+function saveSbCfg(){
+  const u=document.getElementById('sb-url-i').value.trim();
+  const k=document.getElementById('sb-key-i').value.trim();
+  localStorage.setItem('sb_url',u);localStorage.setItem('sb_key',k);
+  SB_URL=u;SB_KEY=k;sbEnabled=!!(u&&k);
+  document.querySelector('.sb-setup')?.remove();
+  updateSyncBtn();if(sbEnabled)sbLoadAll();
+}
+function updateSyncBtn(){
+  const btn=document.getElementById('sync-btn'),lbl=document.getElementById('sync-label');
+  if(!btn)return;
+  if(sbEnabled){lbl.textContent='已連線';btn.style.color='var(--green)';btn.style.borderColor='rgba(39,80,10,.3)';btn.style.background='var(--green-bg)';}
+  else{lbl.textContent='設定同步';btn.style.color='';btn.style.borderColor='';btn.style.background='';}
+}
+
+// ── 評核建議邏輯 ───────────────────────────────────────────
+function buildSugg(s){
+  const B=(...ks)=>s.bonus.filter(b=>ks.some(k=>b.label.includes(k)));
+  const D=(...ks)=>s.deduct.filter(d=>ks.some(k=>d.label.includes(k)));
+  const hasB=(...ks)=>s.bonus.some(b=>ks.some(k=>b.label.includes(k)));
+  const hasD=(...ks)=>s.deduct.some(d=>ks.some(k=>d.label.includes(k)));
+  const isT=s.teacher==='臨床教師'||hasB('臨床教師','老師','教師');
+  const isL=hasB('組長');
+  const hasAdv=hasB('進階','撰寫進階','撰寫進階報告','完成進階');
+  const hasAcls=hasB('ACLS','高壓','達文西','CVS','開心','跨單位');
+  const hasAwd=hasB('優良');
+  const hasEdu=hasB('教育訓練');
+  const hasAbn=hasD('異常','掉落','儀器損壞','重大');
+  const hasBehav=hasD('遲到','早退');
+  const hasMiss=hasD('必修');
+  const bp=s.bonus_sum,dp=s.deduct_sum;
+  function etag(b,c){return '<span class="itag '+c+'">'+b+'</span>';}
+  function r(pos,neg,txt){
+    const tags=[...pos.map(i=>etag('+'+i.pts+' '+i.label,'itp')),...neg.map(i=>etag('-'+i.pts+' '+i.label,'itm'))].join('');
+    return(tags?'<div style="flex-wrap:wrap;display:flex;gap:2px;margin-bottom:3px">'+tags+'</div>':'')+'<span style="color:#534AB7;font-size:11px">'+txt+'</span>';
+  }
+  return{
+    c1:isT&&isL?{s:20,r:r(B('組長','臨床教師'),[],          '同時擔任臨床教師及組長，業務配合度高，能提早完成任務')}
+      :isT||isL?{s:16,r:r(B('組長','臨床教師'),[],          '擔任'+(isT?'臨床教師':'組長')+'，業務配合度良好')}
+      :hasBehav? {s:12,r:r([],D('遲到','早退'),              '有考勤問題，業務配合度需加強')}
+      :           {s:16,r:r([],[],                           '依平日表現，業務配合度良好，能如期完成任務')},
+    c2:isT&&isL&&bp>=3?{s:20,r:r(B('組長','臨床教師','優良'),[],  '兼任組長及教師且多項貢獻，主動積極協助主管同仁')}
+      :isL||hasAwd||bp>=2?{s:16,r:r(B('組長','優良','活動','評鑑'),[],  '具組長或加分事蹟，主動積極完成任務')}
+      :hasAbn?    {s:12,r:r([],D('異常','掉落','儀器損壞'),  '有異常事件記錄，主動積極性有加強空間')}
+      :            {s:16,r:r([],[],                          '依平日表現，主動積極完成任務')},
+    c3:hasAcls&&hasAdv?{s:20,r:r(B('ACLS','高壓','達文西','CVS','進階','撰寫'),[],  '完成ACLS及進階訓練，工作時效掌控能力優異')}
+      :hasAcls||hasAdv? {s:16,r:r(B('ACLS','高壓','達文西','CVS','進階','撰寫'),[],  '完成專業訓練，認真執行任務，工作時效良好')}
+      :hasAbn&&dp>=2?   {s:12,r:r([],s.deduct,                                       '有多項扣分，工作時效及績效有待加強')}
+      :hasBehav?        {s:12,r:r([],D('遲到','早退'),                                '有考勤問題，工作時效尚待改善')}
+      :                  {s:16,r:r([],[],                                              '依平日表現，工作時效與績效良好')},
+    c4:hasB('輔導','M365','品管','評鑑')?{s:20,r:r(B('輔導','M365','品管','評鑑'),[],  '參與教學輔導或評鑑，悉心鑽研業務並積極改進')}
+      :hasAdv||hasEdu?   {s:16,r:r(B('進階','撰寫','教育訓練'),[],                     '積極學習進階知識，努力改善工作效率')}
+      :hasMiss?           {s:12,r:r([],D('必修'),                                      '必修課程未完成，研究改進積極度尚待加強')}
+      :                    {s:16,r:r([],[],                                             '依平日表現，能提昇本職知識並努力改善')},
+    c5:isT&&(hasAdv||hasAcls)?{s:20,r:r(B('臨床教師','進階','撰寫','ACLS','高壓'),[],  '擔任臨床教師且完成進階/ACLS，積極提昇專業')}
+      :isT||hasAdv||hasAcls?   {s:16,r:r(B('臨床教師','進階','撰寫','ACLS'),[],         '完成專業進階訓練，配合業務發展提昇專業知識')}
+      :hasEdu?                  {s:16,r:r(B('教育訓練'),[],                              '自願參與教育訓練，積極提昇專業能力')}
+      :hasMiss?                 {s:12,r:r([],D('必修'),                                  '必修課程未完成，提昇專業知識積極度尚待加強')}
+      :                          {s:12,r:r([],[],                                        '依平日表現，提昇個人專業知識積極度尚可')},
+    c6:hasAwd?          {s:10,r:r(B('優良'),[],          '獲選優良，樂於與同仁保持良好人際關係')}
+      :hasB('活動','晉賽')?{s:8,r:r(B('活動','晉賽'),[],  '積極參與活動，能與同儕良好互動')}
+      :hasD('重大')?      {s:6,r:r([],D('重大'),           '有重大事件記錄，人際互動尚待觀察')}
+      :                    {s:8,r:r([],[],                  '依平日表現，與同儕良好互動')},
+    c7:isL&&hasB('評鑑','ISO','6S','消防')?{s:20,r:r(B('組長','評鑑','ISO','6S','消防'),[],  '擔任組長且參與評鑑/認證，組織溝通協調能力優')}
+      :isL?                {s:16,r:r(B('組長'),[],          '擔任功能組長，具備組織溝通協調能力')}
+      :hasB('評鑑','ISO','6S')?{s:16,r:r(B('評鑑','ISO','6S'),[],  '參與評鑑或認證，具備跨單位溝通協調能力')}
+      :                    {s:12,r:r([],[],                  '依平日表現，組織溝通與協調能力尚可')},
+    c8:hasB('活動','晉賽','消防','演練')?{s:20,r:r(B('活動','晉賽','消防','演練'),[],  '積極參與活動或演練，善於團隊合作')}
+      :isL||hasB('評鑑')?  {s:16,r:r(B('組長','評鑑'),[],  '擔任組長或參與評鑑，與他人合作完成任務能力佳')}
+      :hasAbn?              {s:12,r:r([],D('異常','掉落'),   '有異常事件，團隊合作中需加強謹慎度')}
+      :                      {s:16,r:r([],[],                '依平日表現，與他人合作完成任務能力佳')},
+    c9:hasB('輔導')&&!hasAbn&&!hasBehav?{s:20,r:r(B('輔導'),[],  '擔任輔導老師，積極主動且責任心強')}
+      :hasD('改帳','手術紀錄','未落實')?  {s:12,r:r([],D('改帳','手術紀錄','未落實作業標準'),  '有改帳或紀錄錯誤，責任感尚待加強')}
+      :hasAbn?                             {s:12,r:r([],D('異常','掉落','儀器損壞'),            '有異常或器械事件，工作責任感尚待加強')}
+      :hasMiss?                            {s:12,r:r([],D('必修'),                              '必修課程未完成，工作責任感尚待加強')}
+      :                                     {s:16,r:r([],[],                                    '有責任心，可安心交付工作')},
+    c10:hasAwd&&isT?{s:20,r:r(B('優良','臨床教師'),[],  '獲選優良且擔任臨床教師，品德兼優以身作則')}
+      :hasAwd?       {s:20,r:r(B('優良'),[],             '獲選優良護理人員，品德兼優，行事典範')}
+      :hasD('重大')? {s:8, r:r([],D('重大'),              '有重大安全事件，職業操守需加強')}
+      :hasBehav?     {s:12,r:r([],D('遲到','早退'),       '有考勤問題，行事端正度尚待加強')}
+      :               {s:16,r:r([],[],                    '行事端正，嚴以律己，符合院內規範')},
+    c11:hasB('活動','晉賽')&&isL?{s:10,r:r(B('活動','晉賽','組長'),[],  '擔任組長且積極參與活動晉賽，貢獻卓著')}
+      :hasB('活動','晉賽')?       {s:8, r:r(B('活動','晉賽'),[],         '積極參與活動或晉賽，主動參與團隊任務')}
+      :isL||hasB('消防','評鑑')?  {s:8, r:r(B('組長','消防','評鑑'),[],  '擔任組長或參與評鑑演練，配合參與各項任務')}
+      :                            {s:6, r:r([],[],                       '依平日表現，配合參與團隊任務')},
+  };
+}
+
+// ── 初始化 ST ──────────────────────────────────────────────
+const ST={};
+STAFF.forEach(s=>{
+  try{
+    const sugg=buildSugg(s);
+    const inc={c1:[],c2:[],c3:[],c4:[],c5:[],c6:[],c7:[],c8:[],c9:[],c10:[],c11:[]};
+    s.bonus.forEach((b,i)=>{
+      const l=b.label; let cid='c5';
+      if(['組長','臨床教師','輔導','老師','教師'].some(k=>l.includes(k))) cid='c1';
+      else if(['活動','晉賽','消防','演練'].some(k=>l.includes(k))) cid='c8';
+      else if(['ACLS','高壓','達文西','CVS','開心','跨單位'].some(k=>l.includes(k))) cid='c3';
+      else if(['M365','品管','正念','評鑑','ISO','6S'].some(k=>l.includes(k))) cid='c4';
+      else if(['優良'].some(k=>l.includes(k))) cid='c10';
+      else if(['進階','撰寫','教育訓練'].some(k=>l.includes(k))) cid='c5';
+      inc[cid].push({id:Date.now()+i*31+(Math.random()*99|0),t:'plus',l:b.label,p:b.pts});
+    });
+    s.deduct.forEach((d,i)=>{
+      const l=d.label; let cid='c9';
+      if(['遲到','早退'].some(k=>l.includes(k))) cid='c1';
+      else if(['必修'].some(k=>l.includes(k))) cid='c4';
+      else if(['改帳','手術紀錄','未落實'].some(k=>l.includes(k))) cid='c9';
+      else if(['重大'].some(k=>l.includes(k))) cid='c10';
+      inc[cid].push({id:Date.now()+i*37+(Math.random()*99|0),t:'minus',l:d.label,p:d.pts});
+    });
+    ST[s.id]={scores:{},inc,sugg,applied:{},selfComment:'',mgrComment:''};
+  }catch(e){
+    console.error('ST init error:',s.name,e.message);
+    const emptyInc={};CR.forEach(c=>emptyInc[c.id]=[]);
+    ST[s.id]={scores:{},inc:emptyInc,sugg:{},applied:{},selfComment:'',mgrComment:''};
+  }
+});
+
+// ── Helpers ────────────────────────────────────────────────
+function adj(sid,cid){return(ST[sid]?.inc[cid]||[]).reduce((a,i)=>a+(i.t==='plus'?+i.p:-Math.abs(+i.p)),0);}
+function wScore(sid){let w=0;CR.forEach(c=>{const b=ST[sid]?.scores[c.id];if(b!==undefined)w+=b;});return Math.round(w*100)/100;}
+function nDone(sid){return CR.filter(c=>ST[sid]?.scores[c.id]!==undefined).length;}
+function xlsxTotal(sid){return STAFF.find(x=>x.id===sid)?.total||80;}
+function gradeFrom(s){if(s>=95)return'特優';if(s>=90)return'優';if(s>=85)return'特甲';if(s>=80)return'甲上';if(s>=70)return'甲下';return'丙';}
+function gCss(g){return g==='特優'?'bS':g==='優'?'bA':g==='特甲'?'bB':g==='甲上'?'bC':g==='甲下'?'bD':g==='丙'?'bE':'bN';}
+function gClr(g){return g==='特優'?'#5b21b6':g==='優'?'var(--green)':g==='特甲'?'var(--blue)':g==='甲上'?'var(--amber)':g==='甲下'?'#92400e':g==='丙'?'var(--red)':'var(--tx3)';}
+function gBg(g){return g==='特優'?'#f0e9ff':g==='優'?'var(--green-bg)':g==='特甲'?'var(--blue-bg)':g==='甲上'?'var(--amber-bg)':g==='甲下'?'#fef3c7':g==='丙'?'var(--red-bg)':'var(--bg3)';}
+function countGrades(){const c={'特優':0,'優':0,'特甲':0,'甲上':0,'甲下':0,'丙':0,'未評':0};STAFF.forEach(s=>{const n=nDone(s.id),g=n>0?gradeFrom(wScore(s.id)):'未評';if(c[g]!==undefined)c[g]++;});return c;}
+
+
+// ── PAGE 1 ─────────────────────────────────────────────────
+let openId=null;
+function renderQuota(){
+  const cnt=countGrades();
+  const gs=['特優','優','特甲','甲上','甲下','丙'];
+  const clrs={'特優':'#5b21b6','優':'#27500A','特甲':'#0C447C','甲上':'#633806','甲下':'#92400e','丙':'#791F1F'};
+  const bgs={'特優':'#f0e9ff','優':'var(--green-bg)','特甲':'var(--blue-bg)','甲上':'var(--amber-bg)','甲下':'#fef3c7','丙':'var(--red-bg)'};
+  const el=document.getElementById('qbar');if(!el)return;
+  el.innerHTML=`<div class="qbar-hdr">
+    <div style="font-size:13px;font-weight:600;color:var(--tx2);display:flex;align-items:center;gap:7px"><i class="ti ti-chart-pie" style="font-size:15px"></i>等第配額進度（考核人數 ${TOTAL_EVAL} 人）</div>
+    <span style="font-size:12px;color:var(--tx3)">已評 ${STAFF.filter(s=>nDone(s.id)>0).length} / ${STAFF.length} 人</span>
+  </div>
+  <div class="qgrid">${gs.map(g=>{
+    const q=QUOTA[g],cur=cnt[g]||0,tgt=q.target,over=cur>tgt;
+    const pct=tgt>0?Math.min(cur/tgt*100,100):0;
+    const stc=over?'#ef4444':cur===tgt?'#27500A':clrs[g];
+    const stt=tgt===0?'無配額':over?`超額+${cur-tgt}`:cur===tgt?'✓ 達標':`尚差${tgt-cur}`;
+    return`<div class="qcard${over?' over':''}" style="background:${bgs[g]||'var(--bg3)'};border-color:${over?'#ef4444':clrs[g]+'33'}">
+      <div class="qcard-g" style="color:${clrs[g]}">${g}</div>
+      <div class="qcard-n"><b style="font-size:15px;color:${clrs[g]}">${cur}</b> / 應${tgt}人</div>
+      <div class="qcard-bw"><div class="qcard-bf" style="width:${pct}%;background:${over?'#ef4444':clrs[g]}"></div></div>
+      <div class="qcard-st" style="color:${stc}">${stt}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function renderT1(){
+  const q=(document.getElementById('q')?.value||'').trim();
+  const fg=document.getElementById('fg')?.value||'';
+  const fs=document.getElementById('fs')?.value||'';
+  const total=CR.length;
+  const rows=STAFF.filter(s=>{
+    if(q&&!s.name.includes(q)&&!s.id.includes(q))return false;
+    const n=nDone(s.id),g=n>0?gradeFrom(wScore(s.id)):'未評';
+    if(fg&&g!==fg)return false;
+    if(fs==='done'&&n<total)return false;
+    if(fs==='part'&&(n===0||n===total))return false;
+    if(fs==='none'&&n>0)return false;
+    return true;
+  });
+  renderQuota();
+  const sc=document.getElementById('staff-count');if(sc)sc.textContent=STAFF.length+' 人';
+  const allInc=sid=>Object.values(ST[sid]?.inc||{}).flat();
+  const tb=document.getElementById('tbody1');if(!tb)return;
+  tb.innerHTML=rows.map(s=>{
+    const n=nDone(s.id),w=wScore(s.id),g=n>0?gradeFrom(w):'未評';
+    const xt=xlsxTotal(s.id);
+    const incs=allInc(s.id);
+    const tags=incs.slice(0,3).map(i=>`<span class="itag ${i.t==='plus'?'itp':'itm'}">${i.t==='plus'?'+':'-'}${Math.abs(i.p)} ${i.l.slice(0,8)}${i.l.length>8?'…':''}</span>`).join('');
+    const more=incs.length>3?`<span class="itag" style="background:var(--bg3);color:var(--tx3)">+${incs.length-3}</span>`:'';
+    const role=[s.teacher,s.sci||s.func].filter(Boolean).join(' · ')||'—';
+    return`<tr onclick="openM('${s.id}')" id="r-${s.id}" ${openId===s.id?'class="sel"':''}>
+      <td style="font-weight:600">${s.name}</td>
+      <td style="color:var(--tx2);font-size:13px">${role}</td>
+      <td>${tags}${more}${!incs.length?'<span style="color:var(--tx3);font-size:12px">—</span>':''}</td>
+      <td><div class="pb"><div class="pb-bg"><div class="pb-fill" style="width:${n/total*100}%;background:${n===total?'#639922':'var(--blue-bg)'}"></div></div><span style="font-size:12px;color:var(--tx2)">${n}/${total}</span></div></td>
+      <td style="text-align:right;font-weight:600;color:${gClr(gradeFrom(xt))}">${xt}</td>
+      <td style="text-align:right;font-weight:600;color:${n>0?gClr(g):'var(--tx3)'}">${n>0?w.toFixed(0):'—'}</td>
+      <td style="text-align:center"><span class="badge ${gCss(g)}">${g}</span></td>
+    </tr>`;
+  }).join('')||'<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--tx3)">沒有符合條件的員工</td></tr>';
+}
+
+// ── MODAL ──────────────────────────────────────────────────
+function openM(sid){openId=sid;renderT1();buildModal(sid);document.getElementById('overlay').classList.add('on');document.getElementById('overlay').scrollTop=0;}
+function closeM(){if(openId)sbSave(openId);document.getElementById('overlay').classList.remove('on');openId=null;renderT1();}
+function maybeClose(e){if(e.target===document.getElementById('overlay'))closeM();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+function mTab(t){
+  document.querySelectorAll('.mtab').forEach(el=>el.classList.remove('on'));
+  document.querySelectorAll('.msec').forEach(el=>el.classList.remove('on'));
+  document.getElementById('mt-'+t)?.classList.add('on');
+  document.getElementById('ms-'+t)?.classList.add('on');
+}
+
+function buildModal(sid){
+  const s=STAFF.find(x=>x.id===sid);if(!s)return;
+  const st=ST[sid];if(!st)return;
+  const hd=HIST[sid];
+  const xt=xlsxTotal(sid);
+  const w=wScore(sid),n=nDone(sid),g=n>0?gradeFrom(w):'未評';
+  const role=[s.teacher,s.sci,s.func].filter(Boolean).join(' · ');
+  let h=`<div class="mhdr">
+    <div><div style="font-size:20px;font-weight:600">${s.name} <span style="font-size:13px;color:var(--tx3);font-weight:400">#${s.id}</span></div>
+    <div style="font-size:13px;color:var(--tx2);margin-top:3px">${role||'職務未記錄'}</div></div>
+    <button class="mclose" onclick="closeM()"><i class="ti ti-x"></i></button>
+  </div>`;
+  const pills=[];
+  if(s.teacher)pills.push(`<span class="pill g"><i class="ti ti-school" style="font-size:12px;vertical-align:-1px;margin-right:3px"></i>${s.teacher}</span>`);
+  if(s.leave)pills.push(`<span class="pill w">${s.leave}</span>`);
+  if(s.note)pills.push(`<span class="pill${s.note.includes('異常')||s.note.includes('重大')?' r':''}">${s.note}</span>`);
+  if(pills.length)h+=`<div class="mpills">${pills.join('')}</div>`;
+  const hasHist=hd&&Object.keys(hd.years).length>0;
+  h+=`<div class="mtabs">
+    <button class="mtab on" id="mt-eval" onclick="mTab('eval')"><i class="ti ti-clipboard-check" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>專業評核（11題）</button>
+    <button class="mtab" id="mt-score" onclick="mTab('score')"><i class="ti ti-coins" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>加扣分明細</button>
+    ${hasHist?`<button class="mtab" id="mt-hist" onclick="mTab('hist')"><i class="ti ti-chart-line" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>歷年趨勢</button>`:''}
+  </div>`;
+
+  // EVAL TAB
+  const sections=[...new Set(CR.map(c=>c.sec))];
+  let evalH=`<div style="background:var(--bg2);border-radius:var(--r);padding:.7rem 1rem;margin-bottom:1rem;font-size:13px;display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+    <span><b>115年度護理部手術室年終考核（11題，總分${MW}）</b></span>
+    <span style="color:${n===CR.length?'var(--green)':'var(--amber)'}">已評 <b>${n}/${CR.length}</b></span>
+  </div>
+  <div class="sug-bar">
+    <div style="font-size:13px;font-weight:500;color:var(--purple);display:flex;align-items:center;gap:6px"><i class="ti ti-sparkles" style="font-size:15px"></i>依加扣分事蹟自動建議，高亮選項即建議等級</div>
+    <button class="apply-all" onclick="applyAll('${sid}')">一鍵全部採用</button>
+  </div>`;
+  sections.forEach(sec=>{
+    const secCR=CR.filter(c=>c.sec===sec);
+    evalH+=`<div class="sec-hdr">${sec} — ${secCR.length} 題，滿分 ${secCR.reduce((a,c)=>a+c.w,0)} 分</div>`;
+    secCR.forEach(c=>{
+      const sel=st.scores[c.id];
+      const sg=st.sugg[c.id];
+      const adopted=sel!==undefined&&st.applied[c.id]===sel;
+      const opts=c.opts.map(o=>{
+        const isSug=sg&&o.s===sg.s;
+        return`<label class="opt${isSug?(adopted?' sug adopted':' sug'):''}">
+          <input type="radio" name="r-${sid}-${c.id}" value="${o.s}" ${sel===o.s?'checked':''} onchange="setS('${sid}','${c.id}',${o.s})">
+          <div class="opt-body">
+            <div class="opt-lbl">${o.l}${isSug?`<span class="sug-chip"><i class="ti ti-sparkles" style="font-size:9px"></i>${adopted?'已採用':'建議'}</span>`:''}</div>
+            ${isSug?`<div class="opt-ev">${sg.r}</div>`:''}
+          </div>
+          <span class="opt-pts">${o.s}</span>
+        </label>`;
+      }).join('');
+      evalH+=`<div class="crit">
+        <div class="crit-t"><span style="flex:1">${c.title}</span><span class="crit-w">滿分 ${c.w}</span></div>
+        <div class="opts">${opts}</div>
+        <div class="csumm" id="cs-${sid}-${c.id}">得分：<span>${sel!==undefined?sel:'未選'}</span></div>
+      </div>`;
+    });
+  });
+  evalH+=`<div class="cmt-box"><div class="cmt-lb">員工自評意見</div>
+    <textarea class="cmt-ta" id="self-${sid}" placeholder="請填寫員工自評意見…" oninput="ST['${sid}'].selfComment=this.value">${st.selfComment}</textarea></div>
+  <div class="cmt-box"><div class="cmt-lb">初評主管意見</div>
+    <textarea class="cmt-ta" id="mgr-${sid}" placeholder="請填寫主管評語…" oninput="ST['${sid}'].mgrComment=this.value">${st.mgrComment}</textarea></div>`;
+
+  // SCORE TAB
+  const bonusRows=s.bonus.map(b=>`<div class="xs-row"><span><i class="ti ti-plus" style="font-size:12px;color:var(--green);vertical-align:-1px;margin-right:4px"></i>${b.label}</span><span style="font-weight:600;color:var(--green)">+${b.pts}</span></div>`).join('');
+  const deductRows=s.deduct.map(d=>`<div class="xs-row"><span><i class="ti ti-minus" style="font-size:12px;color:var(--red);vertical-align:-1px;margin-right:4px"></i>${d.label}</span><span style="font-weight:600;color:var(--red)">-${d.pts}</span></div>`).join('');
+  const scoreH=`<div class="xs-card"><div style="font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.9rem;display:flex;align-items:center;gap:6px"><i class="ti ti-file-spreadsheet" style="color:var(--green)"></i>115年度加扣分明細</div>
+    <div class="xs-row"><span style="color:var(--tx2)">基準分數</span><span style="font-weight:600">80</span></div>
+    ${bonusRows||'<div style="font-size:13px;color:var(--tx3);padding:6px 0">無加分項目</div>'}${deductRows}
+    ${s.note?`<div class="xs-row"><span style="color:var(--tx2)">備註</span><span style="font-size:12px;color:var(--tx2);max-width:280px;text-align:right">${s.note}</span></div>`:''}
+  </div>
+  <div class="xs-total"><span style="font-weight:600">加扣分總分</span>
+    <div style="display:flex;align-items:center;gap:12px"><span class="badge ${gCss(gradeFrom(xt))}">${gradeFrom(xt)}</span>
+    <span style="font-size:24px;font-weight:700;color:${gClr(gradeFrom(xt))}">${xt}</span></div>
+  </div>`;
+
+  // HIST TAB
+  let histH='<div style="text-align:center;padding:2rem;color:var(--tx3)">無歷年資料</div>';
+  if(hasHist){
+    const yrs=['111','112','113','114'],avail=yrs.filter(y=>hd.years[y]);
+    const scores=avail.map(y=>hd.years[y].score);
+    const minS=Math.min(...scores,60),maxS=Math.max(...scores,100),rng=maxS-minS||10;
+    histH=`<div class="hist-sec">
+      <div style="font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;margin-bottom:.9rem">歷年考核趨勢（111–114年）</div>
+      <div class="hchart">${yrs.map(y=>{
+        if(!hd.years[y])return`<div class="hb-w"><div style="flex:1"></div><div style="font-size:10px;color:#e0e0e0">${y}</div></div>`;
+        const d=hd.years[y],ph=Math.round(((d.score-minS)/rng)*62)+10;
+        return`<div class="hb-w"><div style="font-size:11px;font-weight:600;color:var(--tx2)">${d.score}</div><div class="hb" style="height:${ph}px;background:${gBg(d.grade)};border:.5px solid ${gClr(d.grade)}"></div><div style="font-size:10px;color:var(--tx3)">${y}</div></div>`;
+      }).join('')}</div>
+      <div class="hrows">${avail.map(y=>{const d=hd.years[y];return`<div class="hrow"><span style="font-size:12px;font-weight:600;color:var(--tx2);min-width:28px">${y}</span><span style="font-size:11px;padding:2px 7px;border-radius:99px;background:${gBg(d.grade)};color:${gClr(d.grade)};flex-shrink:0">${d.grade}</span><span style="font-size:12px;color:var(--tx2);line-height:1.5;flex:1">${d.note||'—'}</span><span style="font-size:13px;font-weight:600;color:${gClr(d.grade)};min-width:36px;text-align:right">${d.score}</span></div>`;}).join('')}</div>
+    </div>`;
+  }
+
+  h+=`<div id="ms-eval" class="msec on">${evalH}</div><div id="ms-score" class="msec">${scoreH}</div><div id="ms-hist" class="msec">${histH}</div>`;
+  h+=`<div class="mfoot">
+    <div class="mf-it"><div class="mf-lb">加扣分總分</div><div class="mf-val" style="color:${gClr(gradeFrom(xt))}">${xt}</div></div>
+    <div class="mf-it"><div class="mf-lb">考核得分</div><div class="mf-val" style="color:${n>0?gClr(g):'var(--tx3)'}" id="mf-w">${n>0?w.toFixed(0):'—'} <span style="font-size:14px">/ ${MW}</span></div></div>
+    <div class="mf-it"><div class="mf-lb">已評題數</div><div class="mf-val" style="color:${n===CR.length?'var(--green)':'var(--tx)'}" id="mf-n">${n}/${CR.length}</div></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+      <span class="badge ${gCss(g)}" style="font-size:14px;padding:6px 18px" id="mf-badge">${g}</span>
+      <button class="save-btn" onclick="closeM()"><i class="ti ti-device-floppy" style="font-size:15px"></i>儲存</button>
+    </div>
+  </div>`;
+  document.getElementById('modal-body').innerHTML=h;
+}
+
+function setS(sid,cid,s){
+  const sNum=parseFloat(s);
+  if(!ST[sid])return;
+  ST[sid].scores[cid]=sNum;
+  document.querySelectorAll(`input[name="r-${sid}-${cid}"]`).forEach(r=>r.checked=parseFloat(r.value)===sNum);
+  refreshCS(sid,cid);refreshFoot(sid);renderT1();
+}
+function refreshCS(sid,cid){
+  const el=document.getElementById(`cs-${sid}-${cid}`);if(!el)return;
+  const sel=ST[sid]?.scores[cid];
+  el.innerHTML=`得分：<span>${sel!==undefined?sel:'未選'}</span>`;
+}
+function refreshFoot(sid){
+  const w=wScore(sid),n=nDone(sid),g=n>0?gradeFrom(w):'未評';
+  const wEl=document.getElementById('mf-w');if(wEl){wEl.innerHTML=(n>0?w.toFixed(0):'—')+' <span style="font-size:14px">/ '+MW+'</span>';wEl.style.color=n>0?gClr(g):'var(--tx3)';}
+  const nEl=document.getElementById('mf-n');if(nEl){nEl.textContent=`${n}/${CR.length}`;nEl.style.color=n===CR.length?'var(--green)':'var(--tx)';}
+  const b=document.getElementById('mf-badge');if(b){b.className=`badge ${gCss(g)}`;b.textContent=g;}
+}
+function applyAll(sid){
+  CR.forEach(c=>{
+    const sg=ST[sid]?.sugg[c.id];if(!sg)return;
+    ST[sid].scores[c.id]=sg.s;ST[sid].applied[c.id]=sg.s;
+    document.querySelectorAll(`input[name="r-${sid}-${c.id}"]`).forEach(r=>r.checked=parseFloat(r.value)===sg.s);
+    const grp=document.querySelector(`input[name="r-${sid}-${c.id}"]`)?.closest('.opts');
+    if(grp)grp.querySelectorAll('.opt.sug').forEach(el=>{el.classList.add('adopted');const chip=el.querySelector('.sug-chip');if(chip)chip.innerHTML='<i class="ti ti-check" style="font-size:9px"></i>已採用';});
+    refreshCS(sid,c.id);
+  });
+  refreshFoot(sid);renderT1();sbSave(sid);
+}
+
+// ── PAGE 2 ─────────────────────────────────────────────────
+function renderP2(){
+  const cnt=countGrades();
+  const scored=STAFF.filter(s=>nDone(s.id)>0).length,full=STAFF.filter(s=>nDone(s.id)===CR.length).length;
+  const grades=['特優','優','特甲','甲上','甲下','丙'];
+  const pctMap={'特優':'5%','優':'14.5%','特甲':'32.5%','甲上':'33%','甲下':'15%','丙':'0%'};
+  const clrs={'特優':'#5b21b6','優':'#27500A','特甲':'#0C447C','甲上':'#633806','甲下':'#92400e','丙':'#791F1F'};
+  const sg=document.getElementById('p2sg');if(!sg)return;
+  sg.innerHTML=`<div class="sc"><div class="sn">${STAFF.length}</div><div class="sl">總員工數</div></div>
+    <div class="sc"><div class="sn" style="color:var(--green)">${full}</div><div class="sl">已完成評核</div></div>
+    <div class="sc"><div class="sn" style="color:var(--amber)">${scored-full}</div><div class="sl">部分完成</div></div>
+    <div class="sc"><div class="sn" style="color:var(--tx3)">${STAFF.length-scored}</div><div class="sl">尚未開始</div></div>
+    <div class="sc"><div class="sn" style="color:var(--blue)">${TOTAL_EVAL}</div><div class="sl">應考核人數</div></div>`;
+  const rb=document.getElementById('ratio-body');if(!rb)return;
+  rb.innerHTML=grades.map(g=>{
+    const q=QUOTA[g],cur=cnt[g]||0,tgt=q.target,over=cur>tgt,rem=tgt-cur;
+    const pct=tgt>0?Math.round(cur/tgt*100):0;
+    return`<tr><td><span class="badge ${gCss(g)}" style="font-size:13px">${g}</span></td><td style="color:var(--tx2)">${q.range}</td>
+      <td style="font-weight:600">${pctMap[g]}</td><td style="font-weight:600">${tgt}</td>
+      <td style="font-size:18px;font-weight:700;color:${clrs[g]}">${cur}</td>
+      <td style="font-weight:600;color:${rem<0?'#ef4444':'var(--tx2)'}">${rem<0?'超額'+Math.abs(rem):rem}</td>
+      <td style="font-weight:600;color:${over?'#ef4444':cur===tgt?'#27500A':'var(--tx2)'}">${tgt===0?'無配額':over?`⚠ 超額+${cur-tgt}`:cur===tgt?'✓ 達標':`尚差${rem}人`}</td>
+      <td><div style="height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;min-width:80px"><div style="height:100%;width:${Math.min(pct,100)}%;background:${over?'#ef4444':clrs[g]};border-radius:5px"></div></div><div style="font-size:11px;color:var(--tx3);margin-top:2px">${pct}%</div></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── PAGE 3 ─────────────────────────────────────────────────
+function buildEvalSuggestion(s){
+  const n=nDone(s.id),w=wScore(s.id),g=n>0?gradeFrom(w):'未評';
+  const xt=xlsxTotal(s.id);
+  const hasB=(...ks)=>s.bonus.some(b=>ks.some(k=>b.label.includes(k)));
+  const hasD=(...ks)=>s.deduct.some(d=>ks.some(k=>d.label.includes(k)));
+  const isT=s.teacher==='臨床教師'||hasB('臨床教師','老師','教師');
+  const isL=hasB('組長');
+  const hasAdv=hasB('進階','撰寫');
+  const hasAcls=hasB('ACLS','高壓','達文西','CVS','開心');
+  const hasAwd=hasB('優良');
+  const hasAbn=hasD('異常','掉落','儀器損壞','重大');
+  const hasBehav=hasD('遲到','早退','改帳','手術紀錄');
+  const bp=s.bonus_sum,dp=s.deduct_sum;
+  const hd=HIST[s.id];
+  let trendNote='';
+  if(hd){const yrs=['111','112','113','114'].filter(y=>hd.years[y]);if(yrs.length>=2){const f=hd.years[yrs[0]].score,l=hd.years[yrs[yrs.length-1]].score;trendNote=l>f?'歷年成績呈上升趨勢，':l<f?'歷年成績呈下降趨勢，':'歷年成績穩定，';}}
+  const hl=[];if(isT)hl.push('臨床教師');if(isL)hl.push('功能組長');if(hasAcls)hl.push('ACLS/跨科訓練');if(hasAdv)hl.push('通過進階');if(hasAwd)hl.push('獲選優良');
+  const hlNote=hl.length?`【${hl.join('、')}】 `:'';
+  const useScore=n>0?w:xt;
+  let main='';
+  if(useScore>=95)main='各項表現卓越，'+(isT&&isL?'同時擔任臨床教師及組長，領導與專業能力突出':hasAcls||hasAdv?'積極完成專業訓練及進階考核，專業能力優異':'工作態度積極，整體績效表現優良')+'，建議列為年度優秀人員。';
+  else if(useScore>=90)main='整體表現良好，'+(isT?'擔任臨床教師指導後進，':isL?'擔任功能組長統籌協調，':'')+(hasAdv?'並積極參與進階訓練，':'')+'專業能力及工作態度均達優良標準，建議肯定其表現。';
+  else if(useScore>=85)main='表現穩健，'+(bp>0?`加分事蹟${bp}點，`:'')+(hasAbn?'惟有異常事件須加強注意，':'')+'整體工作績效達標，建議持續關注專業成長。';
+  else if(useScore>=80)main='工作表現符合基本標準，'+(hasAbn?'本年度有異常事件，需加強風險意識，':hasBehav?'考勤或紀錄問題有待改善，':bp>0?`有加分事蹟${bp}點值得肯定，`:'')+'建議加強專業能力及自主學習。';
+  else if(useScore>=70)main='本年度表現有待加強，'+(hasAbn?'有重大異常或器械事件，':hasBehav?'考勤或紀錄紀律需改善，':dp>0?`扣分${dp}點，`:'')+'建議主管加強輔導，訂定改善計畫。';
+  else main=g==='未評'?'尚未完成評核，請儘速完成11項考核。':'表現需大幅改善，建議主管積極介入輔導。';
+  return trendNote+hlNote+main;
+}
+
+function renderP3(){
+  const eb=document.getElementById('exp-body');if(!eb)return;
+  eb.innerHTML=STAFF.map((s,i)=>{
+    const n=nDone(s.id),w=wScore(s.id),g=n>0?gradeFrom(w):'未評',xt=xlsxTotal(s.id);
+    const sug=buildEvalSuggestion(s);
+    return`<tr><td style="color:var(--tx3)">${i+1}</td><td>${s.id}</td><td style="font-weight:600">${s.name}</td>
+      <td style="font-size:12px;color:var(--tx2)">${s.teacher||'—'}</td><td style="font-size:12px;color:var(--tx2)">${s.sci||s.func||'—'}</td>
+      <td style="color:var(--green);font-weight:600">+${s.bonus_sum}</td><td style="color:var(--red);font-weight:600">-${s.deduct_sum}</td>
+      <td style="font-weight:700;color:${gClr(gradeFrom(xt))}">${xt}</td>
+      <td style="font-weight:600;color:${n>0?gClr(g):'var(--tx3)'}">${n>0?w.toFixed(0):'—'}</td>
+      <td><span class="badge ${gCss(g)}">${g}</span></td>
+      <td style="font-size:12px;color:var(--tx2);line-height:1.6;min-width:220px;max-width:320px">${sug}</td>
+      <td style="font-size:12px;color:var(--tx2);max-width:120px">${ST[s.id]?.selfComment||'—'}</td>
+      <td style="font-size:12px;color:var(--tx2);max-width:120px">${ST[s.id]?.mgrComment||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function exportXLSX(){
+  if(typeof XLSX==='undefined'){showToast('Excel套件載入中，請稍後再試','amber');return;}
+  const wb=XLSX.utils.book_new();
+  const h1=['序','工號','姓名','職務','科別','加分','扣分','加扣分總分','考核得分','等第','年終考核建議','自評','主管意見'];
+  const r1=STAFF.map((s,i)=>{
+    const n=nDone(s.id),w=wScore(s.id),g=n>0?gradeFrom(w):'未評',xt=xlsxTotal(s.id);
+    return[i+1,s.id,s.name,s.teacher||'',s.sci||s.func||'',s.bonus_sum,s.deduct_sum,xt,n>0?parseFloat(w.toFixed(0)):0,g,buildEvalSuggestion(s),ST[s.id]?.selfComment||'',ST[s.id]?.mgrComment||''];
+  });
+  const ws1=XLSX.utils.aoa_to_sheet([h1,...r1]);
+  ws1['!cols']=[{wch:5},{wch:8},{wch:8},{wch:10},{wch:8},{wch:6},{wch:6},{wch:10},{wch:10},{wch:8},{wch:45},{wch:30},{wch:30}];
+  XLSX.utils.book_append_sheet(wb,ws1,'年終考核彙整表');
+  const cnt=countGrades(),grades=['特優','優','特甲','甲上','甲下','丙'],pctMap={'特優':'5%','優':'14.5%','特甲':'32.5%','甲上':'33%','甲下':'15%','丙':'0%'};
+  const ws2=XLSX.utils.aoa_to_sheet([['等第','分數區間','規定比例','應佔人數','目前已評','剩餘配額','狀態'],
+    ...grades.map(g=>{const q=QUOTA[g],cur=cnt[g]||0,tgt=q.target,rem=tgt-cur;
+    return[g,q.range,pctMap[g],tgt,cur,rem<0?'超額'+Math.abs(rem):rem,tgt===0?'無配額':cur>tgt?'超額':'達標'];})]);
+  ws2['!cols']=[{wch:8},{wch:10},{wch:10},{wch:10},{wch:10},{wch:10},{wch:10}];
+  XLSX.utils.book_append_sheet(wb,ws2,'等第配額統計');
+  const ws3h=['序','工號','姓名','加分項目','加分點數','扣分項目','扣分點數','加扣分總分','備註'];
+  const ws3r=[];
+  STAFF.forEach((s,i)=>{const xt=xlsxTotal(s.id),mx=Math.max(s.bonus.length,s.deduct.length,1);
+    for(let r=0;r<mx;r++){const b=s.bonus[r]||{label:'',pts:''},d=s.deduct[r]||{label:'',pts:''};
+      ws3r.push(r===0?[i+1,s.id,s.name,b.label,b.pts||'',d.label,d.pts||'',xt,s.note||'']:['','','',b.label,b.pts||'',d.label,d.pts||'','','']);}});
+  const ws3=XLSX.utils.aoa_to_sheet([ws3h,...ws3r]);
+  ws3['!cols']=[{wch:5},{wch:8},{wch:8},{wch:22},{wch:8},{wch:22},{wch:8},{wch:10},{wch:30}];
+  XLSX.utils.book_append_sheet(wb,ws3,'加扣分明細');
+  XLSX.writeFile(wb,'115年度手術室護理人員年終考核彙整表.xlsx');
+  showToast('Excel 已匯出','green');
+}
+
+// ── PAGE 4 ─────────────────────────────────────────────────
+function switchP4(t){
+  document.querySelectorAll('.p4-tab').forEach((el,i)=>el.classList.toggle('on',['dist','top','bot'][i]===t));
+  ['dist','top','bot'].forEach(id=>{const el=document.getElementById('p4-'+id);if(el)el.style.display=id===t?'block':'none';});
+}
+function getPersonScore(s){const xt=xlsxTotal(s.id);if(xt!==80)return xt;const hd=HIST[s.id];if(hd){const a=['114','113','112','111'].find(y=>hd.years[y]);if(a)return hd.years[a].score;}return 80;}
+function getHistTrend(sid){
+  const hd=HIST[sid];if(!hd||!Object.keys(hd.years).length)return'<span style="color:var(--tx3);font-size:12px">無歷年資料</span>';
+  const avail=['111','112','113','114'].filter(y=>hd.years[y]);
+  const parts=avail.map(y=>{const d=hd.years[y];return`<span style="font-size:11px;margin-right:6px;display:inline-flex;align-items:center;gap:3px"><span style="color:var(--tx3)">${y}</span><span style="font-weight:600;color:${gClr(d.grade)}">${d.grade}</span><span style="color:var(--tx3)">${d.score}</span></span>`;}).join('');
+  const scores=avail.map(y=>hd.years[y].score);
+  const arr=scores.length>=2?scores[scores.length-1]>scores[0]?'↑ 上升':scores[scores.length-1]<scores[0]?'↓ 下降':'→ 持平':'';
+  const aclr=arr.includes('↑')?'var(--green)':arr.includes('↓')?'var(--red)':'var(--tx3)';
+  return`<div>${parts}</div>${arr?`<div style="font-size:12px;font-weight:700;color:${aclr};margin-top:3px">${arr}</div>`:''}`;
+}
+function buildRankTable(persons,startRank,bgColor,borderColor,label){
+  const rows=persons.map((s,i)=>{const rank=startRank+i,g=gradeFrom(s.score);
+    return`<tr><td style="text-align:center;font-weight:700;font-size:${rank<=3?'20px':'14px'};color:${rank<=3?gClr(g):'var(--tx3)'}">${rank<=3?['🥇','🥈','🥉'][rank-1]:rank}</td>
+      <td><div style="font-weight:700;font-size:15px">${s.name}</div><div style="font-size:12px;color:var(--tx2);margin-top:2px">${[s.teacher,s.sci||s.func].filter(Boolean).join(' · ')||'—'}</div></td>
+      <td style="text-align:center"><span class="badge ${gCss(g)}" style="font-size:13px;padding:4px 12px">${g}</span></td>
+      <td style="text-align:center"><div style="font-size:22px;font-weight:700;color:${gClr(g)}">${s.score}</div></td>
+      <td>${getHistTrend(s.id)}</td>
+    </tr>`;}).join('');
+  return`<div style="background:var(--bg);border:.5px solid ${borderColor};border-radius:var(--rl);overflow:hidden;margin-bottom:1.5rem">
+    <div style="background:${bgColor};padding:12px 18px;display:flex;align-items:center;gap:12px;border-bottom:.5px solid ${borderColor}">
+      <div style="font-size:15px;font-weight:700">${label}</div>
+      <span style="background:rgba(0,0,0,.06);color:var(--tx2);font-size:13px;padding:3px 10px;border-radius:99px">${persons.length} 人</span>
+    </div>
+    <div style="overflow-x:auto"><table class="rank-table">
+      <thead><tr><th style="width:60px;text-align:center">排名</th><th>姓名 / 職務</th><th style="width:90px;text-align:center">等第</th><th style="width:80px;text-align:center">分數</th><th>歷年趨勢</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+  </div>`;
+}
+function renderP4(){
+  const grades=['特優','優','特甲','甲上','甲下','丙'];
+  const clrs={'特優':'#5b21b6','優':'#27500A','特甲':'#0C447C','甲上':'#633806','甲下':'#92400e','丙':'#791F1F'};
+  const allYrs=['111','112','113','114'];
+  const yrData={};allYrs.forEach(y=>yrData[y]={});
+  Object.values(HIST).forEach(h=>{allYrs.forEach(y=>{if(!h.years[y])return;const g=h.years[y].grade||gradeFrom(h.years[y].score);yrData[y][g]=(yrData[y][g]||0)+1;});});
+  const cnt115=countGrades();
+  const d4=document.getElementById('p4-dist');if(!d4)return;
+  d4.innerHTML=`<div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.5rem;margin-bottom:1.25rem">
+    <div style="font-size:13px;font-weight:600;color:var(--tx2);margin-bottom:1.1rem;text-transform:uppercase;letter-spacing:.04em">各年度等第人數與佔比</div>
+    <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead><tr style="border-bottom:.5px solid var(--bd2)"><th style="padding:10px 13px;text-align:left;font-weight:600;color:var(--tx2)">等第</th>
+        ${allYrs.map(y=>`<th style="padding:10px 13px;text-align:center;font-weight:600;color:var(--tx2)">${y}年</th>`).join('')}
+        <th style="padding:10px 13px;text-align:center;font-weight:700;color:var(--blue)">115年</th>
+      </tr></thead>
+      <tbody>${grades.map(g=>`<tr style="border-bottom:.5px solid var(--bd)"><td style="padding:10px 13px"><span class="badge ${gCss(g)}">${g}</span></td>
+        ${allYrs.map(y=>{const n=yrData[y][g]||0,tot=Object.values(yrData[y]).reduce((a,v)=>a+v,0)||1,pct=Math.round(n/tot*100);
+          return`<td style="padding:10px 13px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:7px;background:var(--bg3);border-radius:3px;overflow:hidden;min-width:50px"><div style="height:100%;width:${pct}%;background:${n>0?gBg(g):'transparent'};border-radius:3px"></div></div><span style="font-size:14px;font-weight:700;color:${n>0?clrs[g]:'var(--tx3)'}">${n||'—'}</span><span style="font-size:11px;color:var(--tx3)">${n>0?pct+'%':''}</span></div></td>`;}).join('')}
+        <td style="padding:10px 13px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:7px;background:var(--bg3);border-radius:3px;overflow:hidden;min-width:50px"><div style="height:100%;width:${cnt115[g]>0?Math.round(cnt115[g]/STAFF.length*100):0}%;background:${cnt115[g]>0?gBg(g):'transparent'};border-radius:3px"></div></div><span style="font-size:14px;font-weight:700;color:${cnt115[g]>0?clrs[g]:'var(--tx3)'}">${cnt115[g]||'—'}</span></div></td>
+      </tr>`).join('')}</tbody>
+    </table></div>
+  </div>`;
+  const ranked=[...STAFF].map(s=>({...s,score:getPersonScore(s)})).sort((a,b)=>b.score-a.score);
+  const cutoff=Math.ceil(ranked.length*.6);
+  const t4=document.getElementById('p4-top'),b4=document.getElementById('p4-bot');
+  if(t4)t4.innerHTML=buildRankTable(ranked.slice(0,cutoff),1,'var(--green-bg)','rgba(39,80,10,.25)',`🏆 前 60%（第 1–${cutoff} 名）`);
+  if(b4)b4.innerHTML=buildRankTable(ranked.slice(cutoff),cutoff+1,'var(--amber-bg)','rgba(99,56,6,.2)',`📋 後 40%（第 ${cutoff+1}–${ranked.length} 名）`);
+}
+
+// ── PAGE 0 - 事蹟登錄 ──────────────────────────────────────
+let p0SelId=null,p0Plus=[],p0Minus=[];
+function p0Init(){
+  const sel=document.getElementById('p0-sel');if(!sel)return;
+  sel.innerHTML='<option value="">— 選擇員工姓名 —</option>';
+  STAFF.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=`${s.name}（${s.id}）`;sel.appendChild(o);});
+  const bc=document.getElementById('p0-bonus-chips');
+  if(bc)bc.innerHTML=BONUS_PRESETS.map((p,i)=>`<button class="p0-chip plus" id="bchip-${i}" title="${p.tip}" onclick="p0ToggleChip('plus',${i})">${p.label}</button>`).join('');
+  const dc=document.getElementById('p0-deduct-chips');
+  if(dc)dc.innerHTML=DEDUCT_PRESETS.map((p,i)=>`<button class="p0-chip minus" id="dchip-${i}" title="${p.tip}" onclick="p0ToggleChip('minus',${i})">${p.label}</button>`).join('');
+}
+
+function p0SelectStaff(id){
+  p0SelId=id||null;
+  const badge=document.getElementById('p0-badge'),info=document.getElementById('p0-info');
+  if(!id){if(badge)badge.style.display='none';if(info)info.style.display='none';p0Clear();return;}
+  const s=STAFF.find(x=>x.id===id);if(!s)return;
+  if(badge)badge.style.display='flex';
+  const av=document.getElementById('p0-avatar');if(av)av.textContent=s.name.slice(-2);
+  const nm=document.getElementById('p0-name');if(nm)nm.textContent=s.name;
+  const rl=document.getElementById('p0-role');if(rl)rl.textContent=[s.teacher,s.sci||s.func].filter(Boolean).join(' · ')||'職務未記錄';
+  const pills=[];
+  if(s.teacher)pills.push(`<span class="pill g">${s.teacher}</span>`);
+  if(s.leave)pills.push(`<span class="pill w">${s.leave}</span>`);
+  if(s.note)pills.push(`<span class="pill">${s.note.slice(0,40)}</span>`);
+  if(info){info.innerHTML=pills.join('');info.style.display=pills.length?'flex':'none';}
+  // Pre-fill rows
+  p0Plus=s.bonus.map((b,i)=>({id:'pre-'+i,label:b.label,pts:b.pts}));
+  p0Minus=s.deduct.map((d,i)=>({id:'pre-d'+i,label:d.label,pts:d.pts}));
+  // Highlight chips - exact match (labels are now normalized)
+  BONUS_PRESETS.forEach((p,i)=>{
+    const c=document.getElementById('bchip-'+i);
+    if(c)c.classList.toggle('active',s.bonus.some(b=>b.label===p.label||b.label.includes(p.label.split(' ')[0])));
+  });
+  DEDUCT_PRESETS.forEach((p,i)=>{
+    const c=document.getElementById('dchip-'+i);
+    if(c)c.classList.toggle('active',s.deduct.some(d=>d.label===p.label||d.label.includes(p.label.split('（')[0])));
+  });
+  p0RenderRows();p0UpdatePreview();
+}
+
+function p0Clear(){
+  p0Plus=[];p0Minus=[];
+  BONUS_PRESETS.forEach((p,i)=>{const c=document.getElementById('bchip-'+i);if(c)c.classList.remove('active');});
+  DEDUCT_PRESETS.forEach((p,i)=>{const c=document.getElementById('dchip-'+i);if(c)c.classList.remove('active');});
+  p0RenderRows();const pv=document.getElementById('p0-preview');if(pv)pv.style.display='none';
+}
+function p0ToggleChip(type,idx){
+  const presets=type==='plus'?BONUS_PRESETS:DEDUCT_PRESETS;
+  const rows=type==='plus'?p0Plus:p0Minus;
+  const chip=document.getElementById((type==='plus'?'bchip-':'dchip-')+idx);
+  const p=presets[idx];
+  const ei=rows.findIndex(r=>r.label===p.label);
+  if(ei>=0){rows.splice(ei,1);if(chip)chip.classList.remove('active');}
+  else{rows.push({id:'chip-'+type+'-'+idx+'-'+Date.now(),label:p.label,pts:p.pts});if(chip)chip.classList.add('active');}
+  if(type==='plus')p0Plus=[...rows];else p0Minus=[...rows];
+  p0RenderRows();p0UpdatePreview();
+}
+function p0AddRow(type){
+  const row={id:'row-'+Date.now(),label:'',pts:1};
+  if(type==='plus')p0Plus.push(row);else p0Minus.push(row);
+  p0RenderRows();p0UpdatePreview();
+}
+function p0DelRow(type,id){
+  if(type==='plus')p0Plus=p0Plus.filter(r=>r.id!==id);else p0Minus=p0Minus.filter(r=>r.id!==id);
+  p0RenderRows();p0UpdatePreview();
+}
+function p0UpdRow(type,id,field,val){
+  const rows=type==='plus'?p0Plus:p0Minus;
+  const r=rows.find(x=>x.id===id);
+  if(r){r[field]=field==='pts'?parseFloat(val)||0:val;}
+  p0UpdatePreview();
+}
+function p0RenderRows(){
+  function rowHtml(r,type){const color=type==='plus'?'var(--green)':'var(--red)';
+    return`<div class="p0-row" id="p0r-${r.id}"><span style="font-size:16px;color:${color}">${type==='plus'?'➕':'➖'}</span><input class="p0-sel" type="text" value="${r.label}" placeholder="事蹟描述…" oninput="p0UpdRow('${type}','${r.id}','label',this.value)"><input class="p0-num" type="number" min="0" max="10" step="0.5" value="${r.pts}" oninput="p0UpdRow('${type}','${r.id}','pts',this.value)"><span style="font-size:12px;color:var(--tx3)">分</span><button onclick="p0DelRow('${type}','${r.id}')" style="padding:4px 7px;border:none;background:none;cursor:pointer;color:var(--tx3);font-size:15px;border-radius:var(--r)"><i class="ti ti-x"></i></button></div>`;}
+  const pr=document.getElementById('p0-plus-rows');if(pr)pr.innerHTML=p0Plus.length?p0Plus.map(r=>rowHtml(r,'plus')).join(''):'<div style="font-size:13px;color:var(--tx3);padding:8px 0">尚無加分記錄</div>';
+  const mr=document.getElementById('p0-minus-rows');if(mr)mr.innerHTML=p0Minus.length?p0Minus.map(r=>rowHtml(r,'minus')).join(''):'<div style="font-size:13px;color:var(--tx3);padding:8px 0">尚無扣分記錄</div>';
+}
+function p0UpdatePreview(){
+  const bp=p0Plus.reduce((a,r)=>a+(+r.pts||0),0);
+  const dp=p0Minus.reduce((a,r)=>a+(+r.pts||0),0);
+  const est=Math.max(0,80+bp-dp),g=gradeFrom(est);
+  const bt=document.getElementById('p0-bt');if(bt)bt.textContent='+'+bp;
+  const dt=document.getElementById('p0-dt');if(dt)dt.textContent='-'+dp;
+  const es=document.getElementById('p0-es');if(es)es.textContent=est;
+  const ge=document.getElementById('p0-eg');
+  if(ge){ge.textContent=g;ge.className='badge '+gCss(g);ge.style.fontSize='16px';ge.style.padding='6px 16px';}
+  const tmpS={bonus:p0Plus.map(r=>({label:r.label,pts:r.pts})),deduct:p0Minus.map(r=>({label:r.label,pts:r.pts})),
+    teacher:p0SelId?STAFF.find(x=>x.id===p0SelId)?.teacher||'':'',bonus_sum:bp,deduct_sum:dp};
+  const sg=buildSugg(tmpS);
+  const labels={c1:'配合度',c2:'積極性',c3:'時效績效',c4:'研究改進',c5:'專業知識',c6:'人際關係',c7:'溝通協調',c8:'團隊合作',c9:'責任感',c10:'職業操守',c11:'團隊參與'};
+  const sp=document.getElementById('p0-sp');
+  if(sp)sp.innerHTML=Object.entries(sg).map(([k,v])=>`<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:.5px solid var(--bd)"><span style="color:var(--tx2)">${labels[k]||k}</span><span style="font-weight:600;color:var(--purple)">${v.s} 分</span></div>`).join('');
+  const pv=document.getElementById('p0-preview');if(pv)pv.style.display='block';
+}
+function p0Submit(){
+  if(!p0SelId){alert('請先選擇員工姓名');return;}
+  const sid=p0SelId,s=STAFF.find(x=>x.id===sid);
+  const note=document.getElementById('p0-note')?.value||'';
+  s.bonus=p0Plus.map(r=>({label:r.label,pts:+r.pts||0})).filter(b=>b.label.trim());
+  s.deduct=p0Minus.map(r=>({label:r.label,pts:+r.pts||0})).filter(d=>d.label.trim());
+  s.bonus_sum=s.bonus.reduce((a,b)=>a+b.pts,0);
+  s.deduct_sum=s.deduct.reduce((a,d)=>a+d.pts,0);
+  s.total=80+s.bonus_sum-s.deduct_sum;
+  if(note)s.note=note;
+  ST[sid].sugg=buildSugg(s);
+  const inc={c1:[],c2:[],c3:[],c4:[],c5:[],c6:[],c7:[],c8:[],c9:[],c10:[],c11:[]};
+  s.bonus.forEach((b,i)=>{const l=b.label;let cid='c5';
+    if(['組長','臨床教師','輔導','老師','教師'].some(k=>l.includes(k)))cid='c1';
+    else if(['活動','晉賽','消防','演練'].some(k=>l.includes(k)))cid='c8';
+    else if(['ACLS','高壓','達文西','CVS','開心','跨單位'].some(k=>l.includes(k)))cid='c3';
+    else if(['M365','品管','正念','評鑑','ISO','6S'].some(k=>l.includes(k)))cid='c4';
+    else if(['優良'].some(k=>l.includes(k)))cid='c10';
+    else if(['進階','撰寫','教育訓練'].some(k=>l.includes(k)))cid='c5';
+    inc[cid].push({id:Date.now()+i*31+(Math.random()*99|0),t:'plus',l:b.label,p:b.pts});});
+  s.deduct.forEach((d,i)=>{const l=d.label;let cid='c9';
+    if(['遲到','早退'].some(k=>l.includes(k)))cid='c1';
+    else if(['必修'].some(k=>l.includes(k)))cid='c4';
+    else if(['改帳','手術紀錄','未落實'].some(k=>l.includes(k)))cid='c9';
+    else if(['重大'].some(k=>l.includes(k)))cid='c10';
+    inc[cid].push({id:Date.now()+i*37+(Math.random()*99|0),t:'minus',l:d.label,p:d.pts});});
+  ST[sid].inc=inc;ST[sid].applied={};
+  sbSave(sid);showToast(s.name+' 的事蹟已匯入系統','green');
+  showPage('p1');setTimeout(()=>openM(sid),300);
+}
+
+// ── 新增/刪除人員 ──────────────────────────────────────────
+function openAddStaff(){
+  const d=document.createElement('div');d.className='sb-setup';d.id='add-staff-modal';
+  d.innerHTML=`<div class="sb-card" style="max-width:480px">
+    <div style="font-size:18px;font-weight:700;margin-bottom:4px"><i class="ti ti-user-plus" style="color:var(--blue);margin-right:8px"></i>新增人員</div>
+    <div style="font-size:13px;color:var(--tx2);margin-bottom:1.25rem">新增後即加入評核總表</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div><div style="font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:5px">員工編號 <span style="color:var(--red)">*</span></div>
+      <input id="add-id" type="text" placeholder="例：17500" style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid var(--bd2);border-radius:var(--r);outline:none"></div>
+      <div><div style="font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:5px">姓名 <span style="color:var(--red)">*</span></div>
+      <input id="add-name" type="text" placeholder="例：陳小明" style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid var(--bd2);border-radius:var(--r);outline:none"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem">
+      <div><div style="font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:5px">職稱</div>
+      <select id="add-teacher" style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid var(--bd2);border-radius:var(--r);background:#fff;outline:none"><option value="">一般護理師</option><option value="臨床教師">臨床教師</option></select></div>
+      <div><div style="font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:5px">科別</div>
+      <input id="add-sci" type="text" placeholder="CVS、NS…" style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid var(--bd2);border-radius:var(--r);outline:none"></div>
+    </div>
+    <div id="add-err" style="display:none;background:var(--red-bg);color:var(--red);border-radius:var(--r);padding:8px 12px;font-size:13px;margin-bottom:10px"></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="document.getElementById('add-staff-modal').remove()" style="flex:1;padding:10px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:14px">取消</button>
+      <button onclick="confirmAddStaff()" style="flex:2;padding:10px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:14px;font-weight:600">確認新增</button>
+    </div>
+  </div>`;
+  document.body.appendChild(d);setTimeout(()=>document.getElementById('add-id')?.focus(),100);
+}
+function confirmAddStaff(){
+  const eid=document.getElementById('add-id').value.trim(),name=document.getElementById('add-name').value.trim();
+  const teacher=document.getElementById('add-teacher').value,sci=document.getElementById('add-sci').value.trim();
+  const errEl=document.getElementById('add-err');
+  if(!eid||!name){errEl.textContent='員工編號和姓名為必填項目';errEl.style.display='block';return;}
+  if(STAFF.find(s=>s.id===eid)){errEl.textContent=`員工編號 ${eid} 已存在`;errEl.style.display='block';return;}
+  STAFF.push({id:eid,name,teacher,sci,func:'',other:'',note:'',leave:'',bonus:[],deduct:[],bonus_sum:0,deduct_sum:0,total:80});
+  const emptyInc={};CR.forEach(c=>emptyInc[c.id]=[]);
+  const emptySugg={};CR.forEach(c=>emptySugg[c.id]={s:c.opts[2]?.s||12,r:'新進人員，依平日表現評核'});
+  ST[eid]={scores:{},inc:emptyInc,sugg:emptySugg,applied:{},selfComment:'',mgrComment:''};
+  p0RefreshDropdown();renderT1();
+  document.getElementById('add-staff-modal').remove();
+  showToast(`${name} 已新增至系統`,'green');
+  const sel=document.getElementById('p0-sel');if(sel){sel.value=eid;p0SelectStaff(eid);}
+}
+function openDelStaff(){
+  const d=document.createElement('div');d.className='sb-setup';d.id='del-staff-modal';
+  const opts=STAFF.map(s=>`<option value="${s.id}">${s.name}（${s.id}）${s.teacher?' · '+s.teacher:''}</option>`).join('');
+  d.innerHTML=`<div class="sb-card" style="max-width:480px">
+    <div style="font-size:18px;font-weight:700;margin-bottom:4px"><i class="ti ti-user-minus" style="color:var(--red);margin-right:8px"></i>刪除人員</div>
+    <div style="margin-bottom:1.25rem">
+      <select id="del-sel" style="width:100%;font-size:15px;padding:10px 12px;border:.5px solid var(--bd2);border-radius:var(--r);background:#fff;outline:none" onchange="showDelPreview(this.value)">
+        <option value="">— 請選擇 —</option>${opts}
+      </select>
+    </div>
+    <div id="del-preview" style="display:none;background:var(--red-bg);border:.5px solid rgba(121,31,31,.2);border-radius:var(--r);padding:12px 14px;margin-bottom:1.25rem"><div id="del-preview-content"></div></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="document.getElementById('del-staff-modal').remove()" style="flex:1;padding:10px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:14px">取消</button>
+      <button id="del-confirm-btn" onclick="confirmDelStaff()" disabled style="flex:2;padding:10px;border:none;border-radius:var(--r);background:#ccc;color:#fff;cursor:not-allowed;font-size:14px;font-weight:600">確認刪除</button>
+    </div>
+  </div>`;
+  document.body.appendChild(d);
+}
+function showDelPreview(eid){
+  const prev=document.getElementById('del-preview'),btn=document.getElementById('del-confirm-btn');
+  if(!eid){prev.style.display='none';btn.disabled=true;btn.style.background='#ccc';btn.style.cursor='not-allowed';return;}
+  const s=STAFF.find(x=>x.id===eid);if(!s)return;
+  document.getElementById('del-preview-content').innerHTML=`<div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:6px">⚠ 即將刪除：${s.name}（${s.id}）</div><div style="font-size:13px;color:var(--red);line-height:1.8">加扣分總分：${s.total}<br>已評核題數：${nDone(eid)}/${CR.length}</div>`;
+  prev.style.display='block';btn.disabled=false;btn.style.background='var(--red)';btn.style.cursor='pointer';
+}
+function confirmDelStaff(){
+  const eid=document.getElementById('del-sel').value;if(!eid)return;
+  const s=STAFF.find(x=>x.id===eid);if(!s)return;
+  const name=s.name;
+  STAFF.splice(STAFF.findIndex(x=>x.id===eid),1);delete ST[eid];
+  p0RefreshDropdown();
+  if(p0SelId===eid){p0SelId=null;p0Clear();const b=document.getElementById('p0-badge');if(b)b.style.display='none';}
+  renderT1();document.getElementById('del-staff-modal').remove();showToast(`${name} 已從系統刪除`,'red');
+}
+function p0RefreshDropdown(){
+  const sel=document.getElementById('p0-sel');if(!sel)return;
+  const curVal=sel.value;
+  sel.innerHTML='<option value="">— 選擇員工姓名 —</option>';
+  STAFF.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=`${s.name}（${s.id}）`;sel.appendChild(o);});
+  if(curVal&&STAFF.find(s=>s.id===curVal))sel.value=curVal;
+}
+
+// ── PAGE SWITCH ─────────────────────────────────────────────
+function showPage(id){
+  document.querySelectorAll('.ptab').forEach((t,i)=>t.classList.toggle('on',['p0','p1','p2','p3','p4'][i]===id));
+  document.querySelectorAll('.psec').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id)?.classList.add('on');
+  if(id==='p2')renderP2();
+  if(id==='p3')renderP3();
+  if(id==='p4')renderP4();
+}
+
+// ── INIT ────────────────────────────────────────────────────
+updateSyncBtn();
+renderT1();
+p0Init();
+if(sbEnabled){sbLoadAll();}else{setTimeout(()=>showToast('離線模式 — 點右上角「設定同步」啟用雲端','amber'),800);}
+
+</script>
+</body>
+</html>
