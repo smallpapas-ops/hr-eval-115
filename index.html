@@ -384,7 +384,7 @@ const BONUS_DEFS=[
   {label:'ACLS 訓練',pts:1,tip:'+1'},{label:'高壓鍋爐證照',pts:2,tip:'+2'},
   {label:'達文西訓練',pts:1,tip:'+1'},{label:'開心手術（CVS）訓練',pts:1,tip:'+1'},
   {label:'撰寫進階報告',pts:1,tip:'+1'},{label:'完成進階 N1/N2/N3',pts:1,tip:'+1'},
-  {label:'優良護理人員/教師/學員',pts:1,tip:'+1'},{label:'其他加分',pts:1,tip:'+1~2'},
+  {label:'優良護理人員/教師/學員',pts:1,tip:'+1'},{label:'其他加分',pts:1,tip:'+1~2'},{label:'颱風天出勤',pts:2,tip:'+2/次'},
 ];
 const DEDUCT_DEFS=[
   {label:'異常事件（病理/器械等）',pts:1,tip:'-1/件'},{label:'掉落器械',pts:1,tip:'-1/件'},
@@ -503,6 +503,7 @@ function buildSugg(s){
   const hasAcls=hasB('ACLS','高壓','達文西','CVS','開心','跨單位');
   const hasAwd=hasB('優良');
   const hasEdu=hasB('教育訓練');
+  const hasTyphoon=hasB('颱風天');
   const hasAbn=hasD('異常','掉落','儀器損壞','重大');
   const hasBehav=hasD('遲到','早退');
   const hasMiss=hasD('必修');
@@ -518,7 +519,7 @@ function buildSugg(s){
       :hasBehav? {s:12,r:r([],D('遲到','早退'),              '有考勤問題，業務配合度需加強')}
       :           {s:16,r:r([],[],                           '依平日表現，業務配合度良好，能如期完成任務')},
     c2:isT&&isL&&bp>=3?{s:20,r:r(B('組長','臨床教師','優良'),[],  '兼任組長及教師且多項貢獻，主動積極協助主管同仁')}
-      :isL||hasAwd||bp>=2?{s:16,r:r(B('組長','優良','活動','評鑑'),[],  '具組長或加分事蹟，主動積極完成任務')}
+      :isL||hasAwd||hasTyphoon||bp>=2?{s:16,r:r(B('組長','優良','活動','評鑑','颱風天'),[],  '具組長、颱風出勤或加分事蹟，主動積極完成任務')}
       :hasAbn?    {s:12,r:r([],D('異常','掉落','儀器損壞'),  '有異常事件記錄，主動積極性有加強空間')}
       :            {s:16,r:r([],[],                          '依平日表現，主動積極完成任務')},
     c3:hasAcls&&hasAdv?{s:20,r:r(B('ACLS','高壓','達文西','CVS','進階','撰寫'),[],  '完成ACLS及進階訓練，工作時效掌控能力優異')}
@@ -543,7 +544,7 @@ function buildSugg(s){
       :isL?                {s:16,r:r(B('組長'),[],          '擔任功能組長，具備組織溝通協調能力')}
       :hasB('評鑑','ISO','6S')?{s:16,r:r(B('評鑑','ISO','6S'),[],  '參與評鑑或認證，具備跨單位溝通協調能力')}
       :                    {s:12,r:r([],[],                  '依平日表現，組織溝通與協調能力尚可')},
-    c8:hasB('活動','晉賽','消防','演練')?{s:20,r:r(B('活動','晉賽','消防','演練'),[],  '積極參與活動或演練，善於團隊合作')}
+    c8:hasB('活動','晉賽','消防','演練','颱風天')?{s:20,r:r(B('活動','晉賽','消防','演練','颱風天'),[],  '積極參與活動或演練或颱風出勤，善於團隊合作')}
       :isL||hasB('評鑑')?  {s:16,r:r(B('組長','評鑑'),[],  '擔任組長或參與評鑑，與他人合作完成任務能力佳')}
       :hasAbn?              {s:12,r:r([],D('異常','掉落'),   '有異常事件，團隊合作中需加強謹慎度')}
       :                      {s:16,r:r([],[],                '依平日表現，與他人合作完成任務能力佳')},
@@ -573,7 +574,7 @@ STAFF.forEach(s=>{
     s.bonus.forEach((b,i)=>{
       const l=b.label; let cid='c5';
       if(['組長','臨床教師','輔導','老師','教師'].some(k=>l.includes(k))) cid='c1';
-      else if(['活動','晉賽','消防','演練'].some(k=>l.includes(k))) cid='c8';
+      else if(['活動','晉賽','消防','演練','颱風天'].some(k=>l.includes(k))) cid='c8';
       else if(['ACLS','高壓','達文西','CVS','開心','跨單位'].some(k=>l.includes(k))) cid='c3';
       else if(['M365','品管','正念','評鑑','ISO','6S'].some(k=>l.includes(k))) cid='c4';
       else if(['優良'].some(k=>l.includes(k))) cid='c10';
