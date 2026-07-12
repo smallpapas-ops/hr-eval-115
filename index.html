@@ -660,16 +660,167 @@ function renderT1(){
     const tags=incs.slice(0,3).map(i=>`<span class="itag ${i.t==='plus'?'itp':'itm'}">${i.t==='plus'?'+':'-'}${Math.abs(i.p)} ${i.l.slice(0,8)}${i.l.length>8?'…':''}</span>`).join('');
     const more=incs.length>3?`<span class="itag" style="background:var(--bg3);color:var(--tx3)">+${incs.length-3}</span>`:'';
     const role=[s.teacher,s.sci||s.func].filter(Boolean).join(' · ')||'—';
-    return`<tr onclick="openM('${s.id}')" id="r-${s.id}" ${openId===s.id?'class="sel"':''}>
-      <td style="font-weight:600">${s.name}</td>
-      <td style="color:var(--tx2);font-size:13px">${role}</td>
-      <td>${tags}${more}${!incs.length?'<span style="color:var(--tx3);font-size:12px">—</span>':''}</td>
-      <td><div class="pb"><div class="pb-bg"><div class="pb-fill" style="width:${n/total*100}%;background:${n===total?'#639922':'var(--blue-bg)'}"></div></div><span style="font-size:12px;color:var(--tx2)">${n}/${total}</span></div></td>
-      <td style="text-align:right;font-weight:600;color:${gClr(gradeFrom(xt))}">${xt}</td>
-      <td style="text-align:right;font-weight:600;color:${n>0?gClr(g):'var(--tx3)'}">${n>0?w.toFixed(0):'—'}</td>
-      <td style="text-align:center"><span class="badge ${gCss(g)}">${g}</span></td>
+    return`<tr id="r-${s.id}" ${openId===s.id?'class="sel"':''}>
+      <td style="font-weight:600;cursor:pointer" onclick="openM('${s.id}')">${s.name}</td>
+      <td style="color:var(--tx2);font-size:14px;cursor:pointer;position:relative" onclick="editRole(event,'${s.id}')" title="點擊編輯職務/科別">
+        <span id="role-${s.id}">${role}</span>
+        <i class="ti ti-pencil" style="font-size:11px;color:var(--tx3);margin-left:5px;opacity:.5"></i>
+      </td>
+      <td style="cursor:pointer" onclick="editInc(event,'${s.id}')" title="點擊編輯加扣分事蹟">
+        <span id="inc-${s.id}">${tags}${more}${!incs.length?'<span style="color:var(--tx3);font-size:12px">—</span>':''}</span>
+        <i class="ti ti-pencil" style="font-size:11px;color:var(--tx3);margin-left:5px;opacity:.5"></i>
+      </td>
+      <td onclick="openM('${s.id}')" style="cursor:pointer"><div class="pb"><div class="pb-bg"><div class="pb-fill" style="width:${n/total*100}%;background:${n===total?'#639922':'var(--blue-bg)'}"></div></div><span style="font-size:12px;color:var(--tx2)">${n}/${total}</span></div></td>
+      <td style="text-align:right;font-weight:600;color:${gClr(gradeFrom(xt))};cursor:pointer" onclick="openM('${s.id}')">${xt}</td>
+      <td style="text-align:right;font-weight:600;color:${n>0?gClr(g):'var(--tx3)'};cursor:pointer" onclick="openM('${s.id}')">${n>0?w.toFixed(0):'—'}</td>
+      <td style="text-align:center;cursor:pointer" onclick="openM('${s.id}')"><span class="badge ${gCss(g)}">${g}</span></td>
     </tr>`;
   }).join('')||'<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--tx3)">沒有符合條件的員工</td></tr>';
+}
+
+
+// ── 行內編輯：職務/科別 ────────────────────────────────────
+function editRole(e, sid){
+  e.stopPropagation();
+  const s = STAFF.find(x=>x.id===sid); if(!s) return;
+  const cell = e.currentTarget;
+  // 已在編輯中就跳過
+  if(cell.querySelector('input')) return;
+
+  const span = document.getElementById('role-'+sid);
+  const cur = [s.teacher, s.sci||s.func].filter(Boolean).join(' · ');
+
+  cell.innerHTML = `
+    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+      <input id="re-teacher-${sid}" type="text" value="${s.teacher}" placeholder="職稱（如臨床教師）"
+        style="font-size:14px;padding:5px 8px;border:.5px solid var(--blue);border-radius:var(--r);outline:none;width:110px">
+      <input id="re-sci-${sid}" type="text" value="${s.sci||s.func}" placeholder="科別/功能組"
+        style="font-size:14px;padding:5px 8px;border:.5px solid var(--blue);border-radius:var(--r);outline:none;width:100px">
+      <button onclick="saveRole(event,'${sid}')"
+        style="padding:5px 10px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:13px;font-weight:600">儲存</button>
+      <button onclick="renderT1()"
+        style="padding:5px 8px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:13px">取消</button>
+    </div>`;
+  document.getElementById('re-teacher-'+sid)?.focus();
+}
+
+function saveRole(e, sid){
+  e.stopPropagation();
+  const s = STAFF.find(x=>x.id===sid); if(!s) return;
+  const teacher = document.getElementById('re-teacher-'+sid)?.value.trim()||'';
+  const sci     = document.getElementById('re-sci-'+sid)?.value.trim()||'';
+  s.teacher = teacher;
+  if(sci) s.sci = sci; else s.func = sci;
+  // 重建建議（teacher 影響 isT）
+  ST[sid].sugg = buildSugg(s);
+  sbSave(sid);
+  renderT1();
+  showToast(s.name+' 職務已更新','green');
+}
+
+// ── 行內編輯：加扣分事蹟 ──────────────────────────────────
+function editInc(e, sid){
+  e.stopPropagation();
+  const s = STAFF.find(x=>x.id===sid); if(!s) return;
+  const cell = e.currentTarget;
+  if(cell.querySelector('select')) return;
+
+  // 快速彈窗：顯示加分 chips + 現有列表
+  const bonus = BONUS_PRESETS;
+  const deduct = DEDUCT_PRESETS;
+
+  const bonusChips = bonus.map((p,i)=>{
+    const active = s.bonus.some(b=>b.label===p.label);
+    return`<button class="p0-chip plus${active?' active':''}" onclick="quickToggle(event,'${sid}','plus',${i})">${p.label}</button>`;
+  }).join('');
+  const deductChips = deduct.map((p,i)=>{
+    const active = s.deduct.some(d=>d.label===p.label);
+    return`<button class="p0-chip minus${active?' active':''}" onclick="quickToggle(event,'${sid}','minus',${i})">${p.label}</button>`;
+  }).join('');
+
+  // 建立浮動編輯面板
+  const existing = document.getElementById('quick-edit-panel');
+  if(existing) existing.remove();
+
+  const panel = document.createElement('div');
+  panel.id = 'quick-edit-panel';
+  panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--bg);border:.5px solid var(--bd2);border-radius:var(--rl);padding:1.5rem;z-index:150;width:90%;max-width:600px;box-shadow:0 20px 60px rgba(0,0,0,.2);max-height:80vh;overflow-y:auto';
+  panel.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+      <div style="font-size:17px;font-weight:700">${s.name} — 加扣分事蹟快速編輯</div>
+      <button onclick="document.getElementById('quick-edit-panel').remove()" style="padding:6px 10px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:15px">✕</button>
+    </div>
+    <div style="font-size:13px;font-weight:600;color:var(--green);margin-bottom:8px">加分項目</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem">${bonusChips}</div>
+    <div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:8px">扣分項目</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem">${deductChips}</div>
+    <div style="display:flex;gap:10px;margin-top:1rem">
+      <button onclick="saveQuickInc('${sid}')"
+        style="flex:2;padding:11px;border:none;border-radius:var(--r);background:var(--tx);color:#fff;cursor:pointer;font-size:15px;font-weight:700">
+        <i class='ti ti-check' style='margin-right:6px'></i>確認儲存
+      </button>
+      <button onclick="document.getElementById('quick-edit-panel').remove()"
+        style="flex:1;padding:11px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:15px">取消</button>
+    </div>`;
+
+  // 背景遮罩
+  const overlay = document.createElement('div');
+  overlay.id = 'quick-edit-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:149';
+  overlay.onclick = ()=>{panel.remove();overlay.remove();};
+  document.body.appendChild(overlay);
+  document.body.appendChild(panel);
+}
+
+function quickToggle(e, sid, type, idx){
+  e.stopPropagation();
+  const s = STAFF.find(x=>x.id===sid); if(!s) return;
+  const presets = type==='plus' ? BONUS_PRESETS : DEDUCT_PRESETS;
+  const arr     = type==='plus' ? s.bonus : s.deduct;
+  const p = presets[idx];
+  const btn = e.currentTarget;
+  const ei = arr.findIndex(x=>x.label===p.label);
+  if(ei>=0){
+    arr.splice(ei,1);
+    btn.classList.remove('active');
+  } else {
+    arr.push({label:p.label, pts:p.pts});
+    btn.classList.add('active');
+  }
+}
+
+function saveQuickInc(sid){
+  const s = STAFF.find(x=>x.id===sid); if(!s) return;
+  // 重新計算總分
+  s.bonus_sum  = s.bonus.reduce((a,b)=>a+b.pts,0);
+  s.deduct_sum = s.deduct.reduce((a,d)=>a+d.pts,0);
+  s.total = 80 + s.bonus_sum - s.deduct_sum;
+  // 重建 inc 和建議
+  const inc={c1:[],c2:[],c3:[],c4:[],c5:[],c6:[],c7:[],c8:[],c9:[],c10:[],c11:[]};
+  s.bonus.forEach((b,i)=>{const l=b.label;let cid='c5';
+    if(['組長','臨床教師','輔導','老師','教師'].some(k=>l.includes(k)))cid='c1';
+    else if(['活動','晉賽','消防','演練','颱風天'].some(k=>l.includes(k)))cid='c8';
+    else if(['ACLS','高壓','達文西','CVS','開心','跨單位'].some(k=>l.includes(k)))cid='c3';
+    else if(['M365','品管','正念','評鑑','ISO','6S'].some(k=>l.includes(k)))cid='c4';
+    else if(['優良'].some(k=>l.includes(k)))cid='c10';
+    else if(['進階','撰寫','教育訓練'].some(k=>l.includes(k)))cid='c5';
+    inc[cid].push({id:Date.now()+i*31+(Math.random()*99|0),t:'plus',l:b.label,p:b.pts});
+  });
+  s.deduct.forEach((d,i)=>{const l=d.label;let cid='c9';
+    if(['遲到','早退'].some(k=>l.includes(k)))cid='c1';
+    else if(['必修'].some(k=>l.includes(k)))cid='c4';
+    else if(['改帳','手術紀錄','未落實'].some(k=>l.includes(k)))cid='c9';
+    else if(['重大'].some(k=>l.includes(k)))cid='c10';
+    inc[cid].push({id:Date.now()+i*37+(Math.random()*99|0),t:'minus',l:d.label,p:d.pts});
+  });
+  ST[sid].inc = inc;
+  ST[sid].sugg = buildSugg(s);
+  ST[sid].applied = {};
+  document.getElementById('quick-edit-panel')?.remove();
+  document.getElementById('quick-edit-overlay')?.remove();
+  sbSave(sid);
+  renderT1();
+  showToast(s.name+' 加扣分事蹟已更新','green');
 }
 
 // ── MODAL ──────────────────────────────────────────────────
