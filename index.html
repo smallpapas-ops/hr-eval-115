@@ -173,9 +173,9 @@ tbody tr.sel td{background:var(--blue-bg)}
     <div class="nlogo"><i class="ti ti-clipboard-list"></i></div>
     <div style="flex:1"><span style="font-size:17px;font-weight:600">115年度 手術室護理人員年終考核</span><span style="font-size:12px;color:var(--tx3);margin-left:4px" class="hide-sm">護理部</span></div>
     <span style="font-size:12px;color:var(--tx3);background:var(--bg2);padding:4px 12px;border-radius:99px;border:.5px solid var(--bd)" class="hide-sm">53 人</span>
-    <button onclick="openGithubUpload()" title="儲存最新版 index.html"
+    <button id="gh-save-btn" onclick="openGithubUpload()" title="直接上傳到 GitHub"
       style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0">
-      <i class="ti ti-device-floppy" style="font-size:16px"></i><span class="hide-sm">存檔</span>
+      <i class="ti ti-cloud-upload" style="font-size:16px"></i><span class="hide-sm">存檔</span>
     </button>
     <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定"
       style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
@@ -1810,14 +1810,100 @@ function p6SaveLeave(sid){
 
 // ── 一鍵下載（儲存最新版）─────────────────────────────────
 function openGithubUpload(){
-  const h='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-  const b=new Blob([h],{type:'text/html;charset=utf-8'});
-  const u=URL.createObjectURL(b);
-  const a=document.createElement('a');
-  a.href=u;a.download='index.html';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
-  setTimeout(()=>URL.revokeObjectURL(u),3000);
-  showToast('已儲存 index.html','green');
+  const token = localStorage.getItem('gh_token')||'';
+  if(!token){
+    // 第一次：請填入 token
+    const d=document.createElement('div');
+    d.id='gh-token-modal';
+    d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px';
+    d.innerHTML=`<div style="background:#fff;border-radius:12px;padding:1.75rem;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+      <div style="font-size:17px;font-weight:700;margin-bottom:6px">🔑 首次設定（只需一次）</div>
+      <div style="font-size:13px;color:#555;margin-bottom:1.1rem;line-height:1.7">
+        設定後每次點「存檔」就直接上傳到 GitHub，不產生任何檔案。
+      </div>
+      <div style="margin-bottom:1rem">
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:5px">GitHub Personal Access Token</div>
+        <input id="gh-tk-input" type="password" placeholder="ghp_xxxxxxxxxxxx"
+          style="width:100%;font-size:14px;padding:10px 12px;border:.5px solid #ddd;border-radius:8px;outline:none;box-sizing:border-box">
+        <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.7">
+          還沒有？<a href="https://github.com/settings/tokens/new?scopes=repo&description=hr-eval-115" target="_blank"
+            style="color:#0C447C;font-weight:600">點這裡產生（勾選 repo 後直接 Generate）</a>
+        </div>
+      </div>
+      <div id="gh-tk-err" style="display:none;background:#FCEBEB;color:#791F1F;border-radius:6px;padding:8px 12px;font-size:13px;margin-bottom:10px"></div>
+      <div style="display:flex;gap:10px">
+        <button onclick="document.getElementById('gh-token-modal').remove()"
+          style="flex:1;padding:10px;border:.5px solid #ddd;border-radius:8px;background:none;cursor:pointer;font-size:14px">取消</button>
+        <button onclick="ghSaveToken()"
+          style="flex:2;padding:10px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;cursor:pointer;font-size:14px;font-weight:700">儲存並上傳</button>
+      </div>
+    </div>`;
+    document.body.appendChild(d);
+    setTimeout(()=>document.getElementById('gh-tk-input')?.focus(),100);
+    return;
+  }
+  // 已有 token → 直接上傳
+  ghDoUpload(token);
+}
+
+function ghSaveToken(){
+  const tk=document.getElementById('gh-tk-input')?.value.trim();
+  const err=document.getElementById('gh-tk-err');
+  if(!tk||!tk.startsWith('ghp_')){
+    err.textContent='請輸入正確的 Token（以 ghp_ 開頭）';
+    err.style.display='block';return;
+  }
+  localStorage.setItem('gh_token',tk);
+  document.getElementById('gh-token-modal').remove();
+  ghDoUpload(tk);
+}
+
+async function ghDoUpload(token){
+  const OWNER='smallpapas-ops', REPO='hr-eval-115', FILE='index.html';
+  const btn=document.getElementById('gh-save-btn');
+  const origHTML=btn?btn.innerHTML:'';
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-loader" style="font-size:14px;animation:spin 1s linear infinite"></i><span class="hide-sm">上傳中…</span>';}
+
+  try{
+    // 取 SHA
+    const headers={'Authorization':'token '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'};
+    const apiUrl=`https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
+    const getR=await fetch(apiUrl,{headers});
+    let sha='';
+    if(getR.ok){const d=await getR.json();sha=d.sha||'';}
+    else if(getR.status===401||getR.status===403){
+      localStorage.removeItem('gh_token');
+      throw new Error('Token 已失效，請重新設定');
+    }
+
+    // 取得頁面 HTML 並 base64
+    const htmlStr='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+    const bytes=new TextEncoder().encode(htmlStr);
+    let bin='';
+    const CHUNK=8192;
+    for(let i=0;i<bytes.length;i+=CHUNK)
+      bin+=String.fromCharCode(...bytes.subarray(i,Math.min(i+CHUNK,bytes.length)));
+    const b64=btoa(bin);
+
+    // 上傳
+    const body={message:'更新 index.html — '+new Date().toLocaleString('zh-TW'),content:b64,branch:'main'};
+    if(sha)body.sha=sha;
+    const putR=await fetch(apiUrl,{method:'PUT',headers,body:JSON.stringify(body)});
+    if(putR.ok){
+      showToast('✅ 已上傳到 GitHub，約 2 分鐘後生效','green');
+    } else {
+      const e=await putR.json();
+      throw new Error(e.message||'上傳失敗('+putR.status+')');
+    }
+  }catch(e){
+    showToast('❌ '+e.message,'red');
+    if(e.message.includes('Token')){
+      // 清掉失效的 token，下次重新設定
+      localStorage.removeItem('gh_token');
+    }
+  }finally{
+    if(btn){btn.disabled=false;btn.innerHTML=origHTML;}
+  }
 }
 
 </script>
