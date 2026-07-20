@@ -173,9 +173,9 @@ tbody tr.sel td{background:var(--blue-bg)}
     <div class="nlogo"><i class="ti ti-clipboard-list"></i></div>
     <div style="flex:1"><span style="font-size:17px;font-weight:600">115年度 手術室護理人員年終考核</span><span style="font-size:12px;color:var(--tx3);margin-left:4px" class="hide-sm">護理部</span></div>
     <span style="font-size:12px;color:var(--tx3);background:var(--bg2);padding:4px 12px;border-radius:99px;border:.5px solid var(--bd)" class="hide-sm">53 人</span>
-    <button onclick="openGithubUpload()" title="上傳到 GitHub"
+    <button onclick="openGithubUpload()" title="下載最新版 index.html"
       style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0">
-      <i class="ti ti-brand-github" style="font-size:16px"></i><span class="hide-sm">上傳 GitHub</span>
+      <i class="ti ti-cloud-upload" style="font-size:16px"></i><span class="hide-sm">存檔上傳</span>
     </button>
     <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定"
       style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
@@ -1808,183 +1808,55 @@ function p6SaveLeave(sid){
   showToast(s.name+(cnt>0?' 請假記錄已更新':'（零請假）已記錄'),cnt>0?'amber':'green');
 }
 
-// ── GitHub 上傳功能 ────────────────────────────────────────
+// ── 一鍵下載（儲存最新版）─────────────────────────────────
 function openGithubUpload(){
-  document.getElementById('gh-upload-modal')?.remove();
+  // 自動下載最新版 index.html
+  const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([htmlContent], {type:'text/html;charset=utf-8'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'index.html'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 3000);
+
+  // 顯示引導彈窗
   const d = document.createElement('div');
-  d.id = 'gh-upload-modal';
+  d.id = 'gh-guide-modal';
   d.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px';
-
-  // 取得儲存的設定
-  const savedOwner = localStorage.getItem('gh_owner')||'smallpapas-ops';
-  const savedRepo  = localStorage.getItem('gh_repo') ||'hr-eval-115';
-  const savedToken = localStorage.getItem('gh_token')||'';
-
   d.innerHTML = `
-    <div style="background:#fff;border-radius:12px;padding:1.75rem;width:100%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
-        <div>
-          <div style="font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px">
-            <i class="ti ti-brand-github" style="font-size:20px"></i>上傳到 GitHub Pages
+    <div style="background:#fff;border-radius:12px;padding:1.75rem;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+      <div style="font-size:18px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+        <i class="ti ti-check-circle" style="color:#27500A;font-size:22px"></i>index.html 已自動下載
+      </div>
+      <div style="font-size:14px;color:#555;margin-bottom:1.25rem;line-height:1.8">
+        接下來只需 <b>2 步</b>更新網站（約 3 分鐘）：
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem">
+        <div style="background:#f0f7ff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:32px;height:32px;border-radius:50%;background:#0C447C;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0">1</div>
+          <div>
+            <div style="font-weight:600;font-size:15px">點下方按鈕開啟 GitHub</div>
+            <div style="font-size:13px;color:#555;margin-top:2px">自動開到上傳頁面</div>
           </div>
-          <div style="font-size:13px;color:#555;margin-top:3px">直接從瀏覽器推送最新版本</div>
         </div>
-        <button onclick="document.getElementById('gh-upload-modal').remove()"
-          style="padding:6px 10px;border:.5px solid #ddd;border-radius:8px;background:none;cursor:pointer;font-size:16px;color:#555">✕</button>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div>
-          <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em">帳號名稱</div>
-          <input id="gh-owner" type="text" value="${savedOwner}" placeholder="例：smallpapas-ops"
-            style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid #ddd;border-radius:8px;outline:none">
-        </div>
-        <div>
-          <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em">倉庫名稱</div>
-          <input id="gh-repo" type="text" value="${savedRepo}" placeholder="例：hr-eval-115"
-            style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid #ddd;border-radius:8px;outline:none">
+        <div style="background:#f0f7ff;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:32px;height:32px;border-radius:50%;background:#0C447C;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0">2</div>
+          <div>
+            <div style="font-weight:600;font-size:15px">把 index.html 拖進上傳區</div>
+            <div style="font-size:13px;color:#555;margin-top:2px">拉進去後點「Commit changes」完成</div>
+          </div>
         </div>
       </div>
-
-      <div style="margin-bottom:1.25rem">
-        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em">
-          Personal Access Token <span style="color:#791F1F">*</span>
-        </div>
-        <div style="position:relative">
-          <input id="gh-token" type="password" value="${savedToken}" placeholder="ghp_xxxxxxxxxxxx"
-            style="width:100%;font-size:14px;padding:9px 12px;border:.5px solid #ddd;border-radius:8px;outline:none;padding-right:44px">
-          <button onclick="const i=document.getElementById('gh-token');i.type=i.type==='password'?'text':'password'"
-            style="position:absolute;right:10px;top:50%;transform:translateY(-50%);border:none;background:none;cursor:pointer;color:#999;font-size:14px">👁</button>
-        </div>
-        <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.7">
-          還沒有 Token？
-          <a href="https://github.com/settings/tokens/new?scopes=repo&description=hr-eval-115" target="_blank"
-            style="color:#0C447C;font-weight:600">點這裡一鍵產生 →</a>
-          （開啟後直接點「Generate token」，複製後貼到上方）
-        </div>
-      </div>
-
-      <div id="gh-status" style="display:none;border-radius:8px;padding:10px 14px;margin-bottom:1rem;font-size:13px;line-height:1.6"></div>
-
       <div style="display:flex;gap:10px">
-        <button onclick="document.getElementById('gh-upload-modal').remove()"
-          style="flex:1;padding:11px;border:.5px solid #ddd;border-radius:8px;background:none;cursor:pointer;font-size:14px">取消</button>
-        <button id="gh-upload-btn" onclick="doGithubUpload()"
-          style="flex:2;padding:11px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
-          <i class="ti ti-upload" style="font-size:15px"></i>立即上傳
+        <button onclick="document.getElementById('gh-guide-modal').remove()"
+          style="flex:1;padding:11px;border:.5px solid #ddd;border-radius:8px;background:none;cursor:pointer;font-size:14px;color:#555">稍後</button>
+        <button onclick="window.open('https://github.com/smallpapas-ops/hr-eval-115/upload/main','_blank');document.getElementById('gh-guide-modal').remove()"
+          style="flex:2;padding:11px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;cursor:pointer;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          <i class="ti ti-brand-github" style="font-size:16px"></i>開啟 GitHub 上傳頁面
         </button>
       </div>
     </div>`;
   document.body.appendChild(d);
-}
-
-async function doGithubUpload(){
-  const owner = document.getElementById('gh-owner')?.value.trim();
-  const repo  = document.getElementById('gh-repo')?.value.trim();
-  const token = document.getElementById('gh-token')?.value.trim();
-  const statusEl = document.getElementById('gh-status');
-  const btn = document.getElementById('gh-upload-btn');
-
-  if(!owner||!repo||!token){
-    statusEl.style.display='block';
-    statusEl.style.background='#FCEBEB';statusEl.style.color='#791F1F';
-    statusEl.textContent='請填入帳號、倉庫名稱和 Token';
-    return;
-  }
-
-  // 儲存設定（Token 加密存）
-  localStorage.setItem('gh_owner', owner);
-  localStorage.setItem('gh_repo',  repo);
-  localStorage.setItem('gh_token', token);
-
-  btn.disabled = true;
-  btn.innerHTML = '<i class="ti ti-loader" style="font-size:15px;animation:spin 1s linear infinite"></i>上傳中…';
-  statusEl.style.display='block';
-  statusEl.style.background='#E6F1FB';statusEl.style.color='#0C447C';
-  statusEl.textContent='① 取得目前版本資訊…';
-
-  const headers = {
-    'Authorization': `token ${token}`,
-    'Accept': 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28',
-    'Content-Type': 'application/json',
-  };
-  const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/index.html`;
-
-  try {
-    // 取得目前 SHA
-    let sha = '';
-    const getR = await fetch(apiUrl, {headers});
-    if(getR.ok){
-      const d = await getR.json();
-      sha = d.sha||'';
-      statusEl.textContent = `① 目前版本 SHA: ${sha.slice(0,8)}…`;
-    } else if(getR.status===404){
-      statusEl.textContent = '① 新建檔案中…';
-    } else if(getR.status===401){
-      throw new Error('Token 無效或已過期，請重新產生');
-    } else if(getR.status===403){
-      throw new Error('Token 權限不足，請確認勾選了 repo 權限');
-    } else {
-      throw new Error(`取得檔案失敗 (${getR.status})`);
-    }
-
-    // 取得頁面完整 HTML
-    statusEl.textContent = '② 壓縮頁面內容…';
-    await new Promise(r=>setTimeout(r,100));
-    // 取得原始 HTML 檔案內容（重新 fetch 自己確保完整）
-    statusEl.textContent = '② 讀取頁面內容…';
-    let htmlContent;
-    if(location.protocol === 'file:') {
-      // 本機開啟：直接用 outerHTML（已包含所有資料）
-      htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-    } else {
-      try {
-        const selfR = await fetch(location.href);
-        htmlContent = await selfR.text();
-      } catch(fe) {
-        htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-      }
-    }
-    const bytes = new TextEncoder().encode(htmlContent);
-    let binary = '';
-    const CHUNK = 8192;
-    for(let i=0;i<bytes.length;i+=CHUNK){
-      binary += String.fromCharCode(...bytes.subarray(i,Math.min(i+CHUNK,bytes.length)));
-    }
-    const b64 = btoa(binary);
-    statusEl.textContent = `② 內容大小: ${(htmlContent.length/1024).toFixed(0)} KB → 上傳中…`;
-
-    // 推送
-    const body = {
-      message: `更新 index.html — ${new Date().toLocaleString('zh-TW')}`,
-      content: b64,
-      branch: 'main',
-    };
-    if(sha) body.sha = sha;
-
-    const putR = await fetch(apiUrl, {method:'PUT', headers, body:JSON.stringify(body)});
-
-    if(putR.ok){
-      const result = await putR.json();
-      statusEl.style.background='#EAF3DE';statusEl.style.color='#27500A';
-      statusEl.innerHTML = `✅ 上傳成功！Commit: ${result.commit?.sha?.slice(0,8)||'OK'}<br>
-        ⏳ 約 2 分鐘後生效：
-        <a href="https://${owner}.github.io/${repo}/" target="_blank"
-          style="color:#27500A;font-weight:600">https://${owner}.github.io/${repo}/</a>`;
-      btn.innerHTML = '<i class="ti ti-check" style="font-size:15px"></i>上傳完成';
-      btn.style.background = '#27500A';
-    } else {
-      const err = await putR.json();
-      throw new Error(err.message||`上傳失敗 (${putR.status})`);
-    }
-
-  } catch(e) {
-    statusEl.style.background='#FCEBEB';statusEl.style.color='#791F1F';
-    statusEl.textContent = `❌ 錯誤：${e.message}`;
-    btn.disabled = false;
-    btn.innerHTML = '<i class="ti ti-upload" style="font-size:15px"></i>重試';
-  }
+  d.addEventListener('click', e=>{ if(e.target===d) d.remove(); });
 }
 
 </script>
