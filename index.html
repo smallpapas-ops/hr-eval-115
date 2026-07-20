@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
+<html lang="zh-TW"><plasmo-csui id="g0-textarea-recorder"></plasmo-csui><plasmo-csui id="g0-widget"></plasmo-csui><plasmo-csui id="g0-ratings-popup"></plasmo-csui><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>115年度 手術室護理人員年終考核系統</title>
@@ -173,12 +172,8 @@ tbody tr.sel td{background:var(--blue-bg)}
     <div class="nlogo"><i class="ti ti-clipboard-list"></i></div>
     <div style="flex:1"><span style="font-size:17px;font-weight:600">115年度 手術室護理人員年終考核</span><span style="font-size:12px;color:var(--tx3);margin-left:4px" class="hide-sm">護理部</span></div>
     <span style="font-size:12px;color:var(--tx3);background:var(--bg2);padding:4px 12px;border-radius:99px;border:.5px solid var(--bd)" class="hide-sm">53 人</span>
-    <button id="gh-save-btn" onclick="openGithubUpload()" title="直接上傳到 GitHub"
-      style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0">
-      <i class="ti ti-cloud-upload" style="font-size:16px"></i><span class="hide-sm">存檔</span>
-    </button>
-    <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定"
-      style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
+    <button id="gh-save-btn" onclick="openGithubUpload()" title="直接上傳到 GitHub" style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0" disabled=""><i class="ti ti-loader" style="font-size:14px;animation:spin 1s linear infinite"></i><span class="hide-sm">上傳中…</span></button>
+    <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定" style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
       <i class="ti ti-cloud" style="font-size:15px"></i>
       <span id="sync-label">設定同步</span>
     </button>
@@ -187,12 +182,12 @@ tbody tr.sel td{background:var(--blue-bg)}
 <div class="ptabs">
   <div class="ptabs-i">
   <button class="ptab" onclick="showPage('p0')"><i class="ti ti-home" style="font-size:15px"></i><span>事蹟</span></button>
-  <button class="ptab on" onclick="showPage('p1')"><i class="ti ti-table" style="font-size:15px"></i><span>評核</span></button>
+  <button class="ptab" onclick="showPage('p1')"><i class="ti ti-table" style="font-size:15px"></i><span>評核</span></button>
   <button class="ptab" onclick="showPage('p2')"><i class="ti ti-chart-pie" style="font-size:15px"></i><span>比例</span></button>
   <button class="ptab" onclick="showPage('p3')"><i class="ti ti-file-export" style="font-size:15px"></i><span>彙整</span></button>
   <button class="ptab" onclick="showPage('p4')"><i class="ti ti-chart-bar" style="font-size:15px"></i><span>歷年</span></button>
   <button class="ptab" onclick="showPage('p5')"><i class="ti ti-list-check" style="font-size:15px"></i><span>加扣分</span></button>
-  <button class="ptab" onclick="showPage('p6')"><i class="ti ti-calendar-off" style="font-size:15px"></i><span>請假</span></button>
+  <button class="ptab on" onclick="showPage('p6')"><i class="ti ti-calendar-off" style="font-size:15px"></i><span>請假</span></button>
 </div>
 </div>
 <!-- PAGE 0 -->
@@ -266,7 +261,7 @@ tbody tr.sel td{background:var(--blue-bg)}
   <div style="text-align:center;font-size:12px;color:var(--tx3);margin-top:10px">送出後自動跳至「評核總表」並開啟該員工的評核視窗</div>
 </div></div></div>
 <!-- PAGE 1 -->
-<div id="p1" class="psec on"><div class="page">
+<div id="p1" class="psec"><div class="page">
   <div id="qbar" class="qbar"></div>
   <div class="fb">
     <input type="text" id="q" placeholder="搜尋姓名或工號…" oninput="renderT1()">
@@ -327,8 +322,7 @@ tbody tr.sel td{background:var(--blue-bg)}
         <option value="leave">有請假記錄</option>
         <option value="adv">通過進階考核</option>
       </select>
-      <input type="text" id="p5-q" placeholder="搜尋姓名…" oninput="renderP5()"
-        style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:160px">
+      <input type="text" id="p5-q" placeholder="搜尋姓名…" oninput="renderP5()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:160px">
     </div>
   </div>
   <!-- 統計摘要 -->
@@ -338,7 +332,7 @@ tbody tr.sel td{background:var(--blue-bg)}
 </div></div>
 
 <!-- PAGE 6 -->
-<div id="p6" class="psec"><div class="page">
+<div id="p6" class="psec on"><div class="page">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
     <div>
       <div style="font-size:20px;font-weight:700">臨時請假記錄</div>
@@ -351,17 +345,752 @@ tbody tr.sel td{background:var(--blue-bg)}
         <option value="none">零請假</option>
         <option value="warn">3次以上（需注意）</option>
       </select>
-      <input type="text" id="p6-q" placeholder="搜尋姓名…（清空顯示全部）" oninput="renderP6()"
-        style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:150px">
+      <input type="text" id="p6-q" placeholder="搜尋姓名…（清空顯示全部）" oninput="renderP6()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:150px">
     </div>
   </div>
-  <div id="p6-summary" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px"></div>
+  <div id="p6-summary" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+    <div class="sc" style="border-left:3px solid var(--amber);cursor:pointer" onclick="document.getElementById('p6-filter').value='all';renderP6()">
+      <div class="sn" style="color:var(--amber)">24</div><div class="sl">全年請假總次數</div></div>
+    <div class="sc" style="border-left:3px solid var(--blue);cursor:pointer" onclick="document.getElementById('p6-filter').value='has';renderP6()">
+      <div class="sn" style="color:var(--blue)">15</div><div class="sl">有請假人數</div></div>
+    <div class="sc" style="border-left:3px solid var(--green);cursor:pointer" onclick="document.getElementById('p6-filter').value='none';renderP6()">
+      <div class="sn" style="color:var(--green)">38</div><div class="sl">零請假人數</div></div>
+    <div class="sc" style="border-left:3px solid var(--red);cursor:pointer" onclick="document.getElementById('p6-filter').value='warn';renderP6()">
+      <div class="sn" style="color:var(--red)">3</div><div class="sl">3次以上（需注意）</div></div></div>
   <div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.1rem 1.4rem;margin-bottom:16px">
     <div style="font-size:14px;font-weight:600;color:var(--tx2);margin-bottom:12px"><i class="ti ti-chart-bar" style="vertical-align:-1px;margin-right:6px"></i>各月請假次數分布</div>
-    <div id="p6-chart" style="display:flex;gap:6px;align-items:flex-end;height:72px"></div>
-    <div id="p6-chart-labels" style="display:flex;gap:6px;margin-top:4px"></div>
+    <div id="p6-chart" style="display:flex;gap:6px;align-items:flex-end;height:72px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">5</div>
+      <div style="width:100%;height:50px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">3</div>
+      <div style="width:100%;height:31px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">7</div>
+      <div style="width:100%;height:68px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">3</div>
+      <div style="width:100%;height:31px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">5</div>
+      <div style="width:100%;height:50px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div></div>
+    <div id="p6-chart-labels" style="display:flex;gap:6px;margin-top:4px"><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">1月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">2月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">3月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">4月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">5月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">6月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">7月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">8月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">9月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">10月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">11月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">12月</div></div>
   </div>
-  <div id="p6-table"></div>
+  <div id="p6-table"><div class="tw" style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse">
+    <thead><tr style="background:var(--bg2);border-bottom:.5px solid var(--bd2)">
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);width:44px">#</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2)">姓名</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2)">職務 / 科別</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--amber);text-align:center">請假次數</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2)">請假日期</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);text-align:center">操作</th>
+    </tr></thead>
+    <tbody>
+    <tr style="border-bottom:.5px solid var(--bd);background:rgba(121,31,31,.04);border-left:3px solid var(--red)">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">1</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('16946'),200)">陳明瑄</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-骨</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--red)">5</div>
+            <span style="font-size:11px;padding:2px 8px;border-radius:99px;background:var(--red-bg);color:var(--red);font-weight:600">⚠需注意</span>
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>1/12
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--purple-bg);color:var(--purple);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>1/28喪
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>2/26
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>4/13
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--purple-bg);color:var(--purple);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>6/1生理假
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16946" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:rgba(121,31,31,.04);border-left:3px solid var(--red)">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">2</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('15423'),200)">周芳怡</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">達文西</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--red)">3</div>
+            <span style="font-size:11px;padding:2px 8px;border-radius:99px;background:var(--red-bg);color:var(--red);font-weight:600">⚠需注意</span>
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>1/2
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/9
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/11
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>6/8
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>6/9
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15423" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:rgba(121,31,31,.04);border-left:3px solid var(--red)">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">3</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('16947'),200)">簡晏欣</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">GS-醫材</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--red)">3</div>
+            <span style="font-size:11px;padding:2px 8px;border-radius:99px;background:var(--red-bg);color:var(--red);font-weight:600">⚠需注意</span>
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--purple-bg);color:var(--purple);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>1/8阿姨忌日
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>2/23
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>2/24
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16947" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:rgba(99,56,6,.03);border-left:3px solid var(--amber)">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">4</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('14444'),200)">李宜鵑</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · 學術-組長</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--amber)">2</div>
+            <span style="font-size:11px;padding:2px 8px;border-radius:99px;background:var(--amber-bg);color:var(--amber);font-weight:600">留意</span>
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>1/27
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>4/4
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14444" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">5</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('13288'),200)">王嘉羚</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">眼-1</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>01-15
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="13288" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">6</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('14536'),200)">張佩琪</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · 眼-2</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/15
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14536" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">7</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('15068'),200)">高靖緹</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">達文西</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/11
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15068" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">8</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('15577'),200)">鄒芮宸</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">環管-</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>02-27
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15577" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">9</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('16016'),200)">林峙廷</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">學術-上傳認證積分</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>03-02
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16016" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">10</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('16587'),200)">黃沂晨</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-泌3</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>6/11
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16587" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">11</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('16948'),200)">黃佩琪</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">—</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--purple-bg);color:var(--purple);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/1忘記上班
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16948" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">12</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('17073'),200)">張芸甄</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">學術-上傳認證積分</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--purple-bg);color:var(--purple);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>4/20生理
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="17073" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">13</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('17223'),200)">鄒昀珊</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">—</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/9
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="17223" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">14</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('17307'),200)">蕭睬容</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">TCPI、抗生素</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>3/12
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="17307" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">15</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('11468'),200)">盧貞君</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">—</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--tx2)">1</div>
+            
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>6/5生
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="11468" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">16</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('11192'),200)">蕭帆妤</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="11192" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">17</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('10273'),200)">王婷婷</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="10273" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">18</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('10361'),200)">李靜怡</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · GS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="10361" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">19</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('10367'),200)">張瑋恩</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · GS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="10367" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">20</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('10740'),200)">李佳容</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · 醫材</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="10740" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">21</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('10746'),200)">王玉仙</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · PS-1</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="10746" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">22</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('10922'),200)">陳玉茹</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">CVS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="10922" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">23</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('11598'),200)">羅秀如</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · NS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="11598" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">24</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('12295'),200)">林奕辰</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-組長</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="12295" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">25</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('12483'),200)">林靜子</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">泌GU-2</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="12483" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">26</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('12847'),200)">郭妍伶</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">泌GU-1</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="12847" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">27</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('13565'),200)">程郁淳</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">臨床教師 · NS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="13565" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">28</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('14040'),200)">黃怡婷</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">CVS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14040" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">29</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('14055'),200)">洪怡婷</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">ENT</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14055" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">30</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('14190'),200)">楊衣甄</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">婦</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14190" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">31</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('14492'),200)">謝佩芳</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">口外</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14492" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">32</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('14635'),200)">汪瑄柔</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">CVS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14635" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">33</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('14958'),200)">林昕澄</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">口外</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="14958" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">34</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15268'),200)">卓湘晴</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">骨</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15268" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">35</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15321'),200)">陳柏宇</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">達文西</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15321" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">36</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15349'),200)">黃品喆</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">環管-男更衣室、鑰匙、鉛衣</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15349" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">37</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15508'),200)">徐禾沐</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">骨</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15508" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">38</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15544'),200)">黃淑嬅</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">骨</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15544" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">39</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15664'),200)">陳金燕</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">環管-女更衣室、鑰匙</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15664" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">40</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15783'),200)">蘇奕臻</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">儀器-一級保養</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15783" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">41</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('15813'),200)">曾雅筠</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">環管-落菌培養</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="15813" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">42</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16304'),200)">王婷玉</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-CVS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16304" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">43</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16343'),200)">黃玉秀</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">NS-3</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16343" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">44</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16360'),200)">辜嬿潔</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-PS</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16360" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">45</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16565'),200)">黃予婕</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">達文西</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16565" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">46</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16601'),200)">吳婉菁</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">NS-4</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16601" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">47</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16650'),200)">劉祐呈</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">品管組14-</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16650" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">48</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16704'),200)">江嘉琪</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-婦</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16704" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">49</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16900'),200)">李宜諮</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">人資資料建檔</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16900" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">50</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16926'),200)">何尚謙</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">環管-男更衣室、鑰匙</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16926" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">51</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('16949'),200)">陳筠心</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">醫材-口外</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="16949" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">52</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('17149'),200)">余宗芸</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">—</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="17149" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr><tr style="border-bottom:.5px solid var(--bd);background:var(--bg);border-left:3px solid transparent">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">53</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx3)" onclick="showPage('p1');setTimeout(()=>openM('17212'),200)">陳玥汝</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">高壓鍋、證照、每月資料整理、上傳KM</td>
+        <td style="padding:12px 14px;text-align:center"><span style="font-size:13px;color:var(--tx3)">—</span></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="color:var(--tx3);font-size:13px">（尚無記錄）</span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="17212" style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>新增
+          </button>
+        </td>
+      </tr>
+    </tbody></table></div></div>
 </div></div>
 
 <!-- MODAL -->
@@ -1907,5 +2636,6 @@ async function ghDoUpload(token){
 }
 
 </script>
-</body>
-</html>
+
+
+</body></html>
