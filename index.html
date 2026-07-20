@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
+<html lang="zh-TW"><plasmo-csui id="g0-textarea-recorder"></plasmo-csui><plasmo-csui id="g0-widget"></plasmo-csui><plasmo-csui id="g0-ratings-popup"></plasmo-csui><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>115年度 手術室護理人員年終考核系統</title>
@@ -173,12 +172,10 @@ tbody tr.sel td{background:var(--blue-bg)}
     <div class="nlogo"><i class="ti ti-clipboard-list"></i></div>
     <div style="flex:1"><span style="font-size:17px;font-weight:600">115年度 手術室護理人員年終考核</span><span style="font-size:12px;color:var(--tx3);margin-left:4px" class="hide-sm">護理部</span></div>
     <span style="font-size:12px;color:var(--tx3);background:var(--bg2);padding:4px 12px;border-radius:99px;border:.5px solid var(--bd)" class="hide-sm">53 人</span>
-    <button onclick="openGithubUpload()" title="下載最新版 index.html"
-      style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0">
+    <button onclick="openGithubUpload()" title="下載最新版 index.html" style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0">
       <i class="ti ti-cloud-upload" style="font-size:16px"></i><span class="hide-sm">存檔上傳</span>
     </button>
-    <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定"
-      style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
+    <button onclick="openSbSetup()" id="sync-btn" title="雲端同步設定" style="padding:7px 14px;border-radius:99px;border:.5px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:flex;align-items:center;gap:6px;font-weight:500;flex-shrink:0">
       <i class="ti ti-cloud" style="font-size:15px"></i>
       <span id="sync-label">設定同步</span>
     </button>
@@ -187,12 +184,12 @@ tbody tr.sel td{background:var(--blue-bg)}
 <div class="ptabs">
   <div class="ptabs-i">
   <button class="ptab" onclick="showPage('p0')"><i class="ti ti-home" style="font-size:15px"></i><span>事蹟</span></button>
-  <button class="ptab on" onclick="showPage('p1')"><i class="ti ti-table" style="font-size:15px"></i><span>評核</span></button>
+  <button class="ptab" onclick="showPage('p1')"><i class="ti ti-table" style="font-size:15px"></i><span>評核</span></button>
   <button class="ptab" onclick="showPage('p2')"><i class="ti ti-chart-pie" style="font-size:15px"></i><span>比例</span></button>
   <button class="ptab" onclick="showPage('p3')"><i class="ti ti-file-export" style="font-size:15px"></i><span>彙整</span></button>
   <button class="ptab" onclick="showPage('p4')"><i class="ti ti-chart-bar" style="font-size:15px"></i><span>歷年</span></button>
   <button class="ptab" onclick="showPage('p5')"><i class="ti ti-list-check" style="font-size:15px"></i><span>加扣分</span></button>
-  <button class="ptab" onclick="showPage('p6')"><i class="ti ti-calendar-off" style="font-size:15px"></i><span>請假</span></button>
+  <button class="ptab on" onclick="showPage('p6')"><i class="ti ti-calendar-off" style="font-size:15px"></i><span>請假</span></button>
 </div>
 </div>
 <!-- PAGE 0 -->
@@ -266,7 +263,7 @@ tbody tr.sel td{background:var(--blue-bg)}
   <div style="text-align:center;font-size:12px;color:var(--tx3);margin-top:10px">送出後自動跳至「評核總表」並開啟該員工的評核視窗</div>
 </div></div></div>
 <!-- PAGE 1 -->
-<div id="p1" class="psec on"><div class="page">
+<div id="p1" class="psec"><div class="page">
   <div id="qbar" class="qbar"></div>
   <div class="fb">
     <input type="text" id="q" placeholder="搜尋姓名或工號…" oninput="renderT1()">
@@ -327,8 +324,7 @@ tbody tr.sel td{background:var(--blue-bg)}
         <option value="leave">有請假記錄</option>
         <option value="adv">通過進階考核</option>
       </select>
-      <input type="text" id="p5-q" placeholder="搜尋姓名…" oninput="renderP5()"
-        style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:160px">
+      <input type="text" id="p5-q" placeholder="搜尋姓名…" oninput="renderP5()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:160px">
     </div>
   </div>
   <!-- 統計摘要 -->
@@ -338,7 +334,7 @@ tbody tr.sel td{background:var(--blue-bg)}
 </div></div>
 
 <!-- PAGE 6 -->
-<div id="p6" class="psec"><div class="page">
+<div id="p6" class="psec on"><div class="page">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
     <div>
       <div style="font-size:20px;font-weight:700">臨時請假記錄</div>
@@ -351,17 +347,92 @@ tbody tr.sel td{background:var(--blue-bg)}
         <option value="none">零請假</option>
         <option value="warn">3次以上（需注意）</option>
       </select>
-      <input type="text" id="p6-q" placeholder="搜尋姓名…（清空顯示全部）" oninput="renderP6()"
-        style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:150px">
+      <input type="text" id="p6-q" placeholder="搜尋姓名…（清空顯示全部）" oninput="renderP6()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:150px">
     </div>
   </div>
-  <div id="p6-summary" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px"></div>
+  <div id="p6-summary" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+    <div class="sc" style="border-left:3px solid var(--amber);cursor:pointer" onclick="document.getElementById('p6-filter').value='all';renderP6()">
+      <div class="sn" style="color:var(--amber)">28</div><div class="sl">全年請假總次數</div></div>
+    <div class="sc" style="border-left:3px solid var(--blue);cursor:pointer" onclick="document.getElementById('p6-filter').value='has';renderP6()">
+      <div class="sn" style="color:var(--blue)">17</div><div class="sl">有請假人數</div></div>
+    <div class="sc" style="border-left:3px solid var(--green);cursor:pointer" onclick="document.getElementById('p6-filter').value='none';renderP6()">
+      <div class="sn" style="color:var(--green)">36</div><div class="sl">零請假人數</div></div>
+    <div class="sc" style="border-left:3px solid var(--red);cursor:pointer" onclick="document.getElementById('p6-filter').value='warn';renderP6()">
+      <div class="sn" style="color:var(--red)">4</div><div class="sl">3次以上（需注意）</div></div></div>
   <div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.1rem 1.4rem;margin-bottom:16px">
     <div style="font-size:14px;font-weight:600;color:var(--tx2);margin-bottom:12px"><i class="ti ti-chart-bar" style="vertical-align:-1px;margin-right:6px"></i>各月請假次數分布</div>
-    <div id="p6-chart" style="display:flex;gap:6px;align-items:flex-end;height:72px"></div>
-    <div id="p6-chart-labels" style="display:flex;gap:6px;margin-top:4px"></div>
+    <div id="p6-chart" style="display:flex;gap:6px;align-items:flex-end;height:72px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">5</div>
+      <div style="width:100%;height:50px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">3</div>
+      <div style="width:100%;height:31px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">7</div>
+      <div style="width:100%;height:68px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">3</div>
+      <div style="width:100%;height:31px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">3</div>
+      <div style="width:100%;height:31px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">6</div>
+      <div style="width:100%;height:59px;background:var(--amber-bg);border-radius:4px 4px 0 0;border-bottom:2px solid var(--amber)"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px"></div>
+      <div style="width:100%;height:4px;background:var(--bg3);border-radius:4px 4px 0 0;"></div>
+    </div></div>
+    <div id="p6-chart-labels" style="display:flex;gap:6px;margin-top:4px"><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">1月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">2月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">3月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">4月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">5月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">6月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">7月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">8月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">9月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">10月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">11月</div><div style="flex:1;text-align:center;font-size:11px;color:var(--tx3)">12月</div></div>
   </div>
-  <div id="p6-table"></div>
+  <div id="p6-table"><div class="tw" style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse">
+    <thead><tr style="background:var(--bg2);border-bottom:.5px solid var(--bd2)">
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);width:44px">#</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2)">姓名</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2)">職務 / 科別</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--amber);text-align:center">請假次數</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2)">請假日期</th>
+      <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);text-align:center">操作</th>
+    </tr></thead>
+    <tbody>
+    <tr style="border-bottom:.5px solid var(--bd);background:rgba(121,31,31,.04);border-left:3px solid var(--red)">
+        <td style="padding:12px 14px;font-size:13px;color:var(--tx3);text-align:center">1</td>
+        <td style="padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer;color:var(--tx)" onclick="showPage('p1');setTimeout(()=>openM('11468'),200)">盧貞君</td>
+        <td style="padding:12px 14px;font-size:14px;color:var(--tx2)">—</td>
+        <td style="padding:12px 14px;text-align:center"><div style="text-align:center">
+            <div style="font-size:24px;font-weight:700;color:var(--red)">3</div>
+            <span style="font-size:11px;padding:2px 8px;border-radius:99px;background:var(--red-bg);color:var(--red);font-weight:600">⚠需注意</span>
+          </div></td>
+        <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>5/14遲
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>5/19病
+            </span><span style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:var(--amber);border-radius:99px;padding:4px 12px;font-size:13px;margin:2px;font-weight:500;white-space:nowrap">
+              <i class="ti ti-calendar-off" style="font-size:11px"></i>6/5生
+            </span></div></td>
+        <td style="padding:12px 14px;text-align:center">
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="11468" style="padding:7px 14px;border:.5px solid rgba(99,56,6,.3);border-radius:var(--r);background:var(--amber-bg);cursor:pointer;font-size:13px;color:var(--amber);display:inline-flex;align-items:center;gap:5px;font-weight:500">
+            <i class="ti ti-pencil" style="font-size:13px"></i>編輯
+          </button>
+        </td>
+      </tr>
+    </tbody></table></div></div>
 </div></div>
 
 <!-- MODAL -->
@@ -1860,5 +1931,6 @@ function openGithubUpload(){
 }
 
 </script>
-</body>
-</html>
+
+
+</body></html>
