@@ -346,12 +346,12 @@ tbody tr.sel td{background:var(--blue-bg)}
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
       <select id="p6-filter" onchange="renderP6()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none">
-        <option value="all">全部人員（52人）</option>
+        <option value="all">全部人員</option>
         <option value="has">有請假記錄</option>
         <option value="none">零請假</option>
         <option value="warn">3次以上（需注意）</option>
       </select>
-      <input type="text" id="p6-q" placeholder="搜尋姓名…" oninput="renderP6()"
+      <input type="text" id="p6-q" placeholder="搜尋姓名…（清空顯示全部）" oninput="renderP6()"
         style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:150px">
     </div>
   </div>
@@ -1417,8 +1417,20 @@ function showPage(id){
   if(id==='p2')renderP2();
   if(id==='p3')renderP3();
   if(id==='p4')renderP4();
-  if(id==='p5')renderP5();
-  if(id==='p6')renderP6();
+  if(id==='p5'){
+    const p5q=document.getElementById('p5-q');
+    if(p5q)p5q.value='';
+    const p5f=document.getElementById('p5-filter');
+    if(p5f)p5f.value='all';
+    renderP5();
+  }
+  if(id==='p6'){
+    const p6q=document.getElementById('p6-q');
+    if(p6q)p6q.value='';
+    const p6f=document.getElementById('p6-filter');
+    if(p6f)p6f.value='all';
+    renderP6();
+  }
 }
 
 // ── PAGE 5：加扣分明細 ─────────────────────────────────────
@@ -1656,7 +1668,7 @@ function renderP6(){
         <td style="padding:12px 14px;text-align:center">${cntBadge}</td>
         <td style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px">${dateTags}</div></td>
         <td style="padding:12px 14px;text-align:center">
-          <button onclick="editLeave(event,'${s.id}')"
+          <button onclick="editLeave(event,this.getAttribute('data-sid'))" data-sid="${s.id}"
             style="padding:7px 14px;border:.5px solid ${cnt?'rgba(99,56,6,.3)':'var(--bd2)'};border-radius:var(--r);background:${cnt?'var(--amber-bg)':'var(--bg2)'};cursor:pointer;font-size:13px;color:${cnt?'var(--amber)':'var(--tx2)'};display:inline-flex;align-items:center;gap:5px;font-weight:500">
             <i class="ti ti-pencil" style="font-size:13px"></i>${cnt?'編輯':'新增'}
           </button>
@@ -1920,13 +1932,27 @@ async function doGithubUpload(){
     // 取得頁面完整 HTML
     statusEl.textContent = '② 壓縮頁面內容…';
     await new Promise(r=>setTimeout(r,100));
-    const htmlContent = document.documentElement.outerHTML;
-    // base64 encode（支援中文）
+    // 取得原始 HTML 檔案內容（重新 fetch 自己確保完整）
+    statusEl.textContent = '② 讀取頁面內容…';
+    let htmlContent;
+    if(location.protocol === 'file:') {
+      // 本機開啟：直接用 outerHTML（已包含所有資料）
+      htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    } else {
+      try {
+        const selfR = await fetch(location.href);
+        htmlContent = await selfR.text();
+      } catch(fe) {
+        htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      }
+    }
     const bytes = new TextEncoder().encode(htmlContent);
     let binary = '';
-    bytes.forEach(b => binary += String.fromCharCode(b));
+    const CHUNK = 8192;
+    for(let i=0;i<bytes.length;i+=CHUNK){
+      binary += String.fromCharCode(...bytes.subarray(i,Math.min(i+CHUNK,bytes.length)));
+    }
     const b64 = btoa(binary);
-
     statusEl.textContent = `② 內容大小: ${(htmlContent.length/1024).toFixed(0)} KB → 上傳中…`;
 
     // 推送
