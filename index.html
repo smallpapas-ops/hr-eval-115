@@ -450,6 +450,15 @@ tbody tr.sel td{background:var(--blue-bg)}
       <div style="font-size:20px;font-weight:700">備註</div>
       <div style="font-size:14px;color:var(--tx2);margin-top:3px">隨時編輯備註資訊</div>
     </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <select id="p10-filter" onchange="renderP10()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none">
+        <option value="all">全部人員</option>
+        <option value="has">有備註者</option>
+        <option value="empty">無備註者</option>
+      </select>
+      <input type="text" id="p10-q" placeholder="搜尋姓名或工號…" oninput="renderP10()"
+        style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:200px">
+    </div>
   </div>
   <div id="p10-table"></div>
 </div></div>
@@ -2709,29 +2718,52 @@ function closeBilling(sid,idx){
 
 // ── PAGE 10 備註管理 ──────────────────────────────────────────
 function renderP10(){
+  const q = (document.getElementById('p10-q')?.value||'').trim().toLowerCase();
+  const filter = document.getElementById('p10-filter')?.value||'all';
   const tb=document.getElementById('p10-table');
   if(!tb)return;
   
+  // 根据搜索和过滤条件过滤员工列表
+  let list = STAFF.filter(s => {
+    // 搜索条件：名字或工号包含搜索词
+    if(q && !s.name.toLowerCase().includes(q) && !s.id.includes(q)) return false;
+    
+    // 过滤条件
+    if(filter === 'has') return s.note && s.note.trim().length > 0;
+    if(filter === 'empty') return !s.note || s.note.trim().length === 0;
+    return true;
+  });
+  
+  // 如果没有匹配结果
+  if(!list.length){
+    tb.innerHTML = '<div style="text-align:center;padding:40px;color:var(--tx3);font-size:14px">沒有符合條件的人員</div>';
+    return;
+  }
+  
   tb.innerHTML=`<div style="display:flex;flex-direction:column;gap:10px">
-  ${STAFF.map(s=>{
+  ${list.map(s=>{
     const role=[s.teacher,s.sci||s.func].filter(Boolean).join(' · ')||'—';
-    return `<div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.2rem 1.4rem;transition:all .2s">
+    const hasNote = s.note && s.note.trim().length > 0;
+    const notePreview = hasNote ? s.note.substring(0, 100) + (s.note.length > 100 ? '...' : '') : '尚無備註';
+    
+    return `<div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.2rem 1.4rem;transition:all .2s;border-left:3px solid ${hasNote ? 'var(--blue)' : 'var(--bd2)'}">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:12px;flex:1">
-          <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--blue);flex-shrink:0">${s.name.slice(-2)}</div>
+          <div style="width:40px;height:40px;border-radius:50%;background:${hasNote ? 'var(--blue-bg)' : 'var(--bg2)'};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:${hasNote ? 'var(--blue)' : 'var(--tx2)'};flex-shrink:0">${s.name.slice(-2)}</div>
           <div>
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
               <span style="font-size:16px;font-weight:700">${s.name}</span>
+              ${hasNote ? '<span style="background:var(--blue-bg);color:var(--blue);padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600">有備註</span>' : ''}
             </div>
             <div style="font-size:13px;color:var(--tx2);margin-top:2px">${role} · ${s.id}</div>
           </div>
         </div>
         <button onclick="editNote('${s.id}')"
           style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500;white-space:nowrap;flex-shrink:0">
-          <i class="ti ti-edit" style="font-size:13px"></i>編輯備註
+          <i class="ti ti-edit" style="font-size:13px"></i>編輯
         </button>
       </div>
-      ${s.note?`<div style="background:var(--bg2);border-left:3px solid var(--blue);padding:10px 12px;border-radius:var(--r);font-size:14px;line-height:1.6;color:var(--tx2)">${s.note}</div>`:'<div style="text-align:center;padding:10px;color:var(--tx3);font-size:14px">尚無備註</div>'}
+      ${hasNote?`<div style="background:var(--bg2);border-left:3px solid var(--blue);padding:10px 12px;border-radius:var(--r);font-size:14px;line-height:1.6;color:var(--tx2)">${s.note}</div>`:'<div style="text-align:center;padding:10px;color:var(--tx3);font-size:14px">尚無備註</div>'}
     </div>`;
   }).join('')}
   </div>`;
