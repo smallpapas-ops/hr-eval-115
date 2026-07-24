@@ -176,7 +176,7 @@ tbody tr.sel td{background:var(--blue-bg)}
     <div class="nlogo"><i class="ti ti-clipboard-list"></i></div>
     <div style="flex:1"><span style="font-size:17px;font-weight:600">115年度 手術室護理人員年終考核</span><span style="font-size:12px;color:var(--tx3);margin-left:4px" class="hide-sm">護理部</span></div>
     <span style="font-size:12px;color:var(--tx3);background:var(--bg2);padding:4px 12px;border-radius:99px;border:.5px solid var(--bd)" class="hide-sm">53 人</span>
-    <button id="gh-save-btn" onclick="openGithubUpload()" title="直接上傳到 GitHub"
+    <button id="gh-save-btn" onclick="saveAllToFirebase()" title="保存到 Firebase"
       style="padding:7px 14px;border-radius:99px;border:.5px solid rgba(39,80,10,.3);background:var(--green-bg);cursor:pointer;font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;font-weight:600;flex-shrink:0">
       <i class="ti ti-cloud-upload" style="font-size:16px"></i><span class="hide-sm">存檔</span>
     </button>
@@ -2027,8 +2027,49 @@ function saveToCloud(){
 
 
 // ══════════════════════════════════════════════
-// Firebase 自動保存完成，無需 GitHub Token
+// Firebase 完整保存（所有员工数据）
 // ══════════════════════════════════════════════
+async function saveAllToFirebase(){
+  if(!firebaseReady || !db){
+    showToast('❌ Firebase 尚未连接，请稍候...', 'red');
+    return;
+  }
+  
+  const btn = document.getElementById('gh-save-btn');
+  if(btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;font-size:14px"></i><span class="hide-sm"> 儲存中…</span>';
+  }
+  
+  try {
+    console.log("📥 正在保存所有数据到 Firebase...");
+    
+    // 保存所有员工数据
+    const promises = STAFF.map(staff => {
+      const completeData = {
+        ...staff,
+        id: staff.id,
+        updated_at: new Date().toISOString(),
+        sync_status: 'firebase'
+      };
+      return db.ref('staff/' + staff.id).set(completeData);
+    });
+    
+    await Promise.all(promises);
+    
+    console.log("✅ 全部", STAFF.length, "位员工数据已保存到 Firebase");
+    showToast('✅ 已保存 ' + STAFF.length + ' 位員工的全部數據到 Firebase', 'green');
+    
+  } catch(error) {
+    console.error("❌ Firebase 保存失败:", error);
+    showToast('❌ 保存失败: ' + error.message, 'red');
+  } finally {
+    if(btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="ti ti-cloud-upload" style="font-size:16px"></i><span class="hide-sm">存檔</span>';
+    }
+  }
+}
 
 
 
