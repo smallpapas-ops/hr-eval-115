@@ -1691,6 +1691,7 @@ function renderP5(){
 
         <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);text-align:center">總分</th>
         <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);text-align:center">等第</th>
+        <th style="padding:12px 14px;font-size:14px;font-weight:600;color:var(--tx2);text-align:center">操作</th>
       </tr>
     </thead>
     <tbody>
@@ -1736,7 +1737,11 @@ function renderP5(){
             <div style="font-size:24px;font-weight:700;color:${netColor}">${xt}</div>
             <div style="font-size:12px;color:${netColor};margin-top:2px">${netDiff>0?'+':''}${netDiff===0?'基準':netDiff}</div>
           </td>
-          <td style="padding:12px 14px;text-align:center"><span class="badge ${gCss(g)}" style="font-size:14px;padding:6px 14px">${g}</span></td>
+          <td style="padding:12px 14px;text-align:center;white-space:nowrap">
+            <button onclick="editBonusDeduct('${s.id}')" style="padding:6px 12px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);color:var(--blue);cursor:pointer;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px">
+              <i class="ti ti-edit" style="font-size:14px"></i><span class="hide-sm">編輯</span>
+            </button>
+          </td>
         </tr>`;
       }).join('')}
     </tbody>
@@ -2043,8 +2048,90 @@ function saveToCloud(){
 
 
 // ══════════════════════════════════════════════
-// Firebase 完整保存（所有员工数据）
+// 編輯加扣分項目
 // ══════════════════════════════════════════════
+function editBonusDeduct(sid){
+  const s = STAFF.find(x => x.id === sid);
+  if(!s) return;
+  
+  const role = [s.teacher, s.sci||s.func].filter(Boolean).join(' · ')||'—';
+  
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto';
+  
+  let bonusHtml = (s.bonus||[]).map((b,i) => `
+    <div style="display:flex;gap:10px;margin-bottom:10px;padding:10px;background:var(--bg2);border-radius:var(--r);align-items:center">
+      <input type="text" placeholder="項目名稱" value="${b.label}" onchange="STAFF.find(x=>x.id=='${sid}').bonus[${i}].label=this.value"
+        style="flex:1;padding:8px 10px;border:.5px solid var(--bd2);border-radius:var(--r);font-size:14px">
+      <input type="number" placeholder="分數" value="${b.pts}" onchange="STAFF.find(x=>x.id=='${sid}').bonus[${i}].pts=parseInt(this.value)"
+        style="width:60px;padding:8px 10px;border:.5px solid var(--bd2);border-radius:var(--r);font-size:14px">
+      <button onclick="STAFF.find(x=>x.id=='${sid}').bonus.splice(${i},1);editBonusDeduct('${sid}')" 
+        style="padding:8px 12px;border:.5px solid var(--red);background:var(--red-bg);color:var(--red);border-radius:var(--r);cursor:pointer;font-weight:600">
+        <i class="ti ti-trash" style="font-size:14px"></i>
+      </button>
+    </div>
+  `).join('');
+  
+  let deductHtml = (s.deduct||[]).map((d,i) => `
+    <div style="display:flex;gap:10px;margin-bottom:10px;padding:10px;background:var(--bg2);border-radius:var(--r);align-items:center">
+      <input type="text" placeholder="項目名稱" value="${d.label}" onchange="STAFF.find(x=>x.id=='${sid}').deduct[${i}].label=this.value"
+        style="flex:1;padding:8px 10px;border:.5px solid var(--bd2);border-radius:var(--r);font-size:14px">
+      <input type="number" placeholder="分數" value="${d.pts}" onchange="STAFF.find(x=>x.id=='${sid}').deduct[${i}].pts=parseInt(this.value)"
+        style="width:60px;padding:8px 10px;border:.5px solid var(--bd2);border-radius:var(--r);font-size:14px">
+      <button onclick="STAFF.find(x=>x.id=='${sid}').deduct.splice(${i},1);editBonusDeduct('${sid}')" 
+        style="padding:8px 12px;border:.5px solid var(--red);background:var(--red-bg);color:var(--red);border-radius:var(--r);cursor:pointer;font-weight:600">
+        <i class="ti ti-trash" style="font-size:14px"></i>
+      </button>
+    </div>
+  `).join('');
+  
+  modal.innerHTML = `
+    <div style="background:var(--bg);border-radius:var(--rl);padding:2rem;width:100%;max-width:700px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:85vh;overflow-y:auto">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
+        <div>
+          <div style="font-size:18px;font-weight:700">${s.name} — 加扣分編輯</div>
+          <div style="font-size:13px;color:var(--tx2);margin-top:4px">${role} · ${s.id}</div>
+        </div>
+        <button onclick="this.closest('div').closest('div').remove()" style="padding:8px 12px;border:.5px solid var(--bd2);background:none;cursor:pointer;font-size:16px;color:var(--tx2)">✕</button>
+      </div>
+      
+      <div style="margin-bottom:1.5rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="font-size:15px;font-weight:700;color:var(--green)">➕ 加分項目</div>
+          <button onclick="STAFF.find(x=>x.id=='${sid}').bonus.push({label:'新項目',pts:0});editBonusDeduct('${sid}')" 
+            style="padding:6px 12px;border:.5px solid var(--green);background:var(--green-bg);color:var(--green);border-radius:var(--r);cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px;font-size:13px">
+            <i class="ti ti-plus" style="font-size:14px"></i>新增
+          </button>
+        </div>
+        <div>${bonusHtml || '<div style="text-align:center;color:var(--tx3);padding:15px">暫無加分項目</div>'}</div>
+      </div>
+      
+      <div style="margin-bottom:1.5rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="font-size:15px;font-weight:700;color:var(--red)">➖ 扣分項目</div>
+          <button onclick="STAFF.find(x=>x.id=='${sid}').deduct.push({label:'新項目',pts:0});editBonusDeduct('${sid}')" 
+            style="padding:6px 12px;border:.5px solid var(--red);background:var(--red-bg);color:var(--red);border-radius:var(--r);cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px;font-size:13px">
+            <i class="ti ti-plus" style="font-size:14px"></i>新增
+          </button>
+        </div>
+        <div>${deductHtml || '<div style="text-align:center;color:var(--tx3);padding:15px">暫無扣分項目</div>'}</div>
+      </div>
+      
+      <div style="display:flex;gap:10px">
+        <button onclick="sbSave('${sid}');this.closest('div').closest('div').remove();renderP5()" 
+          style="flex:1;padding:12px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:14px;font-weight:700">
+          <i class="ti ti-device-floppy" style="font-size:15px;margin-right:5px"></i>確認儲存
+        </button>
+        <button onclick="this.closest('div').closest('div').remove()" 
+          style="flex:1;padding:12px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:14px;font-weight:700">取消</button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+}
+
+
 async function saveAllToFirebase(){
   if(!firebaseReady || !db){
     showToast('❌ Firebase 尚未连接，请稍候...', 'red');
