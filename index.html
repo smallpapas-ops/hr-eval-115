@@ -2132,7 +2132,7 @@ function editBonusDeduct(sid){
       </div>
       
       <div style="display:flex;gap:10px">
-        <button id="bonus-save-btn-${sid}" onclick="async function saveThenClose(){await sbSave('${sid}');showToast('${s.name} 加扣分已儲存','green');setTimeout(()=>{document.getElementById('bonus-outer-modal-${sid}')?.remove();renderP5();},500);}saveThenClose();" 
+        <button id="bonus-save-btn-${sid}" onclick="async function saveThenClose(){const s=STAFF.find(x=>x.id=='${sid}');if(s){s.bonus_sum=s.bonus.reduce((a,b)=>a+b.pts,0);s.deduct_sum=s.deduct.reduce((a,d)=>a+d.pts,0);s.total=80+s.bonus_sum-s.deduct_sum;}await sbSave('${sid}');showToast('${s.name} 加扣分已儲存','green');setTimeout(()=>{document.getElementById('bonus-outer-modal-${sid}')?.remove();renderP5();},500);}saveThenClose();" 
           style="flex:1;padding:12px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:14px;font-weight:700">
           <i class="ti ti-device-floppy" style="font-size:15px;margin-right:5px"></i>確認儲存
         </button>
