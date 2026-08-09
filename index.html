@@ -2063,6 +2063,10 @@ function editBonusDeduct(sid){
   const s = STAFF.find(x => x.id === sid);
   if(!s) return;
   
+  // 确保数组存在！
+  if(!s.bonus) s.bonus = [];
+  if(!s.deduct) s.deduct = [];
+  
   const role = [s.teacher, s.sci||s.func].filter(Boolean).join(' · ')||'—';
   
   const modal = document.createElement('div');
@@ -2127,7 +2131,7 @@ function editBonusDeduct(sid){
       </div>
       
       <div style="display:flex;gap:10px">
-        <button onclick="sbSave('${sid}');this.closest('div').closest('div').remove();renderP5()" 
+        <button onclick="sbSave('${sid}');this.closest('div').closest('div').remove();renderP5();showToast('${s.name} 加扣分已儲存','green')" 
           style="flex:1;padding:12px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:14px;font-weight:700">
           <i class="ti ti-device-floppy" style="font-size:15px;margin-right:5px"></i>確認儲存
         </button>
