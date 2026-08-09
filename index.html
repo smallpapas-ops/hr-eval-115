@@ -2071,6 +2071,7 @@ function editBonusDeduct(sid){
   
   const modal = document.createElement('div');
   modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto';
+  modal.id = 'bonus-outer-modal-' + sid;
   
   let bonusHtml = (s.bonus||[]).map((b,i) => `
     <div style="display:flex;gap:10px;margin-bottom:10px;padding:10px;background:var(--bg2);border-radius:var(--r);align-items:center">
@@ -2099,13 +2100,13 @@ function editBonusDeduct(sid){
   `).join('');
   
   modal.innerHTML = `
-    <div style="background:var(--bg);border-radius:var(--rl);padding:2rem;width:100%;max-width:700px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:85vh;overflow-y:auto">
+    <div id="bonus-modal-${sid}" style="background:var(--bg);border-radius:var(--rl);padding:2rem;width:100%;max-width:700px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:85vh;overflow-y:auto">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
         <div>
           <div style="font-size:18px;font-weight:700">${s.name} — 加扣分編輯</div>
           <div style="font-size:13px;color:var(--tx2);margin-top:4px">${role} · ${s.id}</div>
         </div>
-        <button onclick="this.closest('div').closest('div').remove()" style="padding:8px 12px;border:.5px solid var(--bd2);background:none;cursor:pointer;font-size:16px;color:var(--tx2)">✕</button>
+        <button onclick="document.getElementById('bonus-outer-modal-${sid}')?.remove()" style="padding:8px 12px;border:.5px solid var(--bd2);background:none;cursor:pointer;font-size:16px;color:var(--tx2)">✕</button>
       </div>
       
       <div style="margin-bottom:1.5rem">
@@ -2131,11 +2132,11 @@ function editBonusDeduct(sid){
       </div>
       
       <div style="display:flex;gap:10px">
-        <button onclick="sbSave('${sid}');this.closest('div').closest('div').remove();renderP5();showToast('${s.name} 加扣分已儲存','green')" 
+        <button id="bonus-save-btn-${sid}" onclick="async function saveThenClose(){await sbSave('${sid}');showToast('${s.name} 加扣分已儲存','green');setTimeout(()=>{document.getElementById('bonus-outer-modal-${sid}')?.remove();renderP5();},500);}saveThenClose();" 
           style="flex:1;padding:12px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:14px;font-weight:700">
           <i class="ti ti-device-floppy" style="font-size:15px;margin-right:5px"></i>確認儲存
         </button>
-        <button onclick="this.closest('div').closest('div').remove()" 
+        <button onclick="document.getElementById('bonus-outer-modal-${sid}')?.remove()" 
           style="flex:1;padding:12px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:14px;font-weight:700">取消</button>
       </div>
     </div>
