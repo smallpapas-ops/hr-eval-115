@@ -2870,17 +2870,30 @@ async function loadFromFirebase(){
       const firebaseData = snapshot.val();
       console.log("✅ Firebase 数据已加载，共", Object.keys(firebaseData).length, "位员工");
       
-      // 更新 STAFF 数据
+      // 合并 Firebase 数据到本地
       Object.keys(firebaseData).forEach(staffId => {
         const fireStaff = firebaseData[staffId];
-        const localStaff = STAFF.find(s => s.id === staffId);
+        let localStaff = STAFF.find(s => s.id === staffId);
+        
         if(localStaff){
+          // 更新现有员工
           Object.assign(localStaff, fireStaff);
+        }else{
+          // 添加新员工（来自 Firebase）
+          STAFF.push(fireStaff);
+          console.log("✅ 从 Firebase 加载新员工:", staffId, fireStaff.name);
+          
+          // 初始化 ST 对象中的数据
+          const emptyInc = {};
+          CR.forEach(c => emptyInc[c.id] = []);
+          const emptySugg = {};
+          CR.forEach(c => emptySugg[c.id] = {s: c.opts[2]?.s||12, r:'新進人員，依平日表現評核'});
+          ST[staffId] = {scores:{}, inc:emptyInc, sugg:emptySugg, applied:{}, selfComment:'', mgrComment:''};
         }
       });
       
       showToast("✅ 已从 Firebase 加载最新数据", "green");
-      console.log("✅ 数据已同步");
+      console.log("✅ 数据已同步，共", STAFF.length, "位员工");
     }else{
       console.log("⚠️ Firebase 中无数据，将保存当前数据");
       // 首次使用，上传所有数据到 Firebase
