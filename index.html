@@ -1557,6 +1557,25 @@ function confirmAddStaff(){
   p0RefreshDropdown();renderT1();
   document.getElementById('add-staff-modal').remove();
   showToast(`${name} 已新增至系統`,'green');
+  
+  // 保存新员工到 Firebase
+  if(firebaseReady && db){
+    const newStaff = STAFF.find(s=>s.id===eid);
+    if(newStaff){
+      const completeData = {
+        ...newStaff,
+        id: eid,
+        updated_at: new Date().toISOString(),
+        sync_status: 'firebase'
+      };
+      db.ref('staff/' + eid).set(completeData).then(()=>{
+        console.log("✅ 新员工已保存到 Firebase:", eid);
+      }).catch(err=>{
+        console.error("❌ 保存新员工失败:", err);
+      });
+    }
+  }
+  
   const sel=document.getElementById('p0-sel');if(sel){sel.value=eid;p0SelectStaff(eid);}
 }
 function openDelStaff(){
