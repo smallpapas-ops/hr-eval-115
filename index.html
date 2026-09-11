@@ -199,6 +199,7 @@ tbody tr.sel td{background:var(--blue-bg)}
   <button class="ptab" onclick="showPage('p8')"><i class="ti ti-message-circle" style="font-size:15px"></i><span>會談</span></button>
   <button class="ptab" onclick="showPage('p9')"><i class="ti ti-receipt-2" style="font-size:15px"></i><span>異常事件</span></button>
   <button class="ptab" onclick="showPage('p10')"><i class="ti ti-notes" style="font-size:15px"></i><span>備註</span></button>
+  <button class="ptab" onclick="showPage('p12')"><i class="ti ti-alert-triangle" style="font-size:15px"></i><span>計價異常紀錄</span></button>
 </div>
 </div>
 <!-- PAGE 0 -->
@@ -461,6 +462,26 @@ tbody tr.sel td{background:var(--blue-bg)}
     </div>
   </div>
   <div id="p10-table"></div>
+</div></div>
+
+<!-- PAGE 12 計價異常紀錄 -->
+<div id="p12" class="psec"><div class="page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+    <div>
+      <div style="font-size:20px;font-weight:700">計價異常紀錄</div>
+      <div style="font-size:14px;color:var(--tx2);margin-top:3px">115年度全體人員計價異常登錄與追蹤</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <select id="p12-filter" onchange="renderP12()" style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none">
+        <option value="all">全部人員</option>
+        <option value="has">有異常者</option>
+        <option value="empty">無異常者</option>
+      </select>
+      <input type="text" id="p12-q" placeholder="搜尋姓名或工號…" oninput="renderP12()"
+        style="font-size:15px;padding:9px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;width:200px">
+    </div>
+  </div>
+  <div id="p12-table"></div>
 </div></div>
 
 <!-- MODAL -->
@@ -1645,6 +1666,7 @@ function showPage(id){
   if(id==='p8'){const p8q=document.getElementById('p8-q');if(p8q)p8q.value='';renderP8();}
   if(id==='p9'){const p9q=document.getElementById('p9-q');if(p9q)p9q.value='';renderP9();}
   if(id==='p10')renderP10();
+  if(id==='p12')renderP12();
 }
 
 // ── PAGE 5：加扣分明細 ─────────────────────────────────────
@@ -2791,6 +2813,127 @@ function renderP10(){
     </div>`;
   }).join('')}
   </div>`;
+}
+
+// ── 計價異常紀錄 ──────────────────────────────────────────
+function renderP12(){
+  const q = (document.getElementById('p12-q')?.value||'').trim().toLowerCase();
+  const filter = document.getElementById('p12-filter')?.value||'all';
+  const tb=document.getElementById('p12-table');
+  if(!tb)return;
+  
+  let list = STAFF.filter(s => {
+    if(q && !s.name.toLowerCase().includes(q) && !s.id.includes(q)) return false;
+    if(filter === 'has') return s.billing_errors && s.billing_errors.length > 0;
+    if(filter === 'empty') return !s.billing_errors || s.billing_errors.length === 0;
+    return true;
+  });
+  
+  if(!list.length){
+    tb.innerHTML = '<div style="text-align:center;padding:40px;color:var(--tx3);font-size:14px">沒有符合條件的人員</div>';
+    return;
+  }
+  
+  tb.innerHTML=`<div style="display:flex;flex-direction:column;gap:10px">
+  ${list.map(s=>{
+    const role=[s.teacher,s.sci||s.func].filter(Boolean).join(' · ')||'—';
+    const hasError = s.billing_errors && s.billing_errors.length > 0;
+    const errorCount = hasError ? s.billing_errors.length : 0;
+    
+    return `<div style="background:var(--bg);border:.5px solid var(--bd);border-radius:var(--rl);padding:1.2rem 1.4rem;transition:all .2s;border-left:3px solid ${hasError ? 'var(--red)' : 'var(--bd2)'}">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:12px;flex:1">
+          <div style="width:40px;height:40px;border-radius:50%;background:${hasError ? 'var(--red-bg)' : 'var(--bg2)'};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:${hasError ? 'var(--red)' : 'var(--tx2)'};flex-shrink:0">${s.name.slice(-2)}</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="font-size:16px;font-weight:700">${s.name}</span>
+              ${hasError ? '<span style="background:var(--red-bg);color:var(--red);padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600">'+errorCount+'筆</span>' : ''}
+            </div>
+            <div style="font-size:13px;color:var(--tx2);margin-top:2px">${role} · ${s.id}</div>
+          </div>
+        </div>
+        <button onclick="editBillingRecord('${s.id}')"
+          style="padding:7px 14px;border:.5px solid var(--bd2);border-radius:var(--r);background:var(--bg2);cursor:pointer;font-size:13px;color:var(--tx2);display:inline-flex;align-items:center;gap:5px;font-weight:500;white-space:nowrap;flex-shrink:0">
+          <i class="ti ti-edit" style="font-size:13px"></i>編輯
+        </button>
+      </div>
+      ${hasError?`<div style="background:var(--bg2);border-left:3px solid var(--red);padding:10px 12px;border-radius:var(--r);font-size:13px">
+        ${s.billing_errors.map((e,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:${i<s.billing_errors.length-1?'.5px solid var(--bd2)':'none'}">
+          <span style="color:var(--tx2)">${e.date||'未記錄'} - ${e.desc||'無說明'}</span>
+          <button onclick="STAFF.find(x=>x.id=='${s.id}').billing_errors.splice(${i},1);renderP12()" style="padding:2px 8px;background:var(--red-bg);color:var(--red);border:none;border-radius:4px;cursor:pointer;font-size:11px;font-weight:600">刪除</button>
+        </div>`).join('')}
+      </div>`:'<div style="text-align:center;padding:10px;color:var(--tx3);font-size:14px">尚無異常紀錄</div>'}
+    </div>`;
+  }).join('')}
+  </div>`;
+}
+
+// ── 編輯計價異常紀錄 ──────────────────────────────────────────
+function editBillingRecord(sid){
+  const s = STAFF.find(x => x.id === sid);
+  if(!s) return;
+  if(!s.billing_errors) s.billing_errors = [];
+  
+  const role = [s.teacher, s.sci||s.func].filter(Boolean).join(' · ')||'—';
+  const errorCount = s.billing_errors.length;
+  
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto';
+  modal.id = 'billing-outer-modal-' + sid;
+  
+  modal.innerHTML = `
+    <div id="billing-modal-${sid}" style="background:var(--bg);border-radius:var(--rl);padding:2rem;width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:85vh;overflow-y:auto">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
+        <div>
+          <div style="font-size:18px;font-weight:700">${s.name}</div>
+          <div style="font-size:13px;color:var(--tx2);margin-top:2px">— ${s.id}</div>
+        </div>
+        <button onclick="document.getElementById('billing-outer-modal-${sid}')?.remove()" style="padding:8px 12px;border:.5px solid var(--bd2);background:none;cursor:pointer;font-size:18px;color:var(--tx2)">✕</button>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;padding:12px;background:var(--bg2);border-radius:var(--r)">
+        <div style="font-size:24px;font-weight:700;color:var(--red)">${errorCount}</div>
+        <div style="font-size:13px;color:var(--tx2)">筆<br>異常</div>
+        <button onclick="STAFF.find(x=>x.id=='${sid}').billing_errors.push({date:'',desc:''});editBillingRecord('${sid}')" 
+          style="margin-left:auto;padding:8px 12px;border:.5px solid var(--red);background:var(--red-bg);color:var(--red);border-radius:var(--r);cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px;font-size:13px">
+          <i class="ti ti-plus" style="font-size:14px"></i>新增
+        </button>
+      </div>
+      
+      <div style="margin-bottom:1.5rem">
+        <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto">
+          ${(s.billing_errors||[]).map((e,i) => `
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg2);border-radius:var(--r);border-left:3px solid var(--red)">
+              <div style="flex:1">
+                <input type="text" placeholder="日期 (如 8/5)" value="${e.date||''}" 
+                  onchange="STAFF.find(x=>x.id=='${sid}').billing_errors[${i}].date=this.value"
+                  style="width:100%;padding:6px 10px;border:.5px solid var(--bd2);border-radius:var(--r);font-size:13px;margin-bottom:6px;box-sizing:border-box">
+                <input type="text" placeholder="說明" value="${e.desc||''}" 
+                  onchange="STAFF.find(x=>x.id=='${sid}').billing_errors[${i}].desc=this.value"
+                  style="width:100%;padding:6px 10px;border:.5px solid var(--bd2);border-radius:var(--r);font-size:13px;box-sizing:border-box">
+              </div>
+              <button onclick="STAFF.find(x=>x.id=='${sid}').billing_errors.splice(${i},1);editBillingRecord('${sid}')" 
+                style="padding:6px 10px;border:.5px solid var(--red);background:var(--red-bg);color:var(--red);border-radius:var(--r);cursor:pointer;font-weight:600;flex-shrink:0">
+                <i class="ti ti-x" style="font-size:16px"></i>
+              </button>
+            </div>
+          `).join('')}
+          ${errorCount === 0 ? '<div style="text-align:center;padding:30px;color:var(--tx3);font-size:14px">暫無異常紀錄</div>' : ''}
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:10px">
+        <button onclick="async function saveThenClose(){await sbSave('${sid}');showToast('${s.name} 計價異常已儲存','green');setTimeout(()=>{document.getElementById('billing-outer-modal-${sid}')?.remove();renderP12();},500);}saveThenClose();" 
+          style="flex:1;padding:12px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-size:14px;font-weight:700">
+          <i class="ti ti-device-floppy" style="font-size:15px;margin-right:5px"></i>確認儲存
+        </button>
+        <button onclick="document.getElementById('billing-outer-modal-${sid}')?.remove()" 
+          style="flex:1;padding:12px;border:.5px solid var(--bd2);border-radius:var(--r);background:none;cursor:pointer;font-size:14px;font-weight:700">取消</button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
 }
 
 // ── 編輯備註 Modal ──────────────────────────────────────────
