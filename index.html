@@ -1675,23 +1675,27 @@ function renderP5(){
   const filter = document.getElementById('p5-filter')?.value||'all';
 
   let list = STAFF.filter(s=>{
+    // 确保关键属性存在
+    if(!s.bonus) s.bonus = [];
+    if(!s.deduct) s.deduct = [];
+    
     if(q && !s.name.includes(q) && !s.id.includes(q)) return false;
     if(filter==='bonus')  return s.bonus.length > 0;
     if(filter==='deduct') return s.deduct.length > 0;
     if(filter==='both')   return s.bonus.length > 0 && s.deduct.length > 0;
-    if(filter==='leave')  return s.leave_cnt > 0;
-    if(filter==='adv')    return s.bonus.some(b=>b.label.includes('進階'));
+    if(filter==='leave')  return (s.leave_cnt || 0) > 0;
+    if(filter==='adv')    return s.bonus.some(b=>b.label && b.label.includes('進階'));
     return true;
   });
 
   // ── 統計摘要 ──
-  const totalBonus  = STAFF.reduce((a,s)=>a+s.bonus_sum,0);
-  const totalDeduct = STAFF.reduce((a,s)=>a+s.deduct_sum,0);
-  const hasBonus    = STAFF.filter(s=>s.bonus.length>0).length;
-  const hasDeduct   = STAFF.filter(s=>s.deduct.length>0).length;
-  const hasLeave    = STAFF.filter(s=>s.leave_cnt>0).length;
-  const totalLeave  = STAFF.reduce((a,s)=>a+s.leave_cnt,0);
-  const hasAdv      = STAFF.filter(s=>s.bonus.some(b=>b.label.includes('進階'))).length;
+  const totalBonus  = STAFF.reduce((a,s)=>a+(s.bonus_sum||0),0);
+  const totalDeduct = STAFF.reduce((a,s)=>a+(s.deduct_sum||0),0);
+  const hasBonus    = STAFF.filter(s=>(s.bonus||[]).length>0).length;
+  const hasDeduct   = STAFF.filter(s=>(s.deduct||[]).length>0).length;
+  const hasLeave    = STAFF.filter(s=>(s.leave_cnt||0)>0).length;
+  const totalLeave  = STAFF.reduce((a,s)=>a+(s.leave_cnt||0),0);
+  const hasAdv      = STAFF.filter(s=>(s.bonus||[]).some(b=>b.label && b.label.includes('進階'))).length;
 
   const sumEl = document.getElementById('p5-summary');
   if(sumEl) sumEl.innerHTML = `
@@ -3019,12 +3023,38 @@ async function loadFromFirebase(){
         let localStaff = STAFF.find(s => s.id === staffId);
         
         if(localStaff){
-          // 更新现有员工
+          // 更新现有员工，确保所有属性都存在
           Object.assign(localStaff, fireStaff);
+          // 确保关键属性存在
+          if(!localStaff.bonus) localStaff.bonus = [];
+          if(!localStaff.deduct) localStaff.deduct = [];
+          if(!localStaff.bonus_sum) localStaff.bonus_sum = 0;
+          if(!localStaff.deduct_sum) localStaff.deduct_sum = 0;
+          if(!localStaff.total) localStaff.total = 80;
+          if(!localStaff.leave_cnt) localStaff.leave_cnt = 0;
+          if(!localStaff.interviews) localStaff.interviews = [];
+          if(!localStaff.billing_errors) localStaff.billing_errors = [];
         }else{
           // 添加新员工（来自 Firebase）
-          STAFF.push(fireStaff);
-          console.log("✅ 从 Firebase 加载新员工:", staffId, fireStaff.name);
+          // 确保新员工有所有必需的属性
+          const newStaff = {
+            ...fireStaff,
+            bonus: fireStaff.bonus || [],
+            deduct: fireStaff.deduct || [],
+            bonus_sum: fireStaff.bonus_sum || 0,
+            deduct_sum: fireStaff.deduct_sum || 0,
+            total: fireStaff.total || 80,
+            leave_cnt: fireStaff.leave_cnt || 0,
+            leave_dates: fireStaff.leave_dates || [],
+            leave_detail: fireStaff.leave_detail || [],
+            interviews: fireStaff.interviews || [],
+            billing_errors: fireStaff.billing_errors || [],
+            note: fireStaff.note || '',
+            good_note: fireStaff.good_note || '',
+            abnormal_records: fireStaff.abnormal_records || []
+          };
+          STAFF.push(newStaff);
+          console.log("✅ 从 Firebase 加载新员工:", staffId, newStaff.name);
           
           // 初始化 ST 对象中的数据
           const emptyInc = {};
