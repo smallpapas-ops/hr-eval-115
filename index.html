@@ -1642,6 +1642,13 @@ function confirmDelStaff(){
   const eid=document.getElementById('del-sel').value;if(!eid)return;
   const s=STAFF.find(x=>x.id===eid);if(!s)return;
   const name=s.name;
+  // 軟刪除：Firebase 保留紀錄並標記 removed，重新載入時會隱藏，資料可追溯
+  if(firebaseReady && db){
+    db.ref(FB_STAFF + '/' + eid).set(Object.assign({}, s, {removed:true, removed_at:new Date().toISOString()}))
+      .catch(err=>{console.error('刪除同步失敗',err);showToast('⚠ 雲端刪除失敗，請重試','red');});
+  }else{
+    showToast('⚠ 尚未連接雲端，刪除只會暫時生效','amber');
+  }
   STAFF.splice(STAFF.findIndex(x=>x.id===eid),1);delete ST[eid];
   p0RefreshDropdown();
   if(p0SelId===eid){p0SelId=null;p0Clear();const b=document.getElementById('p0-badge');if(b)b.style.display='none';}
@@ -3036,6 +3043,14 @@ async function loadFromFirebase(){
         const fireStaff = firebaseData[staffId];
         let localStaff = STAFF.find(s => s.id === staffId);
         
+        // 已刪除（離職）人員：從本地名單移除，不再加入
+        if(fireStaff && fireStaff.removed){
+          const idx = STAFF.findIndex(s => s.id === staffId);
+          if(idx > -1) STAFF.splice(idx, 1);
+          delete ST[staffId];
+          return;
+        }
+        
         if(localStaff){
           // 更新现有员工，确保所有属性都存在
           Object.assign(localStaff, fireStaff);
@@ -3080,6 +3095,7 @@ async function loadFromFirebase(){
       });
       
       showToast("✅ 已从 Firebase 加载最新数据", "green");
+      try{ p0RefreshDropdown(); renderT1(); }catch(e){ console.warn('刷新失敗', e); }
       console.log("✅ 数据已同步，共", STAFF.length, "位员工");
     }else{
       console.log("⚠️ Firebase 中无数据，将保存当前数据");
